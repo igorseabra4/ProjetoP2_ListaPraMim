@@ -1,12 +1,15 @@
+package sistema;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class Sistema {
-	private HashMap<Integer, Produto> produtos;
+	private Map<Integer, Produto> produtos;
 	private int currentId;
 	
 	public Sistema() {
 		produtos = new HashMap<Integer, Produto>();
-		currentId = -1;
+		currentId = 0;
 	}
 
 	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra, double preco) {
