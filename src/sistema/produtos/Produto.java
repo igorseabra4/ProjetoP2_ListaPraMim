@@ -1,15 +1,17 @@
 package sistema.produtos;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public abstract class Produto {
 
+	private int id;
 	private String nome;
 	private Categorias categoria;
 	private Map<String,Double> precos;
 	
-	public Produto(String nome, String categoria, String localDeCompra, double preco) {
+	public Produto(int id, String nome, String categoria, String localDeCompra, double preco) {
 		if(nome.trim().equals("") || nome.equals(null))
 			throw new NullPointerException("Erro no cadastro de item: nome nao pode ser vazio ou nulo.");
 		if(categoria.trim().equals("") || categoria.equals(null))
@@ -19,6 +21,7 @@ public abstract class Produto {
 		if(preco < 0)
 			throw new IllegalArgumentException("Erro no cadastro de item: preco de item invalido.");
 		
+		this.id = id;
 		this.nome = nome;
 		atualizaCategoria(categoria);
 		precos = new HashMap<>();
@@ -82,8 +85,19 @@ public abstract class Produto {
 	@Override
 	public String toString() {
 		//Algodão Clemer, higiene pessoal, 300 gramas, Preco: <Supermercado BaratoD+, R$ 2,33;  Baratão, R$ 2,30>
-		String resultado = nome + ", " + getCategoria();
+		String resultado = String.format("%d, %s, %s, %s: <", id, nome, getCategoria(), toStringValues());
 		
-		return null;
+		Iterator<String> itr = precos.keySet().iterator();
+		while(itr.hasNext()) {
+			String value = itr.next();
+			resultado += String.format("%s: R$ %.2f", value, precos.get(value));
+			if(itr.hasNext())
+				resultado += "; ";
+			else resultado += ">";
+		}
+		
+		return resultado;
 	}
+	
+	protected abstract String toStringValues();
 }
