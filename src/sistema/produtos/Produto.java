@@ -27,7 +27,7 @@ public abstract class Produto {
 		try {
 			atualizaCategoria(categoria);
 		}catch(IllegalArgumentException e) {
-			throw new IllegalArgumentException("Erro no cadastro de item" + e.getMessage());
+			throw new IllegalArgumentException("Erro no cadastro de item: " + e.getMessage());
 		}
 		
 		precos = new HashMap<>();
@@ -46,7 +46,7 @@ public abstract class Produto {
 			try {
 				atualizaCategoria(novoValor);
 			}catch(IllegalArgumentException e) {
-				throw new IllegalArgumentException("Erro na atualizacao de item" + e.getMessage());
+				throw new IllegalArgumentException("Erro na atualizacao de item: " + e.getMessage());
 			}
 		}
 		else throw new IllegalArgumentException("Erro na atualizacao de item: atributo nao existe.");
@@ -61,7 +61,7 @@ public abstract class Produto {
 			categoria = Categorias.LIMPEZA;
 		else if(novoValor.equals("higiene pessoal"))
 			categoria = Categorias.HIGIENE_PESSOAL;
-		else throw new IllegalArgumentException(": categoria nao existe.");
+		else throw new IllegalArgumentException("categoria nao existe.");
 	}
 	
 	public void adicionaPrecoItem(String localDeCompra, double preco) {

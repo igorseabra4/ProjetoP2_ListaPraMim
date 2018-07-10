@@ -113,7 +113,9 @@ public class Sistema {
 	public void atualizaItem(int id, String atributo, String novoValor) {
 		if (!produtos.containsKey(id))
 			throw new IllegalArgumentException("Erro na atualizacao de item: item nao existe.");
-
+		if (atributo.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na atualizacao de item: atributo nao pode ser vazio ou nulo.");
+		
 		produtos.get(id).atualizaItem(atributo, novoValor);
 	}
 
