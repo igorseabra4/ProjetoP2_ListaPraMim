@@ -164,6 +164,10 @@ public class Sistema {
 				novaOrdenacao.add(p);
 		}
 		
+		String a = "asdasd";
+		
+		a.contains("asd");
+		
 		if (posicao < 0) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario invalido");
 		if (posicao >= novaOrdenacao.size()) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
 		
