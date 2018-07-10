@@ -53,7 +53,7 @@ public abstract class Produto {
 	}
 
 	private void atualizaCategoria(String novoValor) {
-		if(novoValor.equals("alimento industrializado"))
+		if (novoValor.equals("alimento industrializado"))
 			categoria = Categorias.ALIM_INDUSTR;
 		else if(novoValor.equals("alimento nao industrializado"))
 			categoria = Categorias.ALIM_NAO_INDUSTR;
