@@ -27,7 +27,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoQuantidade(nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
+		produtos.put(currentId, new ProdutoQuantidade(currentId, nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -41,7 +41,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoQuilo(nome, categoria, kg, localDeCompra, preco));
+		produtos.put(currentId, new ProdutoQuilo(currentId, nome, categoria, kg, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -55,7 +55,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoUnidade(nome, categoria, unidade, localDeCompra, preco));
+		produtos.put(currentId, new ProdutoUnidade(currentId, nome, categoria, unidade, localDeCompra, preco));
 		return currentId;
 	}
 
