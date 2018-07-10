@@ -51,6 +51,10 @@ public abstract class Produto {
 		else precos.put(localDeCompra, preco);
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+	
 	public String getCategoria() {
 		if(categoria == Categorias.ALIM_INDUSTR)
 			return "alimento industrializado";
