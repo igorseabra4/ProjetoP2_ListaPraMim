@@ -27,7 +27,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoQuantidade(nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
+		produtos.put(currentId, new ProdutoQuantidade(currentId, nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -41,7 +41,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoQuilo(nome, categoria, kg, localDeCompra, preco));
+		produtos.put(currentId, new ProdutoQuilo(currentId, nome, categoria, kg, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -55,7 +55,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoUnidade(nome, categoria, unidade, localDeCompra, preco));
+		produtos.put(currentId, new ProdutoUnidade(currentId, nome, categoria, unidade, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -108,11 +108,9 @@ public class Sistema {
 		ArrayList<Produto> novaOrdenacao = new ArrayList<Produto>();
 		novaOrdenacao.addAll(produtos.values());
 		
-		if (posicao < 0) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario invalido");
-		if (posicao >= novaOrdenacao.size()) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+		if (posicao < 0 | posicao >= novaOrdenacao.size()) return "";
 		
 		novaOrdenacao.sort(new OrdemAlfabetica());
-		
 		return novaOrdenacao.get(posicao).toString();
 	}
 
@@ -128,11 +126,9 @@ public class Sistema {
 				novaOrdenacao.add(p);
 		}
 		
-		if (posicao < 0) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario invalido");
-		if (posicao >= novaOrdenacao.size()) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+		if (posicao < 0 | posicao >= novaOrdenacao.size()) return "";
 		
 		novaOrdenacao.sort(new OrdemAlfabetica());
-		
 		return novaOrdenacao.get(posicao).toString();
 	}
 
@@ -143,12 +139,10 @@ public class Sistema {
 	public String getItemPorMenorPreco(int posicao) {
 		ArrayList<Produto> novaOrdenacao = new ArrayList<Produto>();
 		novaOrdenacao.addAll(produtos.values());
-		
-		if (posicao < 0) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario invalido");
-		if (posicao >= novaOrdenacao.size()) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+
+		if (posicao < 0 | posicao >= novaOrdenacao.size()) return "";
 		
 		novaOrdenacao.sort(new OrdemPreco());
-		
 		return novaOrdenacao.get(posicao).toString();
 	}
 
@@ -164,15 +158,9 @@ public class Sistema {
 				novaOrdenacao.add(p);
 		}
 		
-		String a = "asdasd";
-		
-		a.contains("asd");
-		
-		if (posicao < 0) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario invalido");
-		if (posicao >= novaOrdenacao.size()) throw new IllegalArgumentException("Erro na consulta de cenario ordenado: Cenario nao cadastrado");
+		if (posicao < 0 | posicao >= novaOrdenacao.size()) return "";
 		
 		novaOrdenacao.sort(new OrdemAlfabetica());
-		
 		return novaOrdenacao.get(posicao).toString();
 	}
 }

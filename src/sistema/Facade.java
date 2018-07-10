@@ -4,9 +4,11 @@ import easyaccept.EasyAccept;
 
 public class Facade {
 	public static void main(String[] args) {
-		args = new String[] {"Facade",
+		args = new String[] {"sistema.Facade",
 				"acception_tests/use_case1.txt",
-				"acception_tests/use_case1_exception.txt"};
+				"acception_tests/use_case1_exception.txt",
+				"acception_tests/use_case2.txt",
+				"acception_tests/use_case2_exception.txt"};
 		
 		EasyAccept.main(args);
 	}
