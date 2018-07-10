@@ -3,6 +3,8 @@ package sistema;
 import java.util.HashMap;
 import java.util.Map;
 
+import sistema.produtos.*;
+
 public class Sistema {
 	private Map<Integer, Produto> produtos;
 	private int currentId;
