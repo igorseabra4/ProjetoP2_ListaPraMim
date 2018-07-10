@@ -23,16 +23,32 @@ public abstract class Produto {
 		
 		this.id = id;
 		this.nome = nome;
-		atualizaCategoria(categoria);
+		
+		try {
+			atualizaCategoria(categoria);
+		}catch(IllegalArgumentException e) {
+			throw new IllegalArgumentException("Erro no cadastro de item" + e.getMessage());
+		}
+		
 		precos = new HashMap<>();
 		precos.put(localDeCompra, preco);
 	}
 
 	public void atualizaItem(String atributo, String novoValor) {
+		if(atributo.trim().equals("") || atributo.equals(null))
+			throw new NullPointerException("Erro na atualizacao de item: atributo nao pode ser vazio ou nulo.");
+		if(novoValor.trim().equals("") || novoValor.equals(null))
+			throw new NullPointerException("Erro na atualizacao de item: novo valor de atributo nao pode ser vazio ou nulo.");
+		
 		if(atributo.equals("nome"))
 			nome = novoValor;
-		else if(atributo.equals("categoria"))
-			atualizaCategoria(novoValor);
+		else if(atributo.equals("categoria")) {
+			try {
+				atualizaCategoria(novoValor);
+			}catch(IllegalArgumentException e) {
+				throw new IllegalArgumentException("Erro na atualizacao de item" + e.getMessage());
+			}
+		}
 		else throw new IllegalArgumentException("Erro na atualizacao de item: atributo nao existe.");
 	}
 
@@ -45,10 +61,15 @@ public abstract class Produto {
 			categoria = Categorias.LIMPEZA;
 		else if(novoValor.equals("higiene pessoal"))
 			categoria = Categorias.HIGIENE_PESSOAL;
-		else throw new IllegalArgumentException("Erro no cadastro de item: categoria nao existe.");
+		else throw new IllegalArgumentException(": categoria nao existe.");
 	}
 	
 	public void adicionaPrecoItem(String localDeCompra, double preco) {
+		if(localDeCompra.trim().equals("") || localDeCompra.equals(null))
+			throw new NullPointerException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
+		if(preco < 0)
+			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
+		
 		if(precos.containsKey(localDeCompra))
 				precos.replace(localDeCompra, preco);
 		else precos.put(localDeCompra, preco);
@@ -90,11 +111,8 @@ public abstract class Produto {
 		Iterator<String> itr = precos.keySet().iterator();
 		while(itr.hasNext()) {
 			String value = itr.next();
-			resultado += String.format("%s: R$ %.2f", value, precos.get(value));
-			if(itr.hasNext())
-				resultado += "; ";
-			else resultado += ">";
-		}
+			resultado += String.format("%s, R$ %.2f;", value, precos.get(value));
+		}resultado += ">";
 		
 		return resultado;
 	}

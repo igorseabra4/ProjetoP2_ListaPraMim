@@ -64,7 +64,8 @@ public class Sistema {
 	 * @return A representacao em String do produto.
 	 */
 	public String exibeItem(int id) {
-		if (!produtos.containsKey(id)) throw new IllegalArgumentException("Erro na listagem de item: item nao existe.");
+		if (id < 1) throw new IllegalArgumentException("Erro na listagem de item: id invalido.");
+		if (!produtos.containsKey(id)) throw new IndexOutOfBoundsException("Erro na listagem de item: item nao existe.");
 
 		return produtos.get(id).toString();
 	}
@@ -86,7 +87,8 @@ public class Sistema {
 	 * @param preco O preco do produto no local especificado.
 	 */
 	public void adicionaPrecoItem(int id, String localDeCompra, double preco) {
-		if (!produtos.containsKey(id)) throw new IllegalArgumentException();
+		if (id < 1) throw new IllegalArgumentException("Erro no cadastro de preco: id de item invalido.");
+		if (!produtos.containsKey(id)) throw new IndexOutOfBoundsException("Erro no cadastro de preco: item nao existe.");
 		
 		produtos.get(id).adicionaPrecoItem(localDeCompra, preco);
 	}
