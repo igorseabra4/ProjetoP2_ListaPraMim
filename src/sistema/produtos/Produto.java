@@ -85,7 +85,7 @@ public abstract class Produto {
 	@Override
 	public String toString() {
 		//Algodão Clemer, higiene pessoal, 300 gramas, Preco: <Supermercado BaratoD+, R$ 2,33;  Baratão, R$ 2,30>
-		String resultado = String.format("%d, %s, %s, %s: <", id, nome, getCategoria(), toStringValues());
+		String resultado = String.format("%d. %s, %s, %s: <", id, nome, getCategoria(), toStringValues());
 		
 		Iterator<String> itr = precos.keySet().iterator();
 		while(itr.hasNext()) {
