@@ -5,6 +5,12 @@ public class ProdutoQuantidade extends Produto {
 	private int qnt;
 	private String unidadeDeMedida;
 
+	public ProdutoQuantidade(ProdutoQuantidade produto) {
+		super(produto);
+		this.qnt = produto.qnt;
+		this.unidadeDeMedida = produto.unidadeDeMedida;
+	}
+	
 	public ProdutoQuantidade(int id, String nome, String categoria, int qnt, String unidadeDeMedida,
 			String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);

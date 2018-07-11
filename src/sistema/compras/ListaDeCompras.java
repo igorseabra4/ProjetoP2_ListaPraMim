@@ -22,13 +22,19 @@ public class ListaDeCompras {
 	
 	public void adicionaCompra(double qtd, Produto produto) {
 		String valor = String.valueOf(qtd);
-		Produto novoProduto = produto;
-		if(novoProduto instanceof ProdutoQuantidade)
+		Produto novoProduto = null;
+		if(produto instanceof ProdutoQuantidade) {
+			novoProduto = new ProdutoQuantidade((ProdutoQuantidade) produto);
 			novoProduto.atualizaItem("quantidade", valor);
-		else if(novoProduto instanceof ProdutoQuilo)
+			
+		}else if(produto instanceof ProdutoQuilo) {
+			novoProduto = new ProdutoQuilo((ProdutoQuilo) produto);
 			novoProduto.atualizaItem("kg", valor);
-		else if(novoProduto instanceof ProdutoUnidade)
+			
+		}else if(produto instanceof ProdutoUnidade) {
+			novoProduto = new ProdutoUnidade((ProdutoUnidade) produto);
 			novoProduto.atualizaItem("unidade", valor);
+		}
 		produtos.add(novoProduto);
 	}
 	

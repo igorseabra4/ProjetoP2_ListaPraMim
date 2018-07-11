@@ -11,6 +11,13 @@ public abstract class Produto {
 	private Categorias categoria;
 	private Map<String,Double> precos;
 	
+	public Produto(Produto produto) {
+		this.id = produto.id;
+		this.nome = produto.nome;
+		this.categoria = produto.categoria;
+		this.precos = new HashMap<String,Double>(produto.precos);
+	}
+	
 	public Produto(int id, String nome, String categoria, String localDeCompra, double preco) {
 		if(nome.trim().equals("") || nome.equals(null))
 			throw new NullPointerException("Erro no cadastro de item: nome nao pode ser vazio ou nulo.");

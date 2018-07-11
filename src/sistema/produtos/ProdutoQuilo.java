@@ -4,6 +4,11 @@ public class ProdutoQuilo extends Produto {
 
 	private double kg;
 
+	public ProdutoQuilo(ProdutoQuilo produto) {
+		super(produto);
+		this.kg = produto.kg;
+	}
+	
 	public ProdutoQuilo(int id, String nome, String categoria, double kg, String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);
 		if (kg < 0)
