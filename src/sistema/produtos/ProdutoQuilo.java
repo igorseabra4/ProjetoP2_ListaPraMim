@@ -31,6 +31,11 @@ public class ProdutoQuilo extends Produto {
 	}
 
 	@Override
+	public String toString(int i) {
+		return String.format("%.2f kg %s", kg, super.toString(0));
+	}
+	
+	@Override
 	protected String toStringValues() {
 		return "Preco por quilo";
 	}

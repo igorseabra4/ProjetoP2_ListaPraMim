@@ -1,7 +1,6 @@
 package sistema.produtos;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public abstract class Produto {
@@ -82,6 +81,10 @@ public abstract class Produto {
 		else precos.put(localDeCompra, preco);
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -112,17 +115,18 @@ public abstract class Produto {
 	
 	@Override
 	public String toString() {
-		//Algodão Clemer, higiene pessoal, 300 gramas, Preco: <Supermercado BaratoD+, R$ 2,33;  Baratão, R$ 2,30>
 		String resultado = String.format("%d. %s, %s, %s: <", id, nome, getCategoria(), toStringValues());
 		
-		Iterator<String> itr = precos.keySet().iterator();
-		while(itr.hasNext()) {
-			String value = itr.next();
+		for(String value : precos.keySet())
 			resultado += String.format("%s, R$ %.2f;", value, precos.get(value));
-		}resultado += ">";
+		resultado += ">";
+		
 		
 		return resultado;
 	}
 	
+	public String toString(int i) {
+		return nome + ", " + getCategoria();
+	}
 	protected abstract String toStringValues();
 }

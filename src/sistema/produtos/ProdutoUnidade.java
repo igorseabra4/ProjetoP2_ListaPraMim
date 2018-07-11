@@ -30,6 +30,11 @@ public class ProdutoUnidade extends Produto {
 	}
 
 	@Override
+	public String toString(int i) {
+		return String.format("%d %s", unidade, super.toString(0));
+	}
+	
+	@Override
 	protected String toStringValues() {
 		return "Preco";
 	}
