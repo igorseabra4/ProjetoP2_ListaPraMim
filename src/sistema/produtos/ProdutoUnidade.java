@@ -14,10 +14,10 @@ public class ProdutoUnidade extends Produto {
 
 	@Override
 	public void atualizaItem(String atributo, String novoValor) {
-		if (atributo.equals("unidades")) {
+		if (atributo.equals("unidade")) {
 			if (Integer.parseInt(novoValor) < 0)
 				throw new IllegalArgumentException(
-						"Erro na atualizacao de item: valor de quantidade nao pode ser menor que zero.");
+						"Erro na atualizacao de item: valor de unidade nao pode ser menor que zero.");
 
 			unidade = Integer.parseInt(novoValor);
 		} else
