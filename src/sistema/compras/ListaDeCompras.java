@@ -12,10 +12,12 @@ public class ListaDeCompras {
 
 	private String descritor;
 	private List<Produto> produtos;
+	private String data;
 
 	public ListaDeCompras(String descritor) {
 		this.descritor = descritor;
 		produtos = new ArrayList<>();
+		this.data = "10/07/2018";
 	}
 
 	public void adicionaCompra(int qtd, Produto produto) {
@@ -45,6 +47,10 @@ public class ListaDeCompras {
 		return descritor;
 	}
 
+	public String getData() {
+		return data;
+	}
+	
 	public String pesquisaCompra(int id) {
 		for (Produto produto : produtos) {
 			if (produto.getId() == id)
