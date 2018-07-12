@@ -21,8 +21,6 @@ public class ProdutoQuantidadeTest {
 		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10);
 		
 		assertEquals("1. uva, alimento industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p1.toString());
-		
-		System.out.println(p1.toString(5));
 				
 		assertEquals("1 uva, alimento industrializado, 500 g", p1.toString(0));
 		
@@ -62,7 +60,7 @@ public class ProdutoQuantidadeTest {
 	public void testToStringInt() {
 		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10);
 		
-		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p1.toString());
+		assertEquals("1 uva, alimento nao industrializado, 500 g", p1.toString(0));
 	}
 
 	/**
@@ -80,15 +78,24 @@ public class ProdutoQuantidadeTest {
 	 */
 	@Test
 	public void testProdutoQuantidadeProdutoQuantidade() {
-		fail("Not yet implemented");
+		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10);
+		
+		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p1.toString());
+		
+		ProdutoQuantidade p2 = new ProdutoQuantidade(p1);
+		
+		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p2.toString());
 	}
+
 
 	/**
 	 * Test method for {@link sistema.produtos.ProdutoQuantidade#ProdutoQuantidade(int, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, double)}.
 	 */
 	@Test
 	public void testProdutoQuantidadeIntStringStringIntStringStringDouble() {
-		fail("Not yet implemented");
+		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10);
+		
+		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p1.toString());
 	}
 
 }
