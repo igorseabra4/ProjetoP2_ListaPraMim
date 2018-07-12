@@ -2,12 +2,12 @@ package sistema.comparadores;
 
 import java.util.Comparator;
 
-import sistema.produtos.Produto;
+import sistema.compras.Produtos;
 
-public class OrdemCategoria implements Comparator<Produto> {
+public class OrdemCategoria implements Comparator<Produtos> {
 
 	@Override
-	public int compare(Produto o1, Produto o2) {
+	public int compare(Produtos o1, Produtos o2) {
 		return categoria(o1.getCategoria()) - categoria(o2.getCategoria());
 	}
 

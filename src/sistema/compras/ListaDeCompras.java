@@ -19,7 +19,7 @@ import sistema.produtos.*;
 public class ListaDeCompras {
 
 	private String descritor;
-	private List<Produto> produtos;
+	private List<Compra> compras;
 	private String data;
 
 	/**
@@ -31,53 +31,13 @@ public class ListaDeCompras {
 	 */
 	public ListaDeCompras(String descritor) {
 		this.descritor = descritor;
-		produtos = new ArrayList<>();
+		compras = new ArrayList<>();
 		this.data = "10/07/2018";
 	}
 
-	/**
-	 * Adiciona uma compra a lista, recebendo do sistema o produto e a quantia de
-	 * tal que será adicionada ao sistema.
-	 * 
-	 * @param qtd
-	 *            Quantia do produto em questão. (Integer)
-	 * @param produto
-	 *            Produto que será adicionado.
-	 */
-	public void adicionaCompra(int qtd, Produto produto) {
-		String valor = String.valueOf(qtd);
-		if (produto instanceof ProdutoQuantidade) {
-			Produto novoProduto = new ProdutoQuantidade((ProdutoQuantidade) produto);
-			novoProduto.atualizaItem("unidade", valor);
-			produtos.add(novoProduto);
-			
-		} else if (produto instanceof ProdutoQuilo) {
-			adicionaCompra((double) qtd, produto);
-
-		} else if (produto instanceof ProdutoUnidade) {
-			Produto novoProduto = new ProdutoUnidade((ProdutoUnidade) produto);
-			novoProduto.atualizaItem("unidade", valor);
-			produtos.add(novoProduto);
-		}
-	}
-
-	/**
-	 * Adiciona uma compra a lista, recebendo do sistema o produto e a quantia de
-	 * tal que será adicionada ao sistema.
-	 * 
-	 * @param qtd
-	 *            Quantia do produto em questão. (Double)
-	 * @param produto
-	 *            Produto que será adicionado.
-	 */
+	
 	public void adicionaCompra(double qtd, Produto produto) {
-		String valor = String.valueOf(qtd);
-		Produto novoProduto = null;
-		if (produto instanceof ProdutoQuilo) {
-			novoProduto = new ProdutoQuilo((ProdutoQuilo) produto);
-			novoProduto.atualizaItem("kg", valor);
-		}
-		produtos.add(novoProduto);
+		compras.add(new Compra(qtd, produto));
 	}
 
 	/**
@@ -107,9 +67,9 @@ public class ListaDeCompras {
 	 * @return representação textual do produto pesquisado.
 	 */
 	public String pesquisaCompra(int id) {
-		for (Produto produto : produtos) {
-			if (produto.getId() == id)
-				return produto.toString();
+		for (Compra compra : compras) {
+			if (compra.getId() == id)
+				return compra.toString();
 		}
 		return null;
 	}
@@ -121,9 +81,9 @@ public class ListaDeCompras {
 	 *            Identificador numérico do produto.
 	 */
 	public void deletaCompra(int id) {
-		for (Produto produto : produtos) {
-			if (produto.getId() == id) {
-				produtos.remove(produto);
+		for (Compra compra : compras) {
+			if (compra.getId() == id) {
+				compras.remove(compra);
 				return;
 			}
 		}
@@ -134,11 +94,11 @@ public class ListaDeCompras {
 	 */
 	@Override
 	public String toString() {
-		Collections.sort(produtos, new OrdemAlfabetica());
-		Collections.sort(produtos, new OrdemCategoria());
+		Collections.sort(compras, new OrdemAlfabetica());
+		Collections.sort(compras, new OrdemCategoria());
 		String temp = "";
-		for (Produto produto : produtos) {
-			temp += produto.toString(0) + System.lineSeparator();
+		for (Compra compra : compras) {
+			temp += compra.toString() + System.lineSeparator();
 		}
 		temp.trim();
 

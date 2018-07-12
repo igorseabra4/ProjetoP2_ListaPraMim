@@ -1,11 +1,12 @@
 package sistema.comparadores;
 
 import java.util.Comparator;
-import sistema.produtos.Produto;
 
-public class OrdemAlfabetica implements Comparator<Produto> {
+import sistema.compras.Produtos;
+
+public class OrdemAlfabetica implements Comparator<Produtos> {
 	@Override
-	public int compare(Produto o1, Produto o2) {
+	public int compare(Produtos o1, Produtos o2) {
 		return o1.getNome().compareTo(o2.getNome());
 	}
 }
