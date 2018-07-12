@@ -90,15 +90,7 @@ public abstract class Produto {
 	}
 	
 	public String getCategoria() {
-		if(categoria == Categorias.ALIM_INDUSTR)
-			return "alimento industrializado";
-		if(categoria == Categorias.ALIM_NAO_INDUSTR)
-			return "alimento nao industrializado";
-		if(categoria == Categorias.LIMPEZA)
-			return "limpeza";
-		if(categoria == Categorias.HIGIENE_PESSOAL)
-			return "higiene pessoal";
-		return null;
+		return categoria.getNome();
 	}
 	
 	public double getMenorPreco() {
@@ -115,7 +107,7 @@ public abstract class Produto {
 	
 	@Override
 	public String toString() {
-		String resultado = String.format("%d. %s, %s, %s: <", id, nome, getCategoria(), toStringValues());
+		String resultado = String.format("%d. %s, %s, %s: <", id, nome, categoria.getNome(), toStringValues());
 		
 		for(String value : precos.keySet())
 			resultado += String.format("%s, R$ %.2f;", value, precos.get(value));
@@ -126,7 +118,7 @@ public abstract class Produto {
 	}
 	
 	public String toString(int i) {
-		return nome + ", " + getCategoria();
+		return nome + ", " + categoria.getNome();
 	}
 	protected abstract String toStringValues();
 }
