@@ -6,13 +6,16 @@ import java.util.Map;
 
 import sistema.produtos.*;
 import sistema.comparadores.*;
+import sistema.compras.ListaDeCompras;
 
 public class Sistema {
 	private Map<Integer, Produto> produtos;
+	private Map<String, ListaDeCompras> listasDeCompras;
 	private int currentId;
 
 	public Sistema() {
 		produtos = new HashMap<Integer, Produto>();
+		listasDeCompras = new HashMap<String, ListaDeCompras>();
 		currentId = 0;
 	}
 
@@ -33,8 +36,7 @@ public class Sistema {
 	 *            O preco do produto no local especificado.
 	 * @return O codigo de identificacao unico do produto.
 	 */
-	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra,
-			double preco) {
+	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra,	double preco) {
 		currentId++;
 		produtos.put(currentId,
 				new ProdutoQuantidade(currentId, nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
@@ -237,5 +239,61 @@ public class Sistema {
 
 		novaOrdenacao.sort(new OrdemAlfabetica());
 		return novaOrdenacao.get(posicao).toString();
+	}
+
+	public String adicionaListaDeCompras(String descritorLista) {
+		if (descritorLista.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na criacao de lista de compras: descritor nao pode ser vazio ou nulo.");
+		if (listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Lista de compras ja existe");
+		
+		listasDeCompras.put(descritorLista, new ListaDeCompras(descritorLista));
+		return descritorLista;
+	}
+
+	public String pesquisaListaDeCompras(String descritorLista) {
+		if (listasDeCompras.containsKey(descritorLista))
+			return descritorLista;
+		else
+			throw new IllegalArgumentException("Lista de compras nao existe");
+	}
+
+	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId) {
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Lista de compras nao existe");
+		if (itemId < 1)
+			throw new IllegalArgumentException("Erro no cadastro de preco: id de item invalido.");
+		if (!produtos.containsKey(itemId))
+			throw new IndexOutOfBoundsException("Erro no cadastro de preco: item nao existe.");
+		
+		listasDeCompras.get(descritorLista).adicionaCompra(quantidade, produtos.get(itemId));
+	}
+
+	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) {
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Lista de compras nao existe");
+
+		listasDeCompras.get(descritorLista).finalizarListaDeCompras(localDaCompra, valorFinalDaCompra);
+	}
+
+	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Lista de compras nao existe");
+		
+		return listasDeCompras.get(descritorLista).pesquisaCompraEmLista(itemId);
+	}
+
+	public String getItemLista(String descritorLista, int posicaoItem) {
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Lista de compras nao existe");
+
+		return listasDeCompras.get(descritorLista).getItemLista(posicaoItem);
+	}
+
+	public void deletaCompraDeLista(String descritorLista, int itemId) {
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Lista de compras nao existe");
+
+		listasDeCompras.get(descritorLista).deletaCompraDeLista(itemId);
 	}
 }
