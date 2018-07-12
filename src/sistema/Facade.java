@@ -8,7 +8,9 @@ public class Facade {
 				"acception_tests/use_case1.txt",
 				"acception_tests/use_case1_exception.txt",
 				"acception_tests/use_case2.txt",
-				"acception_tests/use_case2_exception.txt"};
+				"acception_tests/use_case2_exception.txt",
+				"acception_tests/use_case3.txt",
+				"acception_tests/use_case3_exception.txt"};
 		
 		EasyAccept.main(args);
 	}
@@ -118,4 +120,33 @@ public class Facade {
 	public String getItemPorPesquisa(String strPesquisada, int posicao) {
 		return sistema.getItemPorPesquisa(strPesquisada, posicao);
 	}
+	
+	public String adicionaListaDeCompras(String descritorLista) {
+		return sistema.adicionaListaDeCompras(descritorLista);
+	}
+	
+	public String pesquisaListaDeCompras(String descritorLista) {
+		return sistema.pesquisaListaDeCompras(descritorLista);
+	}
+
+	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId) {
+		sistema.adicionaCompraALista(descritorLista, quantidade, itemId);
+	}
+	
+	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) {
+		sistema.finalizarListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);		
+	}
+
+	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
+		return sistema.pesquisaCompraEmLista(descritorLista, itemId);
+	}
+
+	public String getItemLista(String descritorLista, int posicaoItem) {
+		return sistema.getItemLista(descritorLista, posicaoItem);
+	}
+
+	public void deletaCompraDeLista(String descritorLista, int itemId) {
+		sistema.deletaCompraDeLista(descritorLista, itemId);
+	}
+	
 }
