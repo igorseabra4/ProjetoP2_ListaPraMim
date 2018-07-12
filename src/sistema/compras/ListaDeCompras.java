@@ -1,8 +1,11 @@
 package sistema.compras;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import sistema.comparadores.OrdemAlfabetica;
+import sistema.comparadores.OrdemCategoria;
 import sistema.produtos.*;
 
 public class ListaDeCompras {
@@ -61,6 +64,8 @@ public class ListaDeCompras {
 
 	@Override
 	public String toString() {
+		Collections.sort(produtos, new OrdemAlfabetica());
+		Collections.sort(produtos, new OrdemCategoria());
 		String temp = "";
 		for (Produto produto : produtos) {
 			temp += produto.toString(0) + System.lineSeparator();
