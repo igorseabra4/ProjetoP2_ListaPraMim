@@ -183,10 +183,10 @@ public class Facade {
 		sistema.deletaCompraDeLista(descritorLista, itemId);
 	}
 	
-	/**
-	 * @param descritorLista
-	 * @param itemId
-	 * @param quantidade
+	/**Atualiza a quantidade de um item de uma lista.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 * @param quantidade A nova quantidade do produto.
 	 */
 	public void atualizaCompraDeLista(String descritorLista, int itemId, double quantidade) {
 		sistema.atualizaCompraDeLista(descritorLista, itemId, quantidade);		

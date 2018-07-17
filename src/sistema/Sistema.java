@@ -358,6 +358,8 @@ public class Sistema {
 				listas.add(lista);
 		}
 		
+		listas.sort(new OrdemAlfabeticaLista());
+		
 		return listas.get(posicaoLista).getDescritor();
 	}
 
@@ -367,10 +369,15 @@ public class Sistema {
 	 * @return O descritor (nome) da lista.
 	 */
 	public String getItemListaPorItem(int id, int posicaoLista) {
+		if (id < 1)
+			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item id invalido.");
+		if (!produtos.containsKey(id))
+			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item nao existe no sistema.");
+		
 		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
 		
 		for (ListaDeCompras lista : listasDeCompras.values()) {
-			if (lista.contemProduto(id))
+			if (lista.contemProduto(produtos.get(id)))
 				listas.add(lista);
 		}
 		
