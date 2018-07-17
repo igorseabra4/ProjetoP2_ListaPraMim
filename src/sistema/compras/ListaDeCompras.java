@@ -70,7 +70,10 @@ public class ListaDeCompras {
 	 *            Identificador numérico do produto.
 	 * @return representação textual do produto pesquisado.
 	 */
-	public String pesquisaCompra(int id) {
+	public String pesquisaCompraEmLista(int id) {
+		if(!contemProduto(id))
+			throw new IllegalArgumentException("Erro na pesquisa de compra: compra nao encontrada na lista.");
+		
 		for (Compra compra : compras) {
 			if (compra.getId() == id)
 				return compra.toString();
@@ -116,39 +119,47 @@ public class ListaDeCompras {
 		this.fechada = true;
 	}
 
-
-	public String pesquisaCompraEmLista(int itemId) {
-		for(Compra compra : compras) {
-			if(compra.getId() == itemId)
-				return compra.toString();
-		}return null;
-	}
-
-
 	public String getItemLista(int posicaoItem) {
 		Collections.sort(compras, new OrdemAlfabeticaCompra());
 		Collections.sort(compras, new OrdemCategoriaCompra());
+		
+		if(posicaoItem >= compras.size())
+			return "";
 		return compras.get(posicaoItem).toString();
 	}
 
 
 	public void deletaCompraDeLista(int itemId) {
+		if(!contemProduto(itemId))
+			throw new IllegalArgumentException("Erro na exclusao de compra: compra nao encontrada na lista.");
+		
+		Compra c = new Compra(0, null);
 		for(Compra compra : compras) {
 			if(compra.getId() == itemId)
-				compras.remove(compra);
+				c = compra;
 		}
+		compras.remove(c);
 	}
 
 	public void atualizaCompraDeLista(int itemId, String operacao, int quantidade) {
+		if(!contemProduto(itemId))
+			throw new IllegalArgumentException("Erro na atualizacao de compra: compra nao encontrada na lista.");
+		
 		if(operacao.equals("adiciona")) {
 			//TODO
 		}else if(operacao.equals("diminui"))
 			quantidade *= -1;
 		
+		Compra c = new Compra(0, null);
 		for(Compra compra : compras) {
-			if(compra.getId() == itemId)
+			if(compra.getId() == itemId) {
 				compra.addQuantia(quantidade);
+				c = compra;
+			}
 		}
+		
+		if(c.getQuantia() <= 0)
+			compras.remove(c);
 	}
 
 

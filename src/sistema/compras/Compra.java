@@ -28,7 +28,11 @@ public class Compra {
 		return produto.getMenorPreco();
 	}
 	
-public void addQuantia(int quantia) {
+	public int getQuantia() {
+		return quantia;
+	}
+	
+	public void addQuantia(int quantia) {
 		this.quantia += quantia;
 	}
 	

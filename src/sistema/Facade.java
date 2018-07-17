@@ -144,7 +144,7 @@ public class Facade {
 	 * @param quantidade A quantidade do produto.
 	 * @param itemId O codigo de identificacao unico do produto.
 	 */
-	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId) {
+	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId) {
 		sistema.adicionaCompraALista(descritorLista, quantidade, itemId);
 	}
 	
@@ -188,8 +188,8 @@ public class Facade {
 	 * @param itemId O codigo de identificacao unico do produto.
 	 * @param quantidade A nova quantidade do produto.
 	 */
-	public void atualizaCompraDeLista(String descritorLista, int itemId, double quantidade) {
-		sistema.atualizaCompraDeLista(descritorLista, itemId, quantidade);		
+	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int quantidade) {
+		sistema.atualizaCompraDeLista(descritorLista, itemId, operacao, quantidade);		
 	}
 
 	/**Retorna uma lista de compras pela data e indice na lista de listas de compras daquela data.
@@ -209,7 +209,4 @@ public class Facade {
 	public String getItemListaPorItem(int id, int posicaoLista) {
 		return sistema.getItemListaPorItem(id, posicaoLista);
 	}
-	
-	
-	
 }
