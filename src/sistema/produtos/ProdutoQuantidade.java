@@ -43,7 +43,7 @@ public class ProdutoQuantidade extends Produto {
 	
 	@Override
 	public String toString(int i) {
-		return String.format("%d %s, %d %s", unidade, super.toString(0), qnt, unidadeDeMedida);
+		return String.format("%s, %d %s", super.toString(0), qnt, unidadeDeMedida);
 	}
 
 	@Override

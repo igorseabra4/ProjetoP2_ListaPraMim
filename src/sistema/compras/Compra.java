@@ -1,6 +1,6 @@
 package sistema.compras;
 
-import sistema.produtos.Produto;
+import sistema.produtos.*;
 
 public class Compra implements Produtos {
 	
@@ -30,9 +30,15 @@ public class Compra implements Produtos {
 		return produto.getMenorPreco();
 	}
 	
+	public void setQuantia(double quantia) {
+		this.quantia = quantia;
+	}
+	
 	@Override
 	public String toString() {
-		return produto.toString(0);
+		if(produto instanceof ProdutoQuilo)
+			return String.format("%.1f kg %s", quantia, produto.toString(0));
+		return String.format("%.0f %s", quantia, produto.toString(0));
 	}
 	
 }

@@ -126,6 +126,8 @@ public class ListaDeCompras {
 
 
 	public String getItemLista(int posicaoItem) {
+		Collections.sort(compras, new OrdemAlfabetica());
+		Collections.sort(compras, new OrdemCategoria());
 		return compras.get(posicaoItem).toString();
 	}
 
@@ -135,6 +137,22 @@ public class ListaDeCompras {
 			if(compra.getId() == itemId)
 				compras.remove(compra);
 		}
+	}
+
+	public void atualizaCompraDeLista(int itemId, double quantidade) {
+		for(Compra compra : compras) {
+			if(compra.getId() == itemId)
+				compra.setQuantia(quantidade);
+		}
+	}
+
+
+	public boolean contemProduto(int id) {
+		for(Compra compra : compras) {
+			if(compra.getId() == id)
+				return true;
+		}
+		return false;
 	}
 
 }

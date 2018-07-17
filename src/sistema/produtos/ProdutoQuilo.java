@@ -29,11 +29,6 @@ public class ProdutoQuilo extends Produto {
 		} else
 			super.atualizaItem(atributo, novoValor);
 	}
-
-	@Override
-	public String toString(int i) {
-		return String.format("%.2f kg %s", kg, super.toString(0));
-	}
 	
 	@Override
 	protected String toStringValues() {

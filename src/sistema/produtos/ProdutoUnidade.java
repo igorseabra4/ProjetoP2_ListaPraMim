@@ -28,11 +28,6 @@ public class ProdutoUnidade extends Produto {
 		} else
 			super.atualizaItem(atributo, novoValor);
 	}
-
-	@Override
-	public String toString(int i) {
-		return String.format("%d %s", unidade, super.toString(0));
-	}
 	
 	@Override
 	protected String toStringValues() {
