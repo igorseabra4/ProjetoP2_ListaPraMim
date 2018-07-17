@@ -271,7 +271,9 @@ public class Sistema {
 	 * @param quantidade A quantidade do produto.
 	 * @param itemId O codigo de identificacao unico do produto.
 	 */
-	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId) {
+	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId) {
+		if (descritorLista.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na criacao de lista de compras: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 		if (itemId < 1)
@@ -288,6 +290,12 @@ public class Sistema {
 	 * @param valorFinalDaCompra O valor final da compra.
 	 */
 	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) {
+		if (descritorLista.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na finalizacao de lista de compras: descritor nao pode ser vazio ou nulo.");
+		if (localDaCompra.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na finalizacao de lista de compras: local nao pode ser vazio ou nulo.");
+		if (valorFinalDaCompra <= 0)
+			throw new IllegalArgumentException("Erro na finalizacao de lista de compras: valor final da lista invalido.");
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 
@@ -338,11 +346,11 @@ public class Sistema {
 	 * @param itemId O codigo de identificacao unico do produto.
 	 * @param quantidade A nova quantidade do produto.
 	 */
-	public void atualizaCompraDeLista(String descritorLista, int itemId, double quantidade) {
+	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int quantidade) {
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 
-		listasDeCompras.get(descritorLista).atualizaCompraDeLista(itemId, quantidade);
+		listasDeCompras.get(descritorLista).atualizaCompraDeLista(itemId, operacao, quantidade);
 	}
 
 	/**Retorna uma lista de compras pela data e indice na lista de listas de compras daquela data.
@@ -377,10 +385,13 @@ public class Sistema {
 		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
 		
 		for (ListaDeCompras lista : listasDeCompras.values()) {
-			if (lista.contemProduto(produtos.get(id)))
+			if (lista.contemProduto(id))
 				listas.add(lista);
 		}
+
+		listas.sort(new OrdemAlfabeticaLista());
+		listas.sort(new OrdemDataLista());
 		
-		return listas.get(posicaoLista).getDescritor();
+		return  listas.get(posicaoLista).getData() + " - " + listas.get(posicaoLista).getDescritor();
 	}
 }
