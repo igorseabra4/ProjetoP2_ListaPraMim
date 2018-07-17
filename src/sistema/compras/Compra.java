@@ -4,10 +4,10 @@ import sistema.produtos.*;
 
 public class Compra {
 	
-	private double quantia;
+	private int quantia;
 	private Produto produto;
 	
-	public Compra(double quantia, Produto produto) {
+	public Compra(int quantia, Produto produto) {
 		this.quantia = quantia;
 		this.produto = produto;
 	}
@@ -28,15 +28,13 @@ public class Compra {
 		return produto.getMenorPreco();
 	}
 	
-	public void setQuantia(double quantia) {
-		this.quantia = quantia;
+public void addQuantia(int quantia) {
+		this.quantia += quantia;
 	}
 	
 	@Override
 	public String toString() {
-		if(produto instanceof ProdutoQuilo)
-			return String.format("%.1f kg %s", quantia, produto.toString(0));
-		return String.format("%.0f %s", quantia, produto.toString(0));
+		return String.format("%d %s", quantia, produto.toString(0));
 	}
 	
 }

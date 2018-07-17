@@ -2,7 +2,6 @@ package sistema.produtos;
 
 public class ProdutoQuantidade extends Produto {
 
-	private int unidade;
 	private int qnt;
 	private String unidadeDeMedida;
 
@@ -21,16 +20,13 @@ public class ProdutoQuantidade extends Produto {
 		if (unidadeDeMedida.trim().equals("") || unidadeDeMedida.equals(null))
 			throw new NullPointerException("Erro no cadastro de item: unidade de medida nao pode ser vazia ou nula.");
 
-		this.unidade = 1;
 		this.qnt = qnt;
 		this.unidadeDeMedida = unidadeDeMedida;
 	}
 
 	@Override
 	public void atualizaItem(String atributo, String novoValor) {
-		if (atributo.equals("unidade")) {
-			unidade = Integer.parseInt(novoValor);
-		} else if (atributo.equals("quantidade")) {
+		if (atributo.equals("quantidade")) {
 			if (Integer.parseInt(novoValor) < 0)
 				throw new IllegalArgumentException(
 						"Erro na atualizacao de item: valor de quantidade nao pode ser menor que zero.");

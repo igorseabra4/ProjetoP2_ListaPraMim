@@ -40,7 +40,7 @@ public class ListaDeCompras {
 	}
 
 	
-	public void adicionaCompra(double qtd, Produto produto) {
+	public void adicionaCompra(int qtd, Produto produto) {
 		compras.add(new Compra(qtd, produto));
 	}
 
@@ -139,10 +139,15 @@ public class ListaDeCompras {
 		}
 	}
 
-	public void atualizaCompraDeLista(int itemId, String operacao, double quantidade) {
+	public void atualizaCompraDeLista(int itemId, String operacao, int quantidade) {
+		if(operacao.equals("adiciona")) {
+			//TODO
+		}else if(operacao.equals("diminui"))
+			quantidade *= -1;
+		
 		for(Compra compra : compras) {
 			if(compra.getId() == itemId)
-				compra.setQuantia(quantidade);
+				compra.addQuantia(quantidade);
 		}
 	}
 
