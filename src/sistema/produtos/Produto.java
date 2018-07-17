@@ -3,8 +3,6 @@ package sistema.produtos;
 import java.util.HashMap;
 import java.util.Map;
 
-import sistema.compras.Produtos;
-
 /**
  * Classe abstrata que abrange todos os produtos possíveis que serão armazenados
  * no sistema.
@@ -12,7 +10,7 @@ import sistema.compras.Produtos;
  * @author Henry Filho
  *
  */
-public abstract class Produto implements Produtos {
+public abstract class Produto {
 
 	private int id;
 	private String nome;
@@ -124,17 +122,14 @@ public abstract class Produto implements Produtos {
 		return id;
 	}
 
-	@Override
 	public String getNome() {
 		return nome;
 	}
 
-	@Override
 	public String getCategoria() {
 		return categoria.getNome();
 	}
 
-	@Override
 	public double getMenorPreco() {
 		double menor = Double.MAX_VALUE;
 		for (double preco : precos.values()) {

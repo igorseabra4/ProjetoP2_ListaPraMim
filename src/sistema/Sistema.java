@@ -167,7 +167,7 @@ public class Sistema {
 		if (posicao < 0 | posicao >= novaOrdenacao.size())
 			return "";
 
-		novaOrdenacao.sort(new OrdemAlfabetica());
+		novaOrdenacao.sort(new OrdemAlfabeticaProduto());
 		return novaOrdenacao.get(posicao).toString();
 	}
 
@@ -195,7 +195,7 @@ public class Sistema {
 		if (posicao < 0 | posicao >= novaOrdenacao.size())
 			return "";
 
-		novaOrdenacao.sort(new OrdemAlfabetica());
+		novaOrdenacao.sort(new OrdemAlfabeticaProduto());
 		return novaOrdenacao.get(posicao).toString();
 	}
 
@@ -213,7 +213,7 @@ public class Sistema {
 		if (posicao < 0 | posicao >= novaOrdenacao.size())
 			return "";
 
-		novaOrdenacao.sort(new OrdemPreco());
+		novaOrdenacao.sort(new OrdemPrecoProduto());
 		return novaOrdenacao.get(posicao).toString();
 	}
 
@@ -237,7 +237,7 @@ public class Sistema {
 		if (posicao < 0 | posicao >= novaOrdenacao.size())
 			return "";
 
-		novaOrdenacao.sort(new OrdemAlfabetica());
+		novaOrdenacao.sort(new OrdemAlfabeticaProduto());
 		return novaOrdenacao.get(posicao).toString();
 	}
 

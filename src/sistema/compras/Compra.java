@@ -2,7 +2,7 @@ package sistema.compras;
 
 import sistema.produtos.*;
 
-public class Compra implements Produtos {
+public class Compra {
 	
 	private double quantia;
 	private Produto produto;
@@ -20,12 +20,10 @@ public class Compra implements Produtos {
 		return produto.getId();
 	}
 
-	@Override
 	public String getNome() {
 		return produto.getNome();
 	}
 
-	@Override
 	public double getMenorPreco() {
 		return produto.getMenorPreco();
 	}

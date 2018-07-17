@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import sistema.comparadores.OrdemAlfabetica;
-import sistema.comparadores.OrdemCategoria;
+import sistema.comparadores.OrdemAlfabeticaCompra;
+import sistema.comparadores.OrdemCategoriaCompra;
 import sistema.produtos.*;
 
 /**
@@ -98,8 +98,8 @@ public class ListaDeCompras {
 	 */
 	@Override
 	public String toString() {
-		Collections.sort(compras, new OrdemAlfabetica());
-		Collections.sort(compras, new OrdemCategoria());
+		Collections.sort(compras, new OrdemAlfabeticaCompra());
+		Collections.sort(compras, new OrdemCategoriaCompra());
 		String temp = "";
 		for (Compra compra : compras) {
 			temp += compra.toString() + System.lineSeparator();
@@ -126,8 +126,8 @@ public class ListaDeCompras {
 
 
 	public String getItemLista(int posicaoItem) {
-		Collections.sort(compras, new OrdemAlfabetica());
-		Collections.sort(compras, new OrdemCategoria());
+		Collections.sort(compras, new OrdemAlfabeticaCompra());
+		Collections.sort(compras, new OrdemCategoriaCompra());
 		return compras.get(posicaoItem).toString();
 	}
 
@@ -139,7 +139,7 @@ public class ListaDeCompras {
 		}
 	}
 
-	public void atualizaCompraDeLista(int itemId, double quantidade) {
+	public void atualizaCompraDeLista(int itemId, String operacao, double quantidade) {
 		for(Compra compra : compras) {
 			if(compra.getId() == itemId)
 				compra.setQuantia(quantidade);
