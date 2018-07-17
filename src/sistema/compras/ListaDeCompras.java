@@ -102,7 +102,7 @@ public class ListaDeCompras {
 		Collections.sort(compras, new OrdemCategoria());
 		String temp = "";
 		for (Compra compra : compras) {
-			temp += compra.toString(0) + System.lineSeparator();
+			temp += compra.toString() + System.lineSeparator();
 		}
 		temp.trim();
 

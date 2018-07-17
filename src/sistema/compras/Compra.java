@@ -32,10 +32,6 @@ public class Compra implements Produtos {
 	
 	@Override
 	public String toString() {
-		return produto.toString();
-	}
-	
-	public String toString(int i) {
 		return produto.toString(0);
 	}
 	
