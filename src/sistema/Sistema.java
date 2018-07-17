@@ -260,10 +260,12 @@ public class Sistema {
 	 * @return O descritor (nome) da lista caso ela exista no sistema.
 	 */
 	public String pesquisaListaDeCompras(String descritorLista) {
-		if (listasDeCompras.containsKey(descritorLista))
-			return descritorLista;
-		else
-			throw new IllegalArgumentException("Lista de compras nao existe");
+		if (descritorLista.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo.");
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Erro na pesquisa de compra: Lista de compras nao existe.");
+		
+		return descritorLista;
 	}
 
 	/**Adiciona um novo produto a lista de compras.
@@ -308,6 +310,8 @@ public class Sistema {
 	 * @return A representação em String do produto.
 	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
+		if (descritorLista.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na exclusao de compra: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 		if (itemId < 1)
@@ -335,6 +339,8 @@ public class Sistema {
 	 * @param itemId O codigo de identificacao unico do produto.
 	 */
 	public void deletaCompraDeLista(String descritorLista, int itemId) {
+		if (descritorLista.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na exclusao de compra: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 
@@ -359,6 +365,9 @@ public class Sistema {
 	 * @return O descritor (nome) da lista.
 	 */
 	public String getItemListaPorData(String data, int posicaoLista) {
+		if (data.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na pesquisa de compra: data nao pode ser vazio ou nula.");
+		
 		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
 		
 		for (ListaDeCompras lista : listasDeCompras.values()) {
