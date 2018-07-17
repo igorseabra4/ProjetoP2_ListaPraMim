@@ -21,6 +21,10 @@ public class ListaDeCompras {
 	private String descritor;
 	private List<Compra> compras;
 	private String data;
+	
+	private String localDaCompra = "";
+	private double valorFinalDaCompra = 0.0;
+	private boolean fechada = false;
 
 	/**
 	 * Constrói a lista de compras com base em um descritor dado pelo sistema, e
@@ -98,11 +102,39 @@ public class ListaDeCompras {
 		Collections.sort(compras, new OrdemCategoria());
 		String temp = "";
 		for (Compra compra : compras) {
-			temp += compra.toString() + System.lineSeparator();
+			temp += compra.toString(0) + System.lineSeparator();
 		}
 		temp.trim();
 
 		return temp;
+	}
+
+
+	public void finalizarListaDeCompras(String localDaCompra, double valorFinalDaCompra) {
+		this.localDaCompra = localDaCompra;
+		this.valorFinalDaCompra = valorFinalDaCompra;
+		this.fechada = true;
+	}
+
+
+	public String pesquisaCompraEmLista(int itemId) {
+		for(Compra compra : compras) {
+			if(compra.getId() == itemId)
+				return compra.toString();
+		}return null;
+	}
+
+
+	public String getItemLista(int posicaoItem) {
+		return compras.get(posicaoItem).toString();
+	}
+
+
+	public void deletaCompraDeLista(int itemId) {
+		for(Compra compra : compras) {
+			if(compra.getId() == itemId)
+				compras.remove(compra);
+		}
 	}
 
 }
