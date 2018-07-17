@@ -10,7 +10,9 @@ public class Facade {
 				"acception_tests/use_case2.txt",
 				"acception_tests/use_case2_exception.txt",
 				"acception_tests/use_case3.txt",
-				"acception_tests/use_case3_exception.txt"};
+				"acception_tests/use_case3_exception.txt",
+				"acception_tests/use_case4.txt",
+				"acception_tests/use_case4_exception.txt"};
 		
 		EasyAccept.main(args);
 	}
@@ -121,32 +123,93 @@ public class Facade {
 		return sistema.getItemPorPesquisa(strPesquisada, posicao);
 	}
 	
+	/**Adiciona uma nova lista de compras vazia ao sistema com o descritor especificado.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String adicionaListaDeCompras(String descritorLista) {
 		return sistema.adicionaListaDeCompras(descritorLista);
 	}
 	
+	/**Pesquisa a lista de compras pelo seu descritor.
+	 * @param descritorLista O descritor (nome) da lista existente.
+	 * @return O descritor (nome) da lista caso ela exista no sistema.
+	 */
 	public String pesquisaListaDeCompras(String descritorLista) {
 		return sistema.pesquisaListaDeCompras(descritorLista);
 	}
 
+	/**Adiciona um novo produto a lista de compras.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param quantidade A quantidade do produto.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 */
 	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId) {
 		sistema.adicionaCompraALista(descritorLista, quantidade, itemId);
 	}
 	
+	/**Finaliza uma lista de compras.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param localDaCompra O local onde foi feita a compra.
+	 * @param valorFinalDaCompra O valor final da compra.
+	 */
 	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) {
 		sistema.finalizarListaDeCompras(descritorLista, localDaCompra, valorFinalDaCompra);		
 	}
 
+	/**Pesquisa um produto comprado em uma lista.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 * @return A representação em String do produto.
+	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		return sistema.pesquisaCompraEmLista(descritorLista, itemId);
 	}
 
+	/**Pesquisa um produto comprado em uma lista pela sua posiçao nela.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param posicaoItem A posicao do item na lista.
+	 * @return A representação em String do produto.
+	 */
 	public String getItemLista(String descritorLista, int posicaoItem) {
 		return sistema.getItemLista(descritorLista, posicaoItem);
 	}
 
+	/**Remove uma compra de uma lista.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 */
 	public void deletaCompraDeLista(String descritorLista, int itemId) {
 		sistema.deletaCompraDeLista(descritorLista, itemId);
 	}
+	
+	/**
+	 * @param descritorLista
+	 * @param itemId
+	 * @param quantidade
+	 */
+	public void atualizaCompraDeLista(String descritorLista, int itemId, double quantidade) {
+		sistema.atualizaCompraDeLista(descritorLista, itemId, quantidade);		
+	}
+
+	/**Retorna uma lista de compras pela data e indice na lista de listas de compras daquela data.
+	 * @param data A data da lista de compras.
+	 * @param posicaoLista A posicao da lista de compras na lista daquela data.
+	 * @return O descritor (nome) da lista.
+	 */
+	public String getItemListaPorData(String data, int posicaoLista) {
+		return sistema.getItemListaPorData(data, posicaoLista);
+	}
+
+	/**Retorna uma lista de compras pela presenca de um item naquela lista e indice na lista de listas.
+	 * @param id O codigo de identificacao unico do produto.
+	 * @param posicaoLista A posicao da lista de compras na lista das que contem aquele produto.
+	 * @return O descritor (nome) da lista.
+	 */
+	public String getItemListaPorItem(int id, int posicaoLista) {
+		return sistema.getItemListaPorItem(id, posicaoLista);
+	}
+	
+	
 	
 }

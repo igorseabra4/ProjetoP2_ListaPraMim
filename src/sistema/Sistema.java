@@ -241,6 +241,10 @@ public class Sistema {
 		return novaOrdenacao.get(posicao).toString();
 	}
 
+	/**Adiciona uma nova lista de compras vazia ao sistema com o descritor especificado.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String adicionaListaDeCompras(String descritorLista) {
 		if (descritorLista.trim().isEmpty())
 			throw new IllegalArgumentException("Erro na criacao de lista de compras: descritor nao pode ser vazio ou nulo.");
@@ -251,6 +255,10 @@ public class Sistema {
 		return descritorLista;
 	}
 
+	/**Pesquisa a lista de compras pelo seu descritor.
+	 * @param descritorLista O descritor (nome) da lista existente.
+	 * @return O descritor (nome) da lista caso ela exista no sistema.
+	 */
 	public String pesquisaListaDeCompras(String descritorLista) {
 		if (listasDeCompras.containsKey(descritorLista))
 			return descritorLista;
@@ -258,17 +266,27 @@ public class Sistema {
 			throw new IllegalArgumentException("Lista de compras nao existe");
 	}
 
+	/**Adiciona um novo produto a lista de compras.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param quantidade A quantidade do produto.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 */
 	public void adicionaCompraALista(String descritorLista, double quantidade, int itemId) {
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 		if (itemId < 1)
 			throw new IllegalArgumentException("Erro no cadastro de preco: id de item invalido.");
 		if (!produtos.containsKey(itemId))
-			throw new IndexOutOfBoundsException("Erro no cadastro de preco: item nao existe.");
+			throw new IndexOutOfBoundsException("Erro na compra de item: item nao existe no sistema.");
 		
 		listasDeCompras.get(descritorLista).adicionaCompra(quantidade, produtos.get(itemId));
 	}
-
+	
+	/**Finaliza uma lista de compras.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param localDaCompra O local onde foi feita a compra.
+	 * @param valorFinalDaCompra O valor final da compra.
+	 */
 	public void finalizarListaDeCompras(String descritorLista, String localDaCompra, double valorFinalDaCompra) {
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
@@ -276,13 +294,27 @@ public class Sistema {
 		listasDeCompras.get(descritorLista).finalizarListaDeCompras(localDaCompra, valorFinalDaCompra);
 	}
 
+	/**Pesquisa um produto comprado em uma lista.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 * @return A representação em String do produto.
+	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
+		if (itemId < 1)
+			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item id invalido.");
+		if (!produtos.containsKey(itemId))
+			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item nao existe no sistema.");
 		
 		return listasDeCompras.get(descritorLista).pesquisaCompraEmLista(itemId);
 	}
 
+	/**Pesquisa um produto comprado em uma lista pela sua posiçao nela.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param posicaoItem A posicao do item na lista.
+	 * @return A representação em String do produto.
+	 */
 	public String getItemLista(String descritorLista, int posicaoItem) {
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
@@ -290,10 +322,58 @@ public class Sistema {
 		return listasDeCompras.get(descritorLista).getItemLista(posicaoItem);
 	}
 
+	/**Remove uma compra de uma lista.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 */
 	public void deletaCompraDeLista(String descritorLista, int itemId) {
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 
 		listasDeCompras.get(descritorLista).deletaCompraDeLista(itemId);
+	}
+
+	/**Atualiza a quantidade de um item de uma lista.
+	 * @param descritorLista O descritor (nome) da lista.
+	 * @param itemId O codigo de identificacao unico do produto.
+	 * @param quantidade A nova quantidade do produto.
+	 */
+	public void atualizaCompraDeLista(String descritorLista, int itemId, double quantidade) {
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("Lista de compras nao existe");
+
+		listasDeCompras.get(descritorLista).atualizaCompraDeLista(itemId, quantidade);
+	}
+
+	/**Retorna uma lista de compras pela data e indice na lista de listas de compras daquela data.
+	 * @param data A data da lista de compras.
+	 * @param posicaoLista A posicao da lista de compras na lista daquela data.
+	 * @return O descritor (nome) da lista.
+	 */
+	public String getItemListaPorData(String data, int posicaoLista) {
+		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
+		
+		for (ListaDeCompras lista : listasDeCompras.values()) {
+			if (lista.getData().equals(data))
+				listas.add(lista);
+		}
+		
+		return listas.get(posicaoLista).getDescritor();
+	}
+
+	/**Retorna uma lista de compras pela presenca de um item naquela lista e indice na lista de listas.
+	 * @param id O codigo de identificacao unico do produto.
+	 * @param posicaoLista A posicao da lista de compras na lista das que contem aquele produto.
+	 * @return O descritor (nome) da lista.
+	 */
+	public String getItemListaPorItem(int id, int posicaoLista) {
+		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
+		
+		for (ListaDeCompras lista : listasDeCompras.values()) {
+			if (lista.contemProduto(id))
+				listas.add(lista);
+		}
+		
+		return listas.get(posicaoLista).getDescritor();
 	}
 }
