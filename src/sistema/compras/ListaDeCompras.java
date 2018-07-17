@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import sistema.comparadores.OrdemAlfabeticaCompra;
-import sistema.comparadores.OrdemCategoriaCompra;
+import sistema.comparadores.OrdemCompra;
 import sistema.produtos.*;
 
 /**
@@ -101,8 +100,7 @@ public class ListaDeCompras {
 	 */
 	@Override
 	public String toString() {
-		Collections.sort(compras, new OrdemAlfabeticaCompra());
-		Collections.sort(compras, new OrdemCategoriaCompra());
+		Collections.sort(compras, new OrdemCompra());
 		String temp = "";
 		for (Compra compra : compras) {
 			temp += compra.toString() + System.lineSeparator();
@@ -120,8 +118,7 @@ public class ListaDeCompras {
 	}
 
 	public String getItemLista(int posicaoItem) {
-		Collections.sort(compras, new OrdemAlfabeticaCompra());
-		Collections.sort(compras, new OrdemCategoriaCompra());
+		Collections.sort(compras, new OrdemCompra());
 		
 		if(posicaoItem >= compras.size())
 			return "";
