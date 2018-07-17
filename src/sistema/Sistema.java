@@ -311,7 +311,7 @@ public class Sistema {
 	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		if (descritorLista.trim().isEmpty())
-			throw new IllegalArgumentException("Erro na exclusao de compra: descritor nao pode ser vazio ou nulo.");
+			throw new IllegalArgumentException("Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras nao existe");
 		if (itemId < 1)
@@ -342,7 +342,11 @@ public class Sistema {
 		if (descritorLista.trim().isEmpty())
 			throw new IllegalArgumentException("Erro na exclusao de compra: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
-			throw new IllegalArgumentException("Lista de compras nao existe");
+			throw new IllegalArgumentException("Erro na exclusao de compra: Lista de compras nao existe");
+		if (itemId < 1)
+			throw new IndexOutOfBoundsException("Erro na exclusao de compra: item id invalido.");
+		if (!produtos.containsKey(itemId))
+			throw new IndexOutOfBoundsException("Erro na exclusao de compra: item nao existe no sistema.");
 
 		listasDeCompras.get(descritorLista).deletaCompraDeLista(itemId);
 	}
