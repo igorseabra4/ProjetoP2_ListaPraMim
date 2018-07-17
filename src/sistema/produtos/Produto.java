@@ -18,20 +18,7 @@ public abstract class Produto {
 	private Map<String, Double> precos;
 
 	/**
-	 * Construtor capaz de copiar/clonar um produto.
-	 * 
-	 * @param produto
-	 *            Produto a ser copiado.
-	 */
-	public Produto(Produto produto) {
-		this.id = produto.id;
-		this.nome = produto.nome;
-		this.categoria = produto.categoria;
-		this.precos = new HashMap<String, Double>(produto.precos);
-	}
-
-	/**
-	 * Construtor padrão de um produto.
+	 * Construtor de um produto.
 	 * 
 	 * @param id
 	 *            Identificador numérico do produto.
@@ -68,11 +55,12 @@ public abstract class Produto {
 	}
 
 	/**
-	 * Atualiza um atributo do produto.
+	 * Atualiza um determinado atributo do produto.
 	 * 
 	 * @param atributo
-	 * 
+	 *            Atributo que será modificado.
 	 * @param novoValor
+	 *            Valor desejado que será atribuido ao atributo.
 	 */
 	public void atualizaItem(String atributo, String novoValor) {
 		if (atributo.trim().equals("") || atributo.equals(null))
@@ -93,6 +81,12 @@ public abstract class Produto {
 			throw new IllegalArgumentException("Erro na atualizacao de item: atributo nao existe.");
 	}
 
+	/**
+	 * Atualiza a categoria do produto para uma nova.
+	 * 
+	 * @param novoValor
+	 *            nova categoria do produto.
+	 */
 	private void atualizaCategoria(String novoValor) {
 		if (novoValor.equals("alimento industrializado"))
 			categoria = Categorias.ALIM_INDUSTR;
@@ -106,6 +100,14 @@ public abstract class Produto {
 			throw new IllegalArgumentException("categoria nao existe.");
 	}
 
+	/**
+	 * Adiciona o preço do produto em um determinado local de compra.
+	 * 
+	 * @param localDeCompra
+	 *            Local atribuido ao preço.
+	 * @param preco
+	 *            Preço do produto neste local.
+	 */
 	public void adicionaPrecoItem(String localDeCompra, double preco) {
 		if (localDeCompra.trim().equals("") || localDeCompra.equals(null))
 			throw new NullPointerException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
@@ -118,18 +120,38 @@ public abstract class Produto {
 			precos.put(localDeCompra, preco);
 	}
 
+	/**
+	 * Retorna o identificador numérico no produto.
+	 * 
+	 * @return identificador numérico.
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * Retorna o nome do produto.
+	 * 
+	 * @return nome do produto.
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * Retorna a categoria do produto em String.
+	 * 
+	 * @return categoria do produto.
+	 */
 	public String getCategoria() {
 		return categoria.getNome();
 	}
 
+	/**
+	 * Retorna o menor preço definido do produto.
+	 * 
+	 * @return menor preço conhecido.
+	 */
 	public double getMenorPreco() {
 		double menor = Double.MAX_VALUE;
 		for (double preco : precos.values()) {
@@ -139,10 +161,21 @@ public abstract class Produto {
 		return menor;
 	}
 
+	/**
+	 * Retorna um valor booleano correspondendo a existência de uma dada String
+	 * no nome do produto.
+	 * 
+	 * @param string
+	 *            String pesquisada.
+	 * @return true caso possua, false caso contrário.
+	 */
 	public boolean contemStringPesquisada(String string) {
 		return nome.toLowerCase().contains(string.toLowerCase());
 	}
 
+	/**
+	 * Representação textual do produto.
+	 */
 	@Override
 	public String toString() {
 		String resultado = String.format("%d. %s, %s, %s: <", id, nome, categoria.getNome(), toStringValues());
@@ -154,9 +187,22 @@ public abstract class Produto {
 		return resultado;
 	}
 
+	/**
+	 * Representação textual alternativa do produto.
+	 * 
+	 * @param i
+	 *            Não utilizado.
+	 * @return toString alternativo.
+	 */
 	public String toString(int i) {
 		return nome + ", " + categoria.getNome();
 	}
 
+	/**
+	 * Valores utilizados na representação textual do produto, que são uma
+	 * peculiaridade de cada tipo de produto.
+	 * 
+	 * @return uma String com valores específicos de cada tipo.
+	 */
 	protected abstract String toStringValues();
 }

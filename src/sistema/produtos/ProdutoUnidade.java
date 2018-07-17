@@ -1,14 +1,17 @@
 package sistema.produtos;
 
+/**
+ * Produto por unidade, como pacote de biscoito recheado Vox, ou copo de
+ * requeijão cremoso Fofonlí, ou ainda abacaxi. A maioria dos produtos de
+ * higiene pessoal e alimentos industrializados recai nessa classe de itens.
+ * 
+ * @author Henry Filho
+ *
+ */
 public class ProdutoUnidade extends Produto {
 
 	private int unidade;
 
-	public ProdutoUnidade(ProdutoUnidade produto) {
-		super(produto);
-		this.unidade = produto.unidade;
-	}
-	
 	public ProdutoUnidade(int id, String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);
 		if (unidade < 0)
@@ -28,7 +31,7 @@ public class ProdutoUnidade extends Produto {
 		} else
 			super.atualizaItem(atributo, novoValor);
 	}
-	
+
 	@Override
 	protected String toStringValues() {
 		return "Preco";

@@ -1,14 +1,16 @@
 package sistema.produtos;
 
+/**
+ * Produtos não industrializados por quilo. Em geral são os produtos de açougue
+ * e hortifruti.
+ * 
+ * @author Henry Filho
+ *
+ */
 public class ProdutoQuilo extends Produto {
 
 	private double kg;
 
-	public ProdutoQuilo(ProdutoQuilo produto) {
-		super(produto);
-		this.kg = produto.kg;
-	}
-	
 	public ProdutoQuilo(int id, String nome, String categoria, double kg, String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);
 		if (kg < 0)
@@ -29,7 +31,7 @@ public class ProdutoQuilo extends Produto {
 		} else
 			super.atualizaItem(atributo, novoValor);
 	}
-	
+
 	@Override
 	protected String toStringValues() {
 		return "Preco por quilo";

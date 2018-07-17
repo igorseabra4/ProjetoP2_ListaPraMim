@@ -1,15 +1,21 @@
 package sistema.produtos;
 
+/**
+ * Produtos com quantidade fixa (por exemplo, frasco de detergente Brilhol com
+ * 500ml, ou saco de algodão Clemer com 300g, ou caixa com 18 ovos). Esses itens
+ * devem manter a quantidade e a medida do produto. No exemplo do detergente a
+ * quantidade é 500 e a medida é mililitro, já para o algodão a quantidade é 300
+ * e a medida grama. Já no caso do ovo a quantidade é 18 e a medida é "unidade
+ * do produto".
+ * 
+ * @author Henry Filho
+ *
+ */
+
 public class ProdutoQuantidade extends Produto {
 
 	private int qnt;
 	private String unidadeDeMedida;
-
-	public ProdutoQuantidade(ProdutoQuantidade produto) {
-		super(produto);
-		this.qnt = produto.qnt;
-		this.unidadeDeMedida = produto.unidadeDeMedida;
-	}
 
 	public ProdutoQuantidade(int id, String nome, String categoria, int qnt, String unidadeDeMedida,
 			String localDeCompra, double preco) {
@@ -36,7 +42,7 @@ public class ProdutoQuantidade extends Produto {
 		else
 			super.atualizaItem(atributo, novoValor);
 	}
-	
+
 	@Override
 	public String toString(int i) {
 		return String.format("%s, %d %s", super.toString(0), qnt, unidadeDeMedida);
