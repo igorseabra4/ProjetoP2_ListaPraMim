@@ -2,8 +2,6 @@
 # Caso de Uso 3  Exception#
 ###########################
 
-##  Cadastro de itens  ##
-
 id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=5.50
 id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper" precoItem=15
 
