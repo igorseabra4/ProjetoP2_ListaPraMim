@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author wesleyrs
+ * @author wesley
  *
  */
 public class ProdutoQuantidadeTest {
@@ -58,22 +58,10 @@ public class ProdutoQuantidadeTest {
 	}
 
 	/**
-	 * Test method for {@link sistema.produtos.ProdutoQuantidade#ProdutoQuantidade(sistema.produtos.ProdutoQuantidade)}.
-	 */
-	@Test
-	public void testProdutoQuantidadeProdutoQuantidade() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10.0);		
-		ProdutoQuantidade p2 = new ProdutoQuantidade(p1);
-		
-		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p2.toString());		
-		assertEquals("uva, alimento nao industrializado, 500 g", p1.toString(0));
-	}
-
-	/**
 	 * Test method for {@link sistema.produtos.ProdutoQuantidade#ProdutoQuantidade(int, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, double)}.
 	 */
 	@Test
-	public void testProdutoQuantidadeIntStringStringIntStringStringDouble() {
+	public void testProdutoQuantidade() {
 		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10.0);
 		
 		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p1.toString());		
@@ -81,27 +69,15 @@ public class ProdutoQuantidadeTest {
 	}
 
 	/**
-	 * Test method for {@link sistema.produtos.Produto#Produto(sistema.produtos.Produto)}.
-	 */
-	@Test
-	public void testProdutoProduto() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link sistema.produtos.Produto#Produto(int, java.lang.String, java.lang.String, java.lang.String, double)}.
-	 */
-	@Test
-	public void testProdutoIntStringStringStringDouble() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link sistema.produtos.Produto#adicionaPrecoItem(java.lang.String, double)}.
 	 */
 	@Test
 	public void testAdicionaPrecoItem() {
-		fail("Not yet implemented");
+		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10.0);
+		p1.adicionaPrecoItem("pouco legal", 8.99);
+		
+		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <pouco legal, R$ 8,99;bem legal, R$ 10,00;>", p1.toString());		
+		assertEquals("uva, alimento nao industrializado, 500 g", p1.toString(0));
 	}
 
 	/**
@@ -139,7 +115,11 @@ public class ProdutoQuantidadeTest {
 	 */
 	@Test
 	public void testGetMenorPreco() {
-		fail("Not yet implemented");
+		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10.0);
+		p1.adicionaPrecoItem("pouco legal", 8.99);
+
+	
+		assertEquals(8.99, p1.getMenorPreco(), 0.005);
 	}
 
 	/**
@@ -147,7 +127,10 @@ public class ProdutoQuantidadeTest {
 	 */
 	@Test
 	public void testContemStringPesquisada() {
-		fail("Not yet implemented");
+		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10.0);
+
+		assertTrue(p1.contemStringPesquisada("uva"));
+		assertFalse(p1.contemStringPesquisada("banana"));
 	}
 
 	/**
