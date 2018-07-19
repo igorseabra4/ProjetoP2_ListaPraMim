@@ -139,13 +139,13 @@ public class ListaDeCompras {
 	}
 
 	public void atualizaCompraDeLista(int itemId, String operacao, int quantidade) {
+		if(operacao.equals("diminui"))
+			quantidade *= -1;
+		else if(!operacao.equals("adiciona"))
+			throw new IllegalArgumentException("Erro na atualizacao de compra: operacao invalida para atualizacao.");
+		
 		if(!contemProduto(itemId))
 			throw new IllegalArgumentException("Erro na atualizacao de compra: compra nao encontrada na lista.");
-		
-		if(operacao.equals("adiciona")) {
-			//TODO
-		}else if(operacao.equals("diminui"))
-			quantidade *= -1;
 		
 		Compra c = new Compra(0, null);
 		for(Compra compra : compras) {

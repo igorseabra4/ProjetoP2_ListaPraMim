@@ -84,6 +84,9 @@ public class Sistema {
 		return currentId;
 	}
 	
+	/** Adiciona o produto ao 
+	 * @param produto
+	 */
 	private void adicionaItem(Produto produto) {
 		if (produtos.containsValue(produto)) {
 			currentId--;
@@ -323,8 +326,6 @@ public class Sistema {
 			throw new IllegalArgumentException("Lista de compras nao existe");
 		if (itemId < 1)
 			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item id invalido.");
-		if (!produtos.containsKey(itemId))
-			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item nao existe no sistema.");
 		
 		return listasDeCompras.get(descritorLista).pesquisaCompraEmLista(itemId);
 	}
@@ -354,7 +355,7 @@ public class Sistema {
 			throw new IndexOutOfBoundsException("Erro na exclusao de compra: item id invalido.");
 		if (!produtos.containsKey(itemId))
 			throw new IndexOutOfBoundsException("Erro na exclusao de compra: item nao existe no sistema.");
-
+		
 		listasDeCompras.get(descritorLista).deletaCompraDeLista(itemId);
 	}
 
