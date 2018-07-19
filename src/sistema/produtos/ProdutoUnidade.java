@@ -36,4 +36,24 @@ public class ProdutoUnidade extends Produto {
 	protected String toStringValues() {
 		return "Preco";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + unidade;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (getClass() != obj.getClass())
+			return false;
+		ProdutoUnidade other = (ProdutoUnidade) obj;
+		if (hashCode() != other.hashCode())
+			return false;
+		return true;
+	}
 }
