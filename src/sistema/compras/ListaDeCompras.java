@@ -32,10 +32,10 @@ public class ListaDeCompras {
 	 * @param descritor
 	 *            Descritor textual da lista.
 	 */
-	public ListaDeCompras(String descritor) {
+	public ListaDeCompras(String descritor, String data) {
 		this.descritor = descritor;
 		compras = new ArrayList<>();
-		this.data = "10/07/2018";
+		this.data = data;
 	}
 
 	
