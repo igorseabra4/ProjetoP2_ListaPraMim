@@ -17,6 +17,24 @@ public class ProdutoQuantidade extends Produto {
 	private int qnt;
 	private String unidadeDeMedida;
 
+	/**
+	 * Construtor do produto de quantidade fixa.
+	 * 
+	 * @param id
+	 *            Identificador numérico do produto.
+	 * @param nome
+	 *            Nome do produto.
+	 * @param categoria
+	 *            Categoria do produto. (em texto)
+	 * @param qnt
+	 *            Quantidade fixa do produto.
+	 * @param unidadeDeMedida
+	 *            Unidade de medida correspondente a quantidade fixa.
+	 * @param localDeCompra
+	 *            Um local no qual o produto pode ser comprado.
+	 * @param preco
+	 *            O preço do produto no local determinado.
+	 */
 	public ProdutoQuantidade(int id, String nome, String categoria, int qnt, String unidadeDeMedida,
 			String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);

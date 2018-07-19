@@ -12,6 +12,22 @@ public class ProdutoUnidade extends Produto {
 
 	private int unidade;
 
+	/**
+	 * Construtor dos produtos comprados por unidade.
+	 * 
+	 * @param id
+	 *            Identificador numérico do produto.
+	 * @param nome
+	 *            Nome do produto.
+	 * @param categoria
+	 *            Categoria do produto. (em texto)
+	 * @param unidade
+	 *            Unidade do produto.
+	 * @param localDeCompra
+	 *            Um local no qual o produto pode ser comprado.
+	 * @param preco
+	 *            O preço do produto no local determinado.
+	 */
 	public ProdutoUnidade(int id, String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);
 		if (unidade < 0)

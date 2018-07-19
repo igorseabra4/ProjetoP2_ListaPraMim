@@ -11,6 +11,22 @@ public class ProdutoQuilo extends Produto {
 
 	private double kg;
 
+	/**
+	 * Construtor de produtos medidos por quilo.
+	 * 
+	 * @param id
+	 *            Identificador numérico do produto.
+	 * @param nome
+	 *            Nome do produto.
+	 * @param categoria
+	 *            Categoria do produto. (em texto)
+	 * @param kg
+	 *            Peso (em quilos) do produto.
+	 * @param localDeCompra
+	 *            Um local no qual o produto pode ser comprado.
+	 * @param preco
+	 *            O preço do produto no local determinado.
+	 */
 	public ProdutoQuilo(int id, String nome, String categoria, double kg, String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);
 		if (kg < 0)
