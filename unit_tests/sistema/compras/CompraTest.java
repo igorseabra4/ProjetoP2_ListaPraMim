@@ -5,26 +5,39 @@ package sistema.compras;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import sistema.produtos.*;
+import sistema.produtos.ProdutoQuantidade;
 
 /**
  * @author wesley
  *
  */
 public class CompraTest {
+	private ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
+	private Compra c1;
+
+	/**
+	 * @throws java.lang.Exception
+	 */
+	@Before
+	public void setUp() throws Exception {
+		c1 = new Compra(5, p1);
+	}
 
 	/**
 	 * Test method for {@link sistema.compras.Compra#Compra(sistema.compras.Compra)}.
 	 */
 	@Test
 	public void testCompraCompra() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
 		Compra c2 = new Compra(c1);
 			
-		assertEquals("5 uva, alimento industrializado, 500 g", c2.toString());
+		assertEquals("ID diferente", c1.getId(), c2.getId());
+		assertEquals("Nome diferente", c1.getNome(), c2.getNome());
+		assertEquals("Categoria diferente", c1.getCategoria(), c2.getCategoria());
+		assertEquals("Quantidade diferente", c1.getQuantia(), c2.getQuantia());
+		assertEquals("toString diferente", c1.toString(), c2.toString());
 	}
 
 	/**
@@ -32,10 +45,11 @@ public class CompraTest {
 	 */
 	@Test
 	public void testCompraIntProduto() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
-			
-		assertEquals("5 uva, alimento industrializado, 500 g", c1.toString());
+		assertEquals("ID diferente", 1, c1.getId());
+		assertEquals("Nome diferente", "uva", c1.getNome());
+		assertEquals("Categoria diferente", "alimento industrializado", c1.getCategoria());
+		assertEquals("Quantidade diferente", 5, c1.getQuantia());
+		assertEquals("toString diferente", "5 uva, alimento industrializado, 500 g", c1.toString());
 	}
 
 	/**
@@ -43,9 +57,6 @@ public class CompraTest {
 	 */
 	@Test
 	public void testGetCategoria() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
-			
 		assertEquals("alimento industrializado", c1.getCategoria());
 	}
 
@@ -54,9 +65,6 @@ public class CompraTest {
 	 */
 	@Test
 	public void testGetId() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
-			
 		assertEquals(1, c1.getId());
 	}
 
@@ -65,9 +73,6 @@ public class CompraTest {
 	 */
 	@Test
 	public void testGetNome() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
-			
 		assertEquals("uva", c1.getNome());
 	}
 	
@@ -76,9 +81,6 @@ public class CompraTest {
 	 */
 	@Test
 	public void testGetQuantia() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
-			
 		assertEquals(5, c1.getQuantia());
 	}
 
@@ -87,8 +89,6 @@ public class CompraTest {
 	 */
 	@Test
 	public void testAddQuantia() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
 		c1.addQuantia(2);
 			
 		assertEquals(7, c1.getQuantia());
@@ -100,9 +100,6 @@ public class CompraTest {
 	 */
 	@Test
 	public void testToString() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
-		Compra c1 = new Compra(5, p1);
-			
 		assertEquals("5 uva, alimento industrializado, 500 g", c1.toString());
 	}
 
