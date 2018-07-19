@@ -1,5 +1,7 @@
 package sistema;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +39,8 @@ public class Sistema {
 	 * @return O codigo de identificacao unico do produto.
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra,	double preco) {
+		adicionaItem(new ProdutoQuantidade(currentId + 1, nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
 		currentId++;
-		adicionaItem(new ProdutoQuantidade(currentId, nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -58,8 +60,8 @@ public class Sistema {
 	 * @return O codigo de identificacao unico do produto.
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
+		adicionaItem(new ProdutoQuilo(currentId + 1, nome, categoria, kg, localDeCompra, preco));
 		currentId++;
-		adicionaItem(new ProdutoQuilo(currentId, nome, categoria, kg, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -79,8 +81,8 @@ public class Sistema {
 	 * @return O codigo de identificacao unico do produto.
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
+		adicionaItem(new ProdutoUnidade(currentId + 1, nome, categoria, unidade, localDeCompra, preco));
 		currentId++;
-		adicionaItem(new ProdutoUnidade(currentId, nome, categoria, unidade, localDeCompra, preco));
 		return currentId;
 	}
 	
@@ -89,10 +91,9 @@ public class Sistema {
 	 */
 	private void adicionaItem(Produto produto) {
 		if (produtos.containsValue(produto)) {
-			currentId--;
 			throw new IllegalArgumentException("Erro no cadastro de item: item ja cadastrado no sistema.");
 		}
-		produtos.put(currentId, produto);
+		produtos.put(currentId + 1, produto);
 	}
 
 	/**
@@ -261,7 +262,7 @@ public class Sistema {
 		if (listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras ja existe");
 		
-		listasDeCompras.put(descritorLista, new ListaDeCompras(descritorLista));
+		listasDeCompras.put(descritorLista, new ListaDeCompras(descritorLista, dataAtual()));
 		return descritorLista;
 	}
 
@@ -414,5 +415,11 @@ public class Sistema {
 		listas.sort(new OrdemDataLista());
 		
 		return  listas.get(posicaoLista).getData() + " - " + listas.get(posicaoLista).getDescritor();
+	}
+
+	public String dataAtual() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate localDate = LocalDate.now();
+		return dtf.format(localDate);
 	}
 }

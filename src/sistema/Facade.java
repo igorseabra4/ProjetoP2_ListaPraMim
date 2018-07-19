@@ -209,4 +209,12 @@ public class Facade {
 	public String getItemListaPorItem(int id, int posicaoLista) {
 		return sistema.getItemListaPorItem(id, posicaoLista);
 	}
+	
+	/**A data atual
+	 * @return A data atual.
+	 */
+	public String dataAtual() {
+		return sistema.dataAtual();
+	}
+	
 }
