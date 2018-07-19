@@ -21,19 +21,19 @@ public class ProdutoQuiloTest {
 		ProdutoQuilo p1 = new ProdutoQuilo(1, "uva", "alimento industrializado", 500.00, "bem legal", 10.0);
 		
 		p1.atualizaItem("kg", "5");	
-		assertEquals("5,00 kg uva, alimento industrializado", p1.toString(0));
+		assertEquals("uva, alimento industrializado", p1.toString(0));
 	
 		p1.atualizaItem("nome", "feijao");
-		assertEquals("5,00 kg feijao, alimento industrializado", p1.toString(0));
+		assertEquals("feijao, alimento industrializado", p1.toString(0));
 		
 		p1.atualizaItem("categoria", "alimento nao industrializado");
-		assertEquals("5,00 kg feijao, alimento nao industrializado", p1.toString(0));
+		assertEquals("feijao, alimento nao industrializado", p1.toString(0));
 		
 		p1.atualizaItem("categoria", "limpeza");
-		assertEquals("5,00 kg feijao, limpeza", p1.toString(0));
+		assertEquals("feijao, limpeza", p1.toString(0));
 		
 		p1.atualizaItem("categoria", "higiene pessoal");
-		assertEquals("5,00 kg feijao, higiene pessoal", p1.toString(0));
+		assertEquals("feijao, higiene pessoal", p1.toString(0));
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class ProdutoQuiloTest {
 		ProdutoQuilo p1 = new ProdutoQuilo(1, "uva", "alimento industrializado", 500.00, "bem legal", 10.0);
 		
 		assertEquals("1. uva, alimento industrializado, Preco por quilo: <bem legal, R$ 10,00;>", p1.toString());		
-		assertEquals("500,00 kg uva, alimento industrializado", p1.toString(0));
+		assertEquals("uva, alimento industrializado", p1.toString(0));
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class ProdutoQuiloTest {
 	public void testToStringInt() {
 		ProdutoQuilo p1 = new ProdutoQuilo(1, "uva", "alimento industrializado", 500.00, "bem legal", 10.0);
 		
-		assertEquals("500,00 kg uva, alimento industrializado", p1.toString(0));
+		assertEquals("uva, alimento industrializado", p1.toString(0));
 	}
 
 

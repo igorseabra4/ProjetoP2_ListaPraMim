@@ -21,19 +21,19 @@ public class ProdutoUnidadeTest {
 		ProdutoUnidade p1 = new ProdutoUnidade(1, "uva", "alimento industrializado", 500, "bem legal", 10.0);
 		
 		p1.atualizaItem("unidade", "5");		
-		assertEquals("5 uva, alimento industrializado", p1.toString(0));
+		assertEquals("uva, alimento industrializado", p1.toString(0));
 		
 		p1.atualizaItem("nome", "feijao");
-		assertEquals("5 feijao, alimento industrializado", p1.toString(0));
+		assertEquals("feijao, alimento industrializado", p1.toString(0));
 		
 		p1.atualizaItem("categoria", "alimento nao industrializado");
-		assertEquals("5 feijao, alimento nao industrializado", p1.toString(0));
+		assertEquals("feijao, alimento nao industrializado", p1.toString(0));
 		
 		p1.atualizaItem("categoria", "limpeza");
-		assertEquals("5 feijao, limpeza", p1.toString(0));
+		assertEquals("feijao, limpeza", p1.toString(0));
 		
 		p1.atualizaItem("categoria", "higiene pessoal");
-		assertEquals("5 feijao, higiene pessoal", p1.toString(0));
+		assertEquals("feijao, higiene pessoal", p1.toString(0));
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class ProdutoUnidadeTest {
 	public void testToStringInt() {
 		ProdutoUnidade p1 = new ProdutoUnidade(1, "uva", "alimento industrializado", 500, "bem legal", 10.0);
 		
-		assertEquals("500 uva, alimento industrializado", p1.toString(0));
+		assertEquals("uva, alimento industrializado", p1.toString(0));
 	}
 	
 	@Test
