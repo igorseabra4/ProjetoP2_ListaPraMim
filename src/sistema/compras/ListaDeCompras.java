@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import sistema.TuplaIntInt;
 import sistema.comparadores.OrdemCompra;
 import sistema.produtos.*;
 
@@ -243,6 +244,17 @@ public class ListaDeCompras {
 
 	public int getID() {
 		return id;
+	}
+
+	public List<TuplaIntInt> getTuplas() {
+		
+		List<TuplaIntInt> temp = new ArrayList<>();
+		
+		for(Compra compra : compras) {
+			temp.add(new TuplaIntInt(compra.getId(), compra.getQuantia()));
+		}
+		
+		return temp;
 	}
 
 }
