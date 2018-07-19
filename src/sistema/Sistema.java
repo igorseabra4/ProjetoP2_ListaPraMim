@@ -38,8 +38,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra,	double preco) {
 		currentId++;
-		produtos.put(currentId,
-				new ProdutoQuantidade(currentId, nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
+		adicionaItem(new ProdutoQuantidade(currentId, nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -60,7 +59,7 @@ public class Sistema {
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoQuilo(currentId, nome, categoria, kg, localDeCompra, preco));
+		adicionaItem(new ProdutoQuilo(currentId, nome, categoria, kg, localDeCompra, preco));
 		return currentId;
 	}
 
@@ -81,8 +80,16 @@ public class Sistema {
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		currentId++;
-		produtos.put(currentId, new ProdutoUnidade(currentId, nome, categoria, unidade, localDeCompra, preco));
+		adicionaItem(new ProdutoUnidade(currentId, nome, categoria, unidade, localDeCompra, preco));
 		return currentId;
+	}
+	
+	private void adicionaItem(Produto produto) {
+		if (produtos.containsValue(produto)) {
+			currentId--;
+			throw new IllegalArgumentException("Erro no cadastro de item: item ja cadastrado no sistema.");
+		}
+		produtos.put(currentId, produto);
 	}
 
 	/**

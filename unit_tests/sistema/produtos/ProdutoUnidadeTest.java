@@ -54,7 +54,7 @@ public class ProdutoUnidadeTest {
 		ProdutoUnidade p1 = new ProdutoUnidade(1, "uva", "alimento industrializado", 500, "bem legal", 10.0);
 		
 		assertEquals("1. uva, alimento industrializado, Preco: <bem legal, R$ 10,00;>", p1.toString());		
-		assertEquals("500 uva, alimento industrializado", p1.toString(0));
+		assertEquals("uva, alimento industrializado", p1.toString(0));
 	}
 
 	/**
@@ -139,6 +139,14 @@ public class ProdutoUnidadeTest {
 		ProdutoUnidade p1 = new ProdutoUnidade(1, "uva", "alimento industrializado", 500, "bem legal", 10.0);
 		
 		assertEquals("500 uva, alimento industrializado", p1.toString(0));
+	}
+	
+	@Test
+	public void testEquals() {
+		ProdutoUnidade p1 = new ProdutoUnidade(1, "uva", "alimento industrializado", 500, "bem legal", 10.0);
+		ProdutoUnidade p2 = new ProdutoUnidade(2, "uva", "alimento industrializado", 500, "bem legal", 10.0);
+		
+		assertEquals(p1, p2);
 	}
 
 }

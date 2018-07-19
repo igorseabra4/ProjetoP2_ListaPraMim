@@ -70,4 +70,25 @@ public class ProdutoQuantidade extends Produto {
 	protected String toStringValues() {
 		return String.format("%d %s, Preco", qnt, unidadeDeMedida);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + qnt;
+		result = prime * result + ((unidadeDeMedida == null) ? 0 : unidadeDeMedida.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (getClass() != obj.getClass())
+			return false;
+		ProdutoQuantidade other = (ProdutoQuantidade) obj;
+		if (hashCode() != other.hashCode())
+			return false;
+		return true;
+	}
 }

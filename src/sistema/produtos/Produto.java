@@ -205,4 +205,13 @@ public abstract class Produto {
 	 * @return uma String com valores específicos de cada tipo.
 	 */
 	protected abstract String toStringValues();
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
 }
