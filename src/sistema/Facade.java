@@ -217,14 +217,31 @@ public class Facade {
 		return sistema.dataAtual();
 	}
 
+	/**Retorna as listas de compras feitas na data especificada.
+	 * @param data A data das listas.
+	 * @return Representação em String das listas de compras feitas na data especificada.
+	 */
 	public String pesquisaListasDeComprasPorData(String data) {
 		return sistema.pesquisaListasDeComprasPorData(data);
 	}
-	
+
+	/**Retorna as listas de compras que contém o produto especificado.
+	 * @param id O codigo de identificacao unico do produto.
+	 * @return Representação em String das listas de compras feitas na data especificada.
+	 */
 	public String pesquisaListasDeComprasPorItem(int id) {
 		return sistema.pesquisaListasDeComprasPorItem(id);
 	}
+
+	public String estrategia1() {
+		return sistema.estrategia1();		
+	}
 	
+	public String estrategia2(int id) {
+		return sistema.estrategia2(id);		
+	}
 	
-	
+	public String estrategia3() {
+		return sistema.estrategia3();		
+	}
 }

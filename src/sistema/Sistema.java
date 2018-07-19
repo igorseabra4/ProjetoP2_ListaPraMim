@@ -15,11 +15,13 @@ public class Sistema {
 	private Map<Integer, Produto> produtos;
 	private Map<String, ListaDeCompras> listasDeCompras;
 	private int currentId;
+	private int currentIdLista;
 
 	public Sistema() {
 		produtos = new HashMap<Integer, Produto>();
 		listasDeCompras = new HashMap<String, ListaDeCompras>();
 		currentId = 0;
+		currentIdLista = 0;
 	}
 
 	/**
@@ -263,7 +265,10 @@ public class Sistema {
 		if (listasDeCompras.containsKey(descritorLista))
 			throw new IllegalArgumentException("Lista de compras ja existe");
 		
-		listasDeCompras.put(descritorLista, new ListaDeCompras(descritorLista, dataAtual()));
+		currentIdLista++;
+		listasDeCompras.put(descritorLista, new ListaDeCompras(descritorLista, dataAtual(), currentIdLista));
+		
+		descritorUltimaLista = descritorLista;
 		return descritorLista;
 	}
 
@@ -418,12 +423,17 @@ public class Sistema {
 		return  listas.get(posicaoLista).getData() + " - " + listas.get(posicaoLista).getDescritor();
 	}
 
+	/**A data atual
+	 * @return A data atual.
+	 */
 	public String dataAtual() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate localDate = LocalDate.now();
-		return dtf.format(localDate);
+		return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now());
 	}
 
+	/**Retorna as listas de compras feitas na data especificada.
+	 * @param data A data das listas.
+	 * @return Representação em String das listas de compras feitas na data especificada.
+	 */
 	public String pesquisaListasDeComprasPorData(String data) {
 		if (data.trim().isEmpty())
 			throw new IllegalArgumentException("Erro na pesquisa de compra: data nao pode ser vazia ou nula.");
@@ -445,6 +455,10 @@ public class Sistema {
 		return retorno;
 	}
 
+	/**Retorna as listas de compras que contém o produto especificado.
+	 * @param id O codigo de identificacao unico do produto.
+	 * @return Representação em String das listas de compras feitas na data especificada.
+	 */
 	public String pesquisaListasDeComprasPorItem(int id) {
 		String retorno = "";
 		
@@ -456,5 +470,59 @@ public class Sistema {
 			return retorno;
 		
 		throw new RuntimeException("Erro na pesquisa de compra: compra nao encontrada na lista.");
+	}
+	
+	private int listasAutomaticas;
+	private String descritorUltimaLista;
+	
+	public String estrategia1() {
+		listasAutomaticas++;
+		
+		String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
+		
+		currentIdLista++;
+		listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(descritorUltimaLista), novoDescritor, dataAtual(), currentIdLista));
+		
+		return novoDescritor;
+	}
+		
+	public String estrategia2(int id) {
+		ArrayList<ListaDeCompras> listasOrdem = new ArrayList<ListaDeCompras>();
+		listasOrdem.addAll(listasDeCompras.values());
+		listasOrdem.sort(new OrdemCadastroLista());
+		
+		for (int i = listasOrdem.size() - 1; i >= 0; i--) {
+			if (listasOrdem.get(i).contemProduto(id)) {
+				String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
+				currentIdLista++;
+				listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(descritorUltimaLista), novoDescritor, dataAtual(), currentIdLista));
+
+				return novoDescritor;
+			}
+		}
+		
+		throw new IllegalArgumentException("Não há lista com o produto");
+	}
+	
+	public String estrategia3() {
+		int qtdNecessaria = (int)Math.floor(listasDeCompras.values().size() / 2.0d);
+		
+		HashMap<Integer, TuplaIntInt> quantidadeParaCadaProduto = new HashMap<Integer, TuplaIntInt>();
+		for (int i : produtos.keySet())
+			quantidadeParaCadaProduto.put(i, new TuplaIntInt(0, 0));
+		
+		for (ListaDeCompras lista : listasDeCompras.values()) {
+			for (TuplaIntInt t : lista.getTuplas()) {
+				quantidadeParaCadaProduto.put(t.getX(), qtdAnterior + t.getY());
+			}
+		}
+		
+		ArrayList<Produto> produtosDaNovaLista = new ArrayList<Produto>();
+		
+		for (int i : quantidadeParaCadaProduto.keySet()) {
+			if (quantidadeParaCadaProduto.get(i) > qtdNecessaria)
+		}
+			
+		
 	}
 }
