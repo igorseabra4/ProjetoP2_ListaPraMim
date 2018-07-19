@@ -507,14 +507,14 @@ public class Sistema {
 	public String estrategia3() {
 		int qtdNecessaria = (int)Math.floor(listasDeCompras.values().size() / 2.0d);
 		
-		HashMap<Integer, TuplaIntInt> quantidadeParaCadaProduto = new HashMap<Integer, TuplaIntInt>();
+		HashMap<Integer, Tupla> quantidadeParaCadaProduto = new HashMap<Integer, Tupla>();
 		for (int i : produtos.keySet())
-			quantidadeParaCadaProduto.put(i, new TuplaIntInt(0, 0));
+			quantidadeParaCadaProduto.put(i, new Tupla(0, 0));
 		// Nesse hashset, a chave é a ID do produto, o valor é uma tupla com dois inteiros: o X é a quantidade
 		// de listas na qual aquele item aparece; o Y é a quantidade total do item em todas as listas.
 		
 		for (ListaDeCompras lista : listasDeCompras.values()) {
-			for (TuplaIntInt t : lista.getTuplas()) {
+			for (Tupla t : lista.getTuplas()) {
 				// Nas tuplas retornadas pela ListaDeCompras, o X é a id do produto e o Y é a quantidade daquele produto na lista.
 				
 				quantidadeParaCadaProduto.get(t.getX()).addX(1);
