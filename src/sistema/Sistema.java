@@ -1,10 +1,11 @@
 package sistema;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 import sistema.produtos.*;
 import sistema.comparadores.*;
@@ -274,7 +275,7 @@ public class Sistema {
 		if (descritorLista.trim().isEmpty())
 			throw new IllegalArgumentException("Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
-			throw new IllegalArgumentException("Erro na pesquisa de compra: Lista de compras nao existe.");
+			throw new IllegalArgumentException("Erro na pesquisa de compra: lista de compras nao existe.");
 		
 		return descritorLista;
 	}
@@ -324,7 +325,7 @@ public class Sistema {
 		if (descritorLista.trim().isEmpty())
 			throw new IllegalArgumentException("Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
-			throw new IllegalArgumentException("Lista de compras nao existe");
+			throw new IllegalArgumentException("lista de compras nao existe");
 		if (itemId < 1)
 			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item id invalido.");
 		
@@ -338,7 +339,7 @@ public class Sistema {
 	 */
 	public String getItemLista(String descritorLista, int posicaoItem) {
 		if (!listasDeCompras.containsKey(descritorLista))
-			throw new IllegalArgumentException("Lista de compras nao existe");
+			throw new IllegalArgumentException("lista de compras nao existe");
 
 		return listasDeCompras.get(descritorLista).getItemLista(posicaoItem);
 	}
@@ -351,7 +352,7 @@ public class Sistema {
 		if (descritorLista.trim().isEmpty())
 			throw new IllegalArgumentException("Erro na exclusao de compra: descritor nao pode ser vazio ou nulo.");
 		if (!listasDeCompras.containsKey(descritorLista))
-			throw new IllegalArgumentException("Erro na exclusao de compra: Lista de compras nao existe");
+			throw new IllegalArgumentException("Erro na exclusao de compra: lista de compras nao existe");
 		if (itemId < 1)
 			throw new IndexOutOfBoundsException("Erro na exclusao de compra: item id invalido.");
 		if (!produtos.containsKey(itemId))
@@ -367,7 +368,7 @@ public class Sistema {
 	 */
 	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int quantidade) {
 		if (!listasDeCompras.containsKey(descritorLista))
-			throw new IllegalArgumentException("Lista de compras nao existe");
+			throw new IllegalArgumentException("lista de compras nao existe");
 
 		listasDeCompras.get(descritorLista).atualizaCompraDeLista(itemId, operacao, quantidade);
 	}
@@ -379,7 +380,7 @@ public class Sistema {
 	 */
 	public String getItemListaPorData(String data, int posicaoLista) {
 		if (data.trim().isEmpty())
-			throw new IllegalArgumentException("Erro na pesquisa de compra: data nao pode ser vazio ou nula.");
+			throw new IllegalArgumentException("Erro na pesquisa de compra: data nao pode ser vazia ou nula.");
 		
 		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
 		
@@ -421,5 +422,39 @@ public class Sistema {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate localDate = LocalDate.now();
 		return dtf.format(localDate);
+	}
+
+	public String pesquisaListasDeComprasPorData(String data) {
+		if (data.trim().isEmpty())
+			throw new IllegalArgumentException("Erro na pesquisa de compra: data nao pode ser vazia ou nula.");
+		
+		try {
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			dtf.parse(data);
+		}catch (Exception e) {
+			throw new IllegalArgumentException("Erro na pesquisa de compra: data em formato invalido, tente dd/MM/yyyy");			
+		}
+		
+		String retorno = "";
+		
+		for (ListaDeCompras l : listasDeCompras.values()) {
+			if (l.getData().equals(data))
+				retorno += l.toString() + "\n";
+		}
+		
+		return retorno;
+	}
+
+	public String pesquisaListasDeComprasPorItem(int id) {
+		String retorno = "";
+		
+		for (ListaDeCompras l : listasDeCompras.values()) {
+			if (l.contemProduto(id))
+				retorno += l.toString() + "\n";
+		}
+		if (retorno != "")
+			return retorno;
+		
+		throw new RuntimeException("Erro na pesquisa de compra: compra nao encontrada na lista.");
 	}
 }

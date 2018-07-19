@@ -216,5 +216,15 @@ public class Facade {
 	public String dataAtual() {
 		return sistema.dataAtual();
 	}
+
+	public String pesquisaListasDeComprasPorData(String data) {
+		return sistema.pesquisaListasDeComprasPorData(data);
+	}
+	
+	public String pesquisaListasDeComprasPorItem(int id) {
+		return sistema.pesquisaListasDeComprasPorItem(id);
+	}
+	
+	
 	
 }
