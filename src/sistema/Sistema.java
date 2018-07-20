@@ -505,13 +505,13 @@ public class Sistema {
 	}
 	
 	public String estrategia3() {
-		int qtdNecessaria = (int)Math.floor(listasDeCompras.values().size() / 2.0d);
-		
 		HashMap<Integer, Tupla> quantidadeParaCadaProduto = new HashMap<Integer, Tupla>();
+		
 		for (int i : produtos.keySet())
 			quantidadeParaCadaProduto.put(i, new Tupla(0, 0));
-		// Nesse hashset, a chave é a ID do produto, o valor é uma tupla com dois inteiros: o X é a quantidade
-		// de listas na qual aquele item aparece; o Y é a quantidade total do item em todas as listas.
+		
+		// Nesse hashmap, a chave é a ID do produto, o valor é uma tupla com dois inteiros: o X é a quantidade
+		// de listas na qual aquele item aparece; o Y é a quantidade total do item somando-o em todas as listas.
 		
 		for (ListaDeCompras lista : listasDeCompras.values()) {
 			for (Tupla t : lista.getTuplas()) {
@@ -521,19 +521,20 @@ public class Sistema {
 				quantidadeParaCadaProduto.get(t.getX()).addY(t.getY());
 			}
 		}
+
+		String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
+		currentIdLista++;
+		ListaDeCompras novaLista = new ListaDeCompras(novoDescritor, dataAtual(), currentIdLista);
 		
-		// AJEITA ISSO
-		ListaDeCompras novaLista = new ListaDeCompras(descritor, data, id);
-				
+		int qtdNecessaria = (int)Math.floor(listasDeCompras.values().size() / 2.0d);
 		for (int i : quantidadeParaCadaProduto.keySet()) {
 			if (quantidadeParaCadaProduto.get(i).getX() > qtdNecessaria) {
-				
 				int qtdNovaDoProduto = (int)Math.floor((double)quantidadeParaCadaProduto.get(i).getY() / quantidadeParaCadaProduto.get(i).getX());
 				
 				novaLista.adicionaCompra(qtdNovaDoProduto, produtos.get(i));
 			}
 		}
 		
-		// adicionar listadecompras a lista de listas!!!!!!!!!!!!!!!!!!!!!!!!!111111onze
+		return novoDescritor;
 	}
 }
