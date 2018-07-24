@@ -36,7 +36,7 @@ adicionaCompraALista descritorLista="feira quinzenal" quantidade=1 itemId=16
 
 ## Valores invalidos na pesquisa ##
 
-expectError "Erro na pesquisa de compra: item id invalido." pesquisaCompraEmLista descritorLista="feira quinzenal" itemId=-1
+expectError "Erro na pesquisa de compra: item id invalido." pesquisaCompraEmLista descritorLista="feira quizenal" itemId=-1
 expectError "Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo." pesquisaCompraEmLista descritorLista="" itemId=15
 expectError "Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo." pesquisaCompraEmLista descritorLista=" " itemId=15
 
