@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
 import java.util.Map;
 
 import sistema.compras.ListaDeCompras;
@@ -31,8 +30,8 @@ public class SistemaIO {
 
 			objectProdutos.writeObject(produtos);
 			objectListas.writeObject(listasDeCompras);
-			objectId.writeObject(currentId);
-			objectIdLista.write(currentIdLista);
+			objectId.writeInt(currentId);
+			objectIdLista.writeInt(currentIdLista);
 			objectUltima.writeUTF(descritorUltimaLista);
 
 			objectProdutos.close();
@@ -54,8 +53,6 @@ public class SistemaIO {
 			ObjectInputStream obj = new ObjectInputStream(input);
 			try {
 				map = (Map<Integer, Produto>) obj.readObject();
-			} catch (ClassCastException e) {
-				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -75,8 +72,6 @@ public class SistemaIO {
 			ObjectInputStream obj = new ObjectInputStream(input);
 			try {
 				map = (Map<Integer, ListaDeCompras>) obj.readObject();
-			} catch (ClassCastException e) {
-				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -87,5 +82,46 @@ public class SistemaIO {
 		}
 		return map;
 	}
+	
+	public static int readCurrentID() {
+		int i = 0;
+		try {
+			FileInputStream input = new FileInputStream(new File("data/currentID.txt"));
+			ObjectInputStream obj = new ObjectInputStream(input);
+			i = obj.readInt();
+			obj.close();
 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+	
+	public static int readCurrentIdLista() {
+		int i = 0;
+		try {
+			FileInputStream input = new FileInputStream(new File("data/currentIdLista.txt"));
+			ObjectInputStream obj = new ObjectInputStream(input);
+			i = obj.readInt();
+			obj.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	public static String readDescritorUltimaLista() {
+		String temp = null;
+		try {
+			FileInputStream input = new FileInputStream(new File("data/descritorUltimaLista.txt"));
+			ObjectInputStream obj = new ObjectInputStream(input);
+			temp = obj.readUTF();
+			obj.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return temp;
+	}
 }
