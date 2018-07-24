@@ -17,7 +17,6 @@ public class Sistema {
 	private int currentId;
 	private int currentIdLista;
 	
-	private int listasAutomaticas;
 	private String descritorUltimaLista;
 
 	public Sistema() {
@@ -25,7 +24,6 @@ public class Sistema {
 		listasDeCompras = new HashMap<String, ListaDeCompras>();
 		currentId = 0;
 		currentIdLista = 0;
-		listasAutomaticas = 0;
 	}
 
 	/**
@@ -333,10 +331,10 @@ public class Sistema {
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		if (descritorLista.trim().isEmpty())
 			throw new IllegalArgumentException("Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo.");
-		if (!listasDeCompras.containsKey(descritorLista))
-			throw new IllegalArgumentException("lista de compras nao existe");
 		if (itemId < 1)
 			throw new IndexOutOfBoundsException("Erro na pesquisa de compra: item id invalido.");
+		if (!listasDeCompras.containsKey(descritorLista))
+			throw new IllegalArgumentException("lista de compras nao existe");
 		
 		return listasDeCompras.get(descritorLista).pesquisaCompraEmLista(itemId);
 	}
@@ -477,9 +475,7 @@ public class Sistema {
 	}
 	
 	public String geraAutomaticaUltimaLista() {
-		listasAutomaticas++;
-		
-		String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
+		String novoDescritor = "Lista automatica 1 " + dataAtual();
 		
 		currentIdLista++;
 		listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(descritorUltimaLista), novoDescritor, dataAtual(), currentIdLista));
@@ -488,26 +484,24 @@ public class Sistema {
 	}
 		
 	public String geraAutomaticaItem(String nome) {
-		listasAutomaticas++;
-		
 		ArrayList<ListaDeCompras> listasOrdem = new ArrayList<ListaDeCompras>();
 		listasOrdem.addAll(listasDeCompras.values());
 		listasOrdem.sort(new OrdemCadastroLista());
 		
 		for (int i = listasOrdem.size() - 1; i >= 0; i--) {
 			if (listasOrdem.get(i).contemProduto(nome)) {
-				String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
+				String novoDescritor = "Lista automatica 2 " + dataAtual();
 				currentIdLista++;
-				listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(descritorUltimaLista), novoDescritor, dataAtual(), currentIdLista));
-
+				listasDeCompras.put(novoDescritor, new ListaDeCompras(listasOrdem.get(i), novoDescritor, dataAtual(), currentIdLista));
+				
 				return novoDescritor;
 			}
 		}
 		
-		throw new IllegalArgumentException("Não há lista com o produto");
+		throw new IllegalArgumentException("Erro na geracao de lista automatica por item: nao ha compras cadastradas com o item desejado.");
 	}
 	
-	public String estrategia3() {
+	public String geraAutomaticaItensMaisPresentes() {
 		HashMap<Integer, Tupla> quantidadeParaCadaProduto = new HashMap<Integer, Tupla>();
 		
 		for (int i : produtos.keySet())
@@ -515,7 +509,7 @@ public class Sistema {
 		
 		// Nesse hashmap, a chave é a ID do produto, o valor é uma tupla com dois inteiros: o X é a quantidade
 		// de listas na qual aquele item aparece; o Y é a quantidade total do item somando-o em todas as listas.
-		
+				
 		for (ListaDeCompras lista : listasDeCompras.values()) {
 			for (Tupla t : lista.getTuplas()) {
 				// Nas tuplas retornadas pela ListaDeCompras, o X é a id do produto e o Y é a quantidade daquele produto na lista.
@@ -524,19 +518,21 @@ public class Sistema {
 				quantidadeParaCadaProduto.get(t.getX()).addY(t.getY());
 			}
 		}
-
-		String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
+		
+		String novoDescritor = "Lista automatica 3 " + dataAtual();
 		currentIdLista++;
 		ListaDeCompras novaLista = new ListaDeCompras(novoDescritor, dataAtual(), currentIdLista);
 		
-		int qtdNecessaria = (int)Math.floor(listasDeCompras.values().size() / 2.0d);
+		double qtdNecessaria = listasDeCompras.values().size() / 2.0d;
 		for (int i : quantidadeParaCadaProduto.keySet()) {
-			if (quantidadeParaCadaProduto.get(i).getX() > qtdNecessaria) {
+			if (quantidadeParaCadaProduto.get(i).getX() >= qtdNecessaria) {
 				int qtdNovaDoProduto = (int)Math.floor((double)quantidadeParaCadaProduto.get(i).getY() / quantidadeParaCadaProduto.get(i).getX());
 				
 				novaLista.adicionaCompra(qtdNovaDoProduto, produtos.get(i));
 			}
 		}
+				
+		listasDeCompras.put(novoDescritor, novaLista);
 		
 		return novoDescritor;
 	}

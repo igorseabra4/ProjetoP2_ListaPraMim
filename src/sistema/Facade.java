@@ -242,7 +242,7 @@ public class Facade {
 		return sistema.geraAutomaticaItem(nome);		
 	}
 	
-	public String estrategia3() {
-		return sistema.estrategia3();		
+	public String geraAutomaticaItensMaisPresentes() {
+		return sistema.geraAutomaticaItensMaisPresentes();		
 	}
 }
