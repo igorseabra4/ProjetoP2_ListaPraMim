@@ -241,6 +241,22 @@ public class ListaDeCompras {
 		}
 		return false;
 	}
+	
+	/**
+	 * Retorna um valor booleano correspondente a se a lista possuim um determinado
+	 * produto ou não.
+	 * 
+	 * @param nome
+	 *            Nome do produto desejado.
+	 * @return true caso contenha, false caso contrário.
+	 */
+	public boolean contemProduto(String nome) {
+		for (Compra compra : compras) {
+			if (compra.getNome().equals(nome))
+				return true;
+		}
+		return false;
+	}
 
 	public int getID() {
 		return id;

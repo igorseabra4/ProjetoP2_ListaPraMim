@@ -16,12 +16,16 @@ public class Sistema {
 	private Map<String, ListaDeCompras> listasDeCompras;
 	private int currentId;
 	private int currentIdLista;
+	
+	private int listasAutomaticas;
+	private String descritorUltimaLista;
 
 	public Sistema() {
 		produtos = new HashMap<Integer, Produto>();
 		listasDeCompras = new HashMap<String, ListaDeCompras>();
 		currentId = 0;
 		currentIdLista = 0;
+		listasAutomaticas = 0;
 	}
 
 	/**
@@ -472,10 +476,7 @@ public class Sistema {
 		throw new RuntimeException("Erro na pesquisa de compra: compra nao encontrada na lista.");
 	}
 	
-	private int listasAutomaticas;
-	private String descritorUltimaLista;
-	
-	public String estrategia1() {
+	public String geraAutomaticaUltimaLista() {
 		listasAutomaticas++;
 		
 		String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
@@ -486,13 +487,15 @@ public class Sistema {
 		return novoDescritor;
 	}
 		
-	public String estrategia2(int id) {
+	public String geraAutomaticaItem(String nome) {
+		listasAutomaticas++;
+		
 		ArrayList<ListaDeCompras> listasOrdem = new ArrayList<ListaDeCompras>();
 		listasOrdem.addAll(listasDeCompras.values());
 		listasOrdem.sort(new OrdemCadastroLista());
 		
 		for (int i = listasOrdem.size() - 1; i >= 0; i--) {
-			if (listasOrdem.get(i).contemProduto(id)) {
+			if (listasOrdem.get(i).contemProduto(nome)) {
 				String novoDescritor = "Lista automatica " + listasAutomaticas + " " + dataAtual();
 				currentIdLista++;
 				listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(descritorUltimaLista), novoDescritor, dataAtual(), currentIdLista));
