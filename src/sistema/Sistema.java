@@ -540,22 +540,19 @@ public class Sistema {
 	}
 
 	public String sugereMelhorEstabelecimento(String descritorLista, int posicaoEstabelecimento, int posicaoLista) {
-		
-		ArrayList<ListaDeCompras> locaisDeCompra;
-		
 		try {
-			locaisDeCompra = listasDeCompras.get(descritorLista).subListasComLocal();
+			ArrayList<ListaDeCompras> locaisDeCompra = listasDeCompras.get(descritorLista).subListasComLocal();
 
 			locaisDeCompra.sort(new OrdemMaiorValorTotalLista());
 			
 			if (posicaoLista == 0)
-				return locaisDeCompra.get(posicaoEstabelecimento).getDescritor() + ": R$ "
-			+ new DecimalFormat("#.0#").format(locaisDeCompra.get(posicaoEstabelecimento).getValorTotal());
+				return locaisDeCompra.get(posicaoEstabelecimento).getDescritor()
+					+ ": R$ " + new DecimalFormat("#.0#").format(locaisDeCompra.get(posicaoEstabelecimento).getValorTotal());
 
 			String r = locaisDeCompra.get(posicaoEstabelecimento).getItemLista(posicaoLista - 1);
 			return r == "" ? "" :  "- " + r;
 		}catch (Exception e){
-			throw new IllegalArgumentException("Faltam dados para informar sobre preços em locais de compras.");
+			throw new RuntimeException("Faltam dados para informar sobre preços em locais de compras.");
 		}
 	}
 }
