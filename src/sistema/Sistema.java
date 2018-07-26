@@ -22,10 +22,20 @@ public class Sistema {
 	private String descritorUltimaLista;
 
 	public Sistema() {
+		produtos = SistemaIO.readProdutos();
+		listasDeCompras = SistemaIO.readListasDeCompras();
+		currentId = SistemaIO.readCurrentID();
+		currentIdLista = SistemaIO.readCurrentIdLista();
+		descritorUltimaLista = SistemaIO.readDescritorUltimaLista();
+		
 		produtos = new HashMap<Integer, Produto>();
 		listasDeCompras = new HashMap<String, ListaDeCompras>();
 		currentId = 0;
 		currentIdLista = 0;
+	}
+	
+	public void finalizar() {
+		SistemaIO.write(produtos, listasDeCompras, currentId, currentIdLista, descritorUltimaLista);
 	}
 
 	/**

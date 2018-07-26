@@ -21,8 +21,16 @@ public class Facade {
 		EasyAccept.main(args);
 	}
 	
-	private Sistema sistema = new Sistema();
+	private Sistema sistema;
 
+	public void iniciaSistema() {
+		sistema = new Sistema();
+	}
+	
+	public void fechaSistema() {
+		sistema.finalizar();
+	}
+	
 	/**Adiciona um novo produto com quantidade fixa ao sistema.
 	 * @param nome O nome do produto.
 	 * @param categoria A categoria do produto.

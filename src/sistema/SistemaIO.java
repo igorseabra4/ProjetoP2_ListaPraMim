@@ -98,13 +98,13 @@ public class SistemaIO {
 	 * @return Coleção de listas de compra do sistema.
 	 */
 	@SuppressWarnings("unchecked")
-	public static Map<Integer, ListaDeCompras> readListasDeCompras() {
-		Map<Integer, ListaDeCompras> map = null;
+	public static Map<String, ListaDeCompras> readListasDeCompras() {
+		Map<String, ListaDeCompras> map = null;
 		try {
 			FileInputStream input = new FileInputStream(new File("data/listasDeCompras.txt"));
 			ObjectInputStream obj = new ObjectInputStream(input);
 			try {
-				map = (Map<Integer, ListaDeCompras>) obj.readObject();
+				map = (Map<String, ListaDeCompras>) obj.readObject();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
