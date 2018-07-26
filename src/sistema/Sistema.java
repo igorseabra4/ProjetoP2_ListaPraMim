@@ -560,6 +560,7 @@ public class Sistema {
 					+ ": R$ " + new DecimalFormat("#.0#").format(locaisDeCompra.get(posicaoEstabelecimento).getValorTotal());
 
 			String r = locaisDeCompra.get(posicaoEstabelecimento).getItemLista(posicaoLista - 1);
+						
 			return r == "" ? "" :  "- " + r;
 		}catch (Exception e){
 			throw new RuntimeException("Faltam dados para informar sobre preços em locais de compras.");
