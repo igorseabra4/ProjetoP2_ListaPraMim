@@ -1,5 +1,7 @@
 package sistema.compras;
 
+import java.util.HashSet;
+
 import sistema.produtos.*;
 
 /**
@@ -82,6 +84,22 @@ public class Compra {
 	 */
 	public void addQuantia(int quantia) {
 		this.quantia += quantia;
+	}
+
+	/**Retorna o preco do produto no local de compra especificado.
+	 * @param local O local de compra.
+	 * @return O preco do produto no local.
+	 */
+	public double getPreco(String local) {
+		return produto.getPreco(local);
+	}
+	
+	/**Retorna um array de strings com os locais de compra.
+	 * 
+	 * @return Um array de strings com os locais de compra.
+	 */
+	public HashSet<String> getLocais() {
+		return produto.getLocais();
 	}
 
 	/**

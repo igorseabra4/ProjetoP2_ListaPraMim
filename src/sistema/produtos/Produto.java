@@ -1,6 +1,7 @@
 package sistema.produtos;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -159,6 +160,26 @@ public abstract class Produto {
 				menor = preco;
 		}
 		return menor;
+	}
+
+	/**Retorna o preco do produto no local de compra especificado.
+	 * @param local O local de compra.
+	 * @return O preco do produto no local.
+	 */
+	public double getPreco(String local) {
+		if (precos.containsKey(local))
+			return precos.get(local);
+		else throw new IllegalArgumentException("Preco para o local indicado nao disponivel");
+	}
+	
+	/**Retorna um array de strings com os locais de compra.
+	 * 
+	 * @return Um array de strings com os locais de compra.
+	 */
+	public HashSet<String> getLocais() {
+		HashSet<String> locais = new HashSet<String>();
+		locais.addAll(precos.keySet());
+		return locais;
 	}
 
 	/**

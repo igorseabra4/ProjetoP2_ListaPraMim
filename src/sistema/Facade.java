@@ -13,7 +13,10 @@ public class Facade {
 				"acception_tests/use_case3_exception.txt",
 				"acception_tests/use_case4.txt",
 				"acception_tests/use_case4_exception.txt",
-				"acception_tests/use_case5.txt"};
+				"acception_tests/use_case5.txt",
+				"acception_tests/use_case6.txt",
+				"acception_tests/use_case6_exception.txt",
+				"acception_tests/use_case7.txt"};
 		
 		EasyAccept.main(args);
 	}
@@ -244,5 +247,9 @@ public class Facade {
 	
 	public String geraAutomaticaItensMaisPresentes() {
 		return sistema.geraAutomaticaItensMaisPresentes();		
+	}
+	
+	public String sugereMelhorEstabelecimento(String descritorLista, int posicaoEstabelecimento, int posicaoLista) {
+		return sistema.sugereMelhorEstabelecimento(descritorLista, posicaoEstabelecimento, posicaoLista);		
 	}
 }

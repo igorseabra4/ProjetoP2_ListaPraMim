@@ -2,9 +2,12 @@ package sistema.compras;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import sistema.Tupla;
+import sistema.comparadores.OrdemAlfabeticaCompra;
 import sistema.comparadores.OrdemCompra;
 import sistema.produtos.*;
 
@@ -78,6 +81,15 @@ public class ListaDeCompras {
 	 */
 	public void adicionaCompra(int qtd, Produto produto) {
 		compras.add(new Compra(qtd, produto));
+	}
+
+	/**
+	 * Adiciona uma compra a lista.
+	 * 
+	 * @param c A compra a ser adicionada.
+	 */
+	private void adicionaCompra(Compra c) {
+		compras.add(c);
 	}
 
 	/**
@@ -262,6 +274,10 @@ public class ListaDeCompras {
 		return id;
 	}
 
+	public double getValorTotal() {
+		return valorFinalDaCompra;
+	}
+
 	public List<Tupla> getTuplas() {
 		
 		List<Tupla> temp = new ArrayList<>();
@@ -273,4 +289,46 @@ public class ListaDeCompras {
 		return temp;
 	}
 
+	public ArrayList<ListaDeCompras> subListasComLocal() {
+		ArrayList<String> locais = new ArrayList<String>();
+
+		for (Compra c : compras)
+			for (String s : c.getLocais())
+				if (!locais.contains(s))
+					locais.add(s);
+
+		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
+		ArrayList<Double> valores = new ArrayList<Double>();
+		
+		for (String s : locais) {
+			listas.add(new ListaDeCompras(s, null, -1));
+			valores.add(0.0);
+		}
+
+		for (int i = 0; i < listas.size(); i++) {
+			for (Compra c : compras) {
+				double valueToAdd = 0;
+				try {
+					valueToAdd = c.getPreco(listas.get(i).getDescritor()) * c.getQuantia();
+				}catch(IllegalArgumentException ex) {
+					valueToAdd = 0;
+					continue;
+				}
+				valores.set(i, valores.get(i) + valueToAdd);
+				listas.get(i).adicionaCompra(c);
+			}
+		}
+		
+		for (int i = 0; i < listas.size(); i++) {
+			listas.get(i).sortComprasTipoNome();
+			listas.get(i).finalizarListaDeCompras(listas.get(i).getDescritor(), valores.get(i));
+		}
+		
+		return listas;
+	}
+
+	private void sortComprasTipoNome() {
+		compras.sort(new OrdemAlfabeticaCompra());
+		compras.sort(new OrdemCompra());
+	}
 }
