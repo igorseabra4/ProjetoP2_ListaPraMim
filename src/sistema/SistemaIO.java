@@ -11,22 +11,43 @@ import java.util.Map;
 import sistema.compras.ListaDeCompras;
 import sistema.produtos.Produto;
 
+/**
+ * Classe responsável pela criação e leitura de arquivos, possibilitando que o
+ * sistema seja continuado mesmo após reiniciado.
+ * 
+ * @author Henry Filho
+ *
+ */
 public class SistemaIO {
 
-	public static void write(Map<Integer, Produto> produtos, Map<String, ListaDeCompras> listasDeCompras,
-			int currentId, int currentIdLista, String descritorUltimaLista) {
+	/**
+	 * Método responsável por escrever e salvar os arquivos de dados do sistema.
+	 * 
+	 * @param produtos
+	 *            Coleção de produtos do sistema.
+	 * @param listasDeCompras
+	 *            Coleção de listas de compra do sistema.
+	 * @param currentId
+	 *            Id do próximo produto a ser criado.
+	 * @param currentIdLista
+	 *            Id da próxima lista a ser criada.
+	 * @param descritorUltimaLista
+	 *            Descritor da ultima lista criada.
+	 */
+	public static void write(Map<Integer, Produto> produtos, Map<String, ListaDeCompras> listasDeCompras, int currentId,
+			int currentIdLista, String descritorUltimaLista) {
 		try {
-			FileOutputStream inputProdutos = new FileOutputStream(new File("data/produtos.txt"));
-			FileOutputStream inputListas = new FileOutputStream(new File("data/listasDeCompras.txt"));
-			FileOutputStream inputId = new FileOutputStream(new File("data/currentID.txt"));
-			FileOutputStream inputIdLista = new FileOutputStream(new File("data/currentIdLista.txt"));
-			FileOutputStream inputUltima = new FileOutputStream(new File("data/descritorUltimaLista.txt"));
+			FileOutputStream outputProdutos = new FileOutputStream(new File("data/produtos.txt"));
+			FileOutputStream outputListas = new FileOutputStream(new File("data/listasDeCompras.txt"));
+			FileOutputStream outputId = new FileOutputStream(new File("data/currentID.txt"));
+			FileOutputStream outputIdLista = new FileOutputStream(new File("data/currentIdLista.txt"));
+			FileOutputStream outputUltima = new FileOutputStream(new File("data/descritorUltimaLista.txt"));
 
-			ObjectOutputStream objectProdutos = new ObjectOutputStream(inputProdutos);
-			ObjectOutputStream objectListas = new ObjectOutputStream(inputListas);
-			ObjectOutputStream objectId = new ObjectOutputStream(inputId);
-			ObjectOutputStream objectIdLista = new ObjectOutputStream(inputIdLista);
-			ObjectOutputStream objectUltima = new ObjectOutputStream(inputUltima);
+			ObjectOutputStream objectProdutos = new ObjectOutputStream(outputProdutos);
+			ObjectOutputStream objectListas = new ObjectOutputStream(outputListas);
+			ObjectOutputStream objectId = new ObjectOutputStream(outputId);
+			ObjectOutputStream objectIdLista = new ObjectOutputStream(outputIdLista);
+			ObjectOutputStream objectUltima = new ObjectOutputStream(outputUltima);
 
 			objectProdutos.writeObject(produtos);
 			objectListas.writeObject(listasDeCompras);
@@ -45,6 +66,12 @@ public class SistemaIO {
 		}
 	}
 
+	/**
+	 * Método responsável pela leitura do arquivo que armazena os produtos
+	 * cadastrados no sistema.
+	 * 
+	 * @return Coleção de produtos do sistema.
+	 */
 	@SuppressWarnings("unchecked")
 	public static Map<Integer, Produto> readProdutos() {
 		Map<Integer, Produto> map = null;
@@ -63,7 +90,13 @@ public class SistemaIO {
 		}
 		return map;
 	}
-	
+
+	/**
+	 * Método responsável pela leitura do arquivo que armazena as listas de compra
+	 * do sistema.
+	 * 
+	 * @return Coleção de listas de compra do sistema.
+	 */
 	@SuppressWarnings("unchecked")
 	public static Map<Integer, ListaDeCompras> readListasDeCompras() {
 		Map<Integer, ListaDeCompras> map = null;
@@ -82,7 +115,13 @@ public class SistemaIO {
 		}
 		return map;
 	}
-	
+
+	/**
+	 * Método responsável pela leitura do arquivo que armazena o identificador
+	 * numérico do próximo produto a ser criado.
+	 * 
+	 * @return Valor inteiro do Id de produto.
+	 */
 	public static int readCurrentID() {
 		int i = 0;
 		try {
@@ -96,7 +135,13 @@ public class SistemaIO {
 		}
 		return i;
 	}
-	
+
+	/**
+	 * Método responsável pela leitura do arquivo que armazena o identificador
+	 * numérico da próxima lista a ser criada.
+	 * 
+	 * @return Valor inteiro do Id de lista.
+	 */
 	public static int readCurrentIdLista() {
 		int i = 0;
 		try {
@@ -111,6 +156,12 @@ public class SistemaIO {
 		return i;
 	}
 
+	/**
+	 * Método responsável pela leitura do arquivo que armazena o descritor da ultima
+	 * lista criada.
+	 * 
+	 * @return Descritor da ultima lista.
+	 */
 	public static String readDescritorUltimaLista() {
 		String temp = null;
 		try {
