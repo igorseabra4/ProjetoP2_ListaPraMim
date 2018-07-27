@@ -1,9 +1,8 @@
 package sistema.compras;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 import sistema.Tupla;
@@ -19,8 +18,12 @@ import sistema.produtos.*;
  * @author Henry Filho
  *
  */
-public class ListaDeCompras {
+public class ListaDeCompras implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5012379888319238485L;
 	private String descritor;
 	private List<Compra> compras;
 	private String data;

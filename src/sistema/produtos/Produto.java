@@ -1,5 +1,6 @@
 package sistema.produtos;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,8 +12,12 @@ import java.util.Map;
  * @author Henry Filho
  *
  */
-public abstract class Produto {
+public abstract class Produto implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1015580778119012302L;
 	private int id;
 	private String nome;
 	private Categorias categoria;

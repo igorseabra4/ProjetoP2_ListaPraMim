@@ -1,5 +1,7 @@
 package sistema;
 
+import java.io.FileNotFoundException;
+
 import easyaccept.EasyAccept;
 
 public class Facade {
@@ -19,15 +21,16 @@ public class Facade {
 				"acception_tests/use_case7.txt"};
 		
 		EasyAccept.main(args);
+		
 	}
 	
 	private Sistema sistema = new Sistema();
 
-	public void iniciaSistema() {
-		sistema = new Sistema();
+	public void iniciaSistema() throws FileNotFoundException {
+		sistema.inicializar();
 	}
 	
-	public void fechaSistema() {
+	public void fechaSistema() throws FileNotFoundException {
 		sistema.finalizar();
 	}
 	

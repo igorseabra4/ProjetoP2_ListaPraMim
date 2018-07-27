@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -17,26 +18,23 @@ public class Sistema {
 	private Map<String, ListaDeCompras> listasDeCompras;
 	private int currentId;
 	private int currentIdLista;
-	
-	private String descritorUltimaLista;
 
 	public Sistema() {
-		/*
-		produtos = SistemaIO.readProdutos();
-		listasDeCompras = SistemaIO.readListasDeCompras();
-		currentId = SistemaIO.readCurrentID();
-		currentIdLista = SistemaIO.readCurrentIdLista();
-		descritorUltimaLista = SistemaIO.readDescritorUltimaLista();
-		*/
-		
 		produtos = new HashMap<Integer, Produto>();
 		listasDeCompras = new HashMap<String, ListaDeCompras>();
 		currentId = 0;
 		currentIdLista = 0;
 	}
 	
+	public void inicializar() throws FileNotFoundException {
+		produtos = SistemaIO.readProdutos();
+		listasDeCompras = SistemaIO.readListasDeCompras();
+		currentId = SistemaIO.readCurrentID();
+		currentIdLista = SistemaIO.readCurrentIdLista();
+	}
+	
 	public void finalizar() {
-		SistemaIO.write(produtos, listasDeCompras, currentId, currentIdLista, descritorUltimaLista);
+		SistemaIO.write(produtos, listasDeCompras, currentId, currentIdLista);
 	}
 
 	/**
@@ -283,7 +281,6 @@ public class Sistema {
 		currentIdLista++;
 		listasDeCompras.put(descritorLista, new ListaDeCompras(descritorLista, dataAtual(), currentIdLista));
 		
-		descritorUltimaLista = descritorLista;
 		return descritorLista;
 	}
 
@@ -489,9 +486,13 @@ public class Sistema {
 	
 	public String geraAutomaticaUltimaLista() {
 		String novoDescritor = "Lista automatica 1 " + dataAtual();
+		String temp = null;
+		
+		for(ListaDeCompras l : listasDeCompras.values())
+			if(l.getID() == currentIdLista) temp = l.getDescritor();
 		
 		currentIdLista++;
-		listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(descritorUltimaLista), novoDescritor, dataAtual(), currentIdLista));
+		listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(temp), novoDescritor, dataAtual(), currentIdLista));
 		
 		return novoDescritor;
 	}

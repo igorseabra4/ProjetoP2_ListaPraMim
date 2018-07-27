@@ -71,8 +71,8 @@ expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabeleci
 adicionaPrecoItem id=5 localDeCompra="Supermercado Excepcional" preco=3.39
 
 expect "Supermercado Excepcional: R$ 32,63" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=0
-expect "- 1 Esponja de Aco Assolange, limpeza" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=1
 expect "- 3 Batata Tentacoes, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=2
 expect "- 1 Capsula Dois Coracoes, alimento industrializado, 8 capsulas" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=3
 expect "- 2 Limao, alimento nao industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=4
-expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=5
+expect "- 1 Esponja de Aco Assolange, limpeza" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=1
+expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=5

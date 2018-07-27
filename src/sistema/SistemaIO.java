@@ -2,6 +2,7 @@ package sistema;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,6 +21,7 @@ import sistema.produtos.Produto;
  */
 public class SistemaIO {
 
+	private static final String FILE_NAME = "/data/system.txt";
 	/**
 	 * Método responsável por escrever e salvar os arquivos de dados do sistema.
 	 * 
@@ -33,34 +35,21 @@ public class SistemaIO {
 	 *            Id da próxima lista a ser criada.
 	 * @param descritorUltimaLista
 	 *            Descritor da ultima lista criada.
+	 * @throws FileNotFoundException 
 	 */
 	public static void write(Map<Integer, Produto> produtos, Map<String, ListaDeCompras> listasDeCompras, int currentId,
-			int currentIdLista, String descritorUltimaLista) {
+			int currentIdLista) {
 		try {
-			FileOutputStream outputProdutos = new FileOutputStream(new File("data/produtos.txt"));
-			FileOutputStream outputListas = new FileOutputStream(new File("data/listasDeCompras.txt"));
-			FileOutputStream outputId = new FileOutputStream(new File("data/currentID.txt"));
-			FileOutputStream outputIdLista = new FileOutputStream(new File("data/currentIdLista.txt"));
-			FileOutputStream outputUltima = new FileOutputStream(new File("data/descritorUltimaLista.txt"));
+			FileOutputStream file = new FileOutputStream(new File(FILE_NAME));
 
-			ObjectOutputStream objectProdutos = new ObjectOutputStream(outputProdutos);
-			ObjectOutputStream objectListas = new ObjectOutputStream(outputListas);
-			ObjectOutputStream objectId = new ObjectOutputStream(outputId);
-			ObjectOutputStream objectIdLista = new ObjectOutputStream(outputIdLista);
-			ObjectOutputStream objectUltima = new ObjectOutputStream(outputUltima);
+			ObjectOutputStream object = new ObjectOutputStream(file);
 
-			objectProdutos.writeObject(produtos);
-			objectListas.writeObject(listasDeCompras);
-			objectId.writeInt(currentId);
-			objectIdLista.writeInt(currentIdLista);
-			objectUltima.writeUTF(descritorUltimaLista);
+			object.writeObject(produtos);
+			object.writeObject(listasDeCompras);
+			object.writeInt(currentId);
+			object.writeInt(currentIdLista);
 
-			objectProdutos.close();
-			objectListas.close();
-			objectId.close();
-			objectIdLista.close();
-			objectUltima.close();
-
+			object.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -71,12 +60,13 @@ public class SistemaIO {
 	 * cadastrados no sistema.
 	 * 
 	 * @return Coleção de produtos do sistema.
+	 * @throws FileNotFoundException
 	 */
 	@SuppressWarnings("unchecked")
-	public static Map<Integer, Produto> readProdutos() {
+	public static Map<Integer, Produto> readProdutos() throws FileNotFoundException {
 		Map<Integer, Produto> map = null;
 		try {
-			FileInputStream input = new FileInputStream(new File("data/produtos.txt"));
+			FileInputStream input = new FileInputStream(new File(FILE_NAME));
 			ObjectInputStream obj = new ObjectInputStream(input);
 			try {
 				map = (Map<Integer, Produto>) obj.readObject();
@@ -85,6 +75,8 @@ public class SistemaIO {
 			}
 			obj.close();
 
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Sistema iniciado pela primeira vez. Arquivo criado.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -96,12 +88,13 @@ public class SistemaIO {
 	 * do sistema.
 	 * 
 	 * @return Coleção de listas de compra do sistema.
+	 * @throws FileNotFoundException
 	 */
 	@SuppressWarnings("unchecked")
-	public static Map<String, ListaDeCompras> readListasDeCompras() {
+	public static Map<String, ListaDeCompras> readListasDeCompras() throws FileNotFoundException {
 		Map<String, ListaDeCompras> map = null;
 		try {
-			FileInputStream input = new FileInputStream(new File("data/listasDeCompras.txt"));
+			FileInputStream input = new FileInputStream(new File(FILE_NAME));
 			ObjectInputStream obj = new ObjectInputStream(input);
 			try {
 				map = (Map<String, ListaDeCompras>) obj.readObject();
@@ -109,7 +102,8 @@ public class SistemaIO {
 				e.printStackTrace();
 			}
 			obj.close();
-
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Sistema iniciado pela primeira vez. Arquivo criado.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -121,15 +115,17 @@ public class SistemaIO {
 	 * numérico do próximo produto a ser criado.
 	 * 
 	 * @return Valor inteiro do Id de produto.
+	 * @throws FileNotFoundException
 	 */
-	public static int readCurrentID() {
+	public static int readCurrentID() throws FileNotFoundException {
 		int i = 0;
 		try {
-			FileInputStream input = new FileInputStream(new File("data/currentID.txt"));
+			FileInputStream input = new FileInputStream(new File(FILE_NAME));
 			ObjectInputStream obj = new ObjectInputStream(input);
 			i = obj.readInt();
 			obj.close();
-
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Sistema iniciado pela primeira vez. Arquivo criado.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -141,38 +137,22 @@ public class SistemaIO {
 	 * numérico da próxima lista a ser criada.
 	 * 
 	 * @return Valor inteiro do Id de lista.
+	 * @throws FileNotFoundException
+	 *             lança exceção quando o sistema é iniciado pela primeira vez.
 	 */
-	public static int readCurrentIdLista() {
+	public static int readCurrentIdLista() throws FileNotFoundException {
 		int i = 0;
 		try {
-			FileInputStream input = new FileInputStream(new File("data/currentIdLista.txt"));
+			FileInputStream input = new FileInputStream(new File(FILE_NAME));
 			ObjectInputStream obj = new ObjectInputStream(input);
 			i = obj.readInt();
 			obj.close();
-
+		} catch (FileNotFoundException e) {
+			throw new FileNotFoundException("Sistema iniciado pela primeira vez. Arquivo criado.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return i;
 	}
 
-	/**
-	 * Método responsável pela leitura do arquivo que armazena o descritor da ultima
-	 * lista criada.
-	 * 
-	 * @return Descritor da ultima lista.
-	 */
-	public static String readDescritorUltimaLista() {
-		String temp = null;
-		try {
-			FileInputStream input = new FileInputStream(new File("data/descritorUltimaLista.txt"));
-			ObjectInputStream obj = new ObjectInputStream(input);
-			temp = obj.readUTF();
-			obj.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return temp;
-	}
 }

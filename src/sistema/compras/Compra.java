@@ -1,5 +1,6 @@
 package sistema.compras;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
 import sistema.produtos.*;
@@ -11,8 +12,12 @@ import sistema.produtos.*;
  * @author Henry Filho
  *
  */
-public class Compra {
+public class Compra implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7573139187233147231L;
 	private int quantia;
 	private Produto produto;
 
