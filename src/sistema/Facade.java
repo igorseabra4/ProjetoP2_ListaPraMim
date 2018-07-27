@@ -21,7 +21,7 @@ public class Facade {
 		EasyAccept.main(args);
 	}
 	
-	private Sistema sistema;
+	private Sistema sistema = new Sistema();
 
 	public void iniciaSistema() {
 		sistema = new Sistema();

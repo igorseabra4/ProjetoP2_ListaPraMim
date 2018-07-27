@@ -293,8 +293,8 @@ public class ListaDeCompras {
 	 * sao as compras da lista mestre que estiverem disponiveis em cada um dos locais disponiveis nos produtos.
 	 * @return Uma lista com as listas temporarias.
 	 */
-	public ArrayList<ListaDeCompras> subListasComLocal() {
-		ArrayList<String> locais = new ArrayList<String>();
+	public List<ListaDeCompras> subListasComLocal() {
+		List<String> locais = new ArrayList<String>();
 		
 		// Primeiro, vamos pegar todos os locais de compra disponiveis
 		for (Compra c : compras)
@@ -303,39 +303,28 @@ public class ListaDeCompras {
 					locais.add(s);
 
 		// Agora vamos criar uma nova lista de compras temporaria para cada local de compra
-		// E uma lista para acumular os valores totais de cada uma dessas listas
-		ArrayList<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
-		ArrayList<Double> valores = new ArrayList<Double>();
-		
-		// Preencher as nossas listas com os valores vazios...
-		for (String s : locais) {
-			listas.add(new ListaDeCompras(s, null, -1)); // O descritor da lista e o local de compra
-			valores.add(0.0);
-		}
+		List<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
 		
 		// Agora, para cada lista, vamos tentar adicionar todas as compras disponiveis e o valor delas no respectivo local
 		// a lista. Obviamente nao ira encontrar todas as compras em todos os locais; nesse caso pula para a proxima.
-		for (int i = 0; i < listas.size(); i++) {
-			for (Compra c : compras) {
-				double valueToAdd = 0;
+		for(int i = 0; i < locais.size(); i++) {
+			ListaDeCompras temp = new ListaDeCompras(locais.get(i), null, -1);
+			double valueToAdd = 0;
+			for(Compra c : compras) {
 				try {
-					valueToAdd = c.getPreco(listas.get(i).getDescritor()) * c.getQuantia();
-				}catch(IllegalArgumentException ex) {
+					valueToAdd += c.getPreco(locais.get(i)) * c.getQuantia();
+				}catch(IllegalArgumentException e) {
 					continue;
 				}
-				valores.set(i, valores.get(i) + valueToAdd);
-				listas.get(i).adicionaCompra(c);
+				temp.adicionaCompra(c);
 			}
+			temp.sortComprasTipoNome();
+			temp.finalizarListaDeCompras(locais.get(i), valueToAdd);
+			listas.add(temp);
 		}
 		
-		// Agora vamos finalizar as listas temporarias com seus valores finais, ordenando as compras como pedido para o retorno antes.
-		for (int i = 0; i < listas.size(); i++) {
-			listas.get(i).sortComprasTipoNome();
-			listas.get(i).finalizarListaDeCompras(null, valores.get(i));
-		}
-		
-		// Pronto.
 		return listas;
+		
 	}
 
 	private void sortComprasTipoNome() {

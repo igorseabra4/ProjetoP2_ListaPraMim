@@ -2,10 +2,9 @@ package sistema;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -22,11 +21,13 @@ public class Sistema {
 	private String descritorUltimaLista;
 
 	public Sistema() {
+		/*
 		produtos = SistemaIO.readProdutos();
 		listasDeCompras = SistemaIO.readListasDeCompras();
 		currentId = SistemaIO.readCurrentID();
 		currentIdLista = SistemaIO.readCurrentIdLista();
 		descritorUltimaLista = SistemaIO.readDescritorUltimaLista();
+		*/
 		
 		produtos = new HashMap<Integer, Produto>();
 		listasDeCompras = new HashMap<String, ListaDeCompras>();
@@ -551,7 +552,7 @@ public class Sistema {
 
 	public String sugereMelhorEstabelecimento(String descritorLista, int posicaoEstabelecimento, int posicaoLista) {
 		try {
-			ArrayList<ListaDeCompras> locaisDeCompra = listasDeCompras.get(descritorLista).subListasComLocal();
+			List<ListaDeCompras> locaisDeCompra = listasDeCompras.get(descritorLista).subListasComLocal();
 
 			locaisDeCompra.sort(new OrdemMaiorValorTotalLista());
 			
