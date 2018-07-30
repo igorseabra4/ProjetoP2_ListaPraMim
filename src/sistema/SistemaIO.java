@@ -21,7 +21,7 @@ import sistema.produtos.Produto;
  */
 public class SistemaIO {
 
-	private static final String FILE_NAME = "/data/system.txt";
+	private static final String FILE_NAME = "./data/system.bin";
 	/**
 	 * Método responsável por escrever e salvar os arquivos de dados do sistema.
 	 * 
@@ -46,8 +46,8 @@ public class SistemaIO {
 
 			object.writeObject(produtos);
 			object.writeObject(listasDeCompras);
-			object.writeInt(currentId);
-			object.writeInt(currentIdLista);
+			object.writeObject(currentId);
+			object.writeObject(currentIdLista);
 
 			object.close();
 		} catch (IOException e) {
@@ -122,7 +122,12 @@ public class SistemaIO {
 		try {
 			FileInputStream input = new FileInputStream(new File(FILE_NAME));
 			ObjectInputStream obj = new ObjectInputStream(input);
-			i = obj.readInt();
+			try {
+				i = (int) obj.readObject();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			obj.close();
 		} catch (FileNotFoundException e) {
 			throw new FileNotFoundException("Sistema iniciado pela primeira vez. Arquivo criado.");
@@ -145,7 +150,12 @@ public class SistemaIO {
 		try {
 			FileInputStream input = new FileInputStream(new File(FILE_NAME));
 			ObjectInputStream obj = new ObjectInputStream(input);
-			i = obj.readInt();
+			try {
+				i = (int) obj.readObject();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			obj.close();
 		} catch (FileNotFoundException e) {
 			throw new FileNotFoundException("Sistema iniciado pela primeira vez. Arquivo criado.");
