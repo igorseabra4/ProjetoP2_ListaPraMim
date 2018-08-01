@@ -34,29 +34,6 @@ public class ListaDeCompras implements Serializable {
 	private boolean fechada = false;
 
 	/**
-	 * Construtor que instancia uma lista de compra com os mesmos produtos de outra
-	 * lista.
-	 * 
-	 * @param l
-	 *            Lista na qual os produtos serão copiados.
-	 * @param descritor
-	 *            Descritor da nova lista.
-	 * @param data
-	 *            Data da nova lista.
-	 * @param id
-	 *            Identificador numérico da nova lista.
-	 */
-	public ListaDeCompras(ListaDeCompras l, String descritor, String data, int id) {
-		this.descritor = descritor;
-		this.data = data;
-		this.id = id;
-
-		compras = new ArrayList<>();
-		for (Compra compra : l.compras)
-			compras.add(new Compra(compra));
-	}
-
-	/**
 	 * Constrói a lista de compras com base em um descritor dado pelo sistema, e
 	 * gerando uma data automaticamente que será adicionada a lista.
 	 * 
@@ -75,12 +52,35 @@ public class ListaDeCompras implements Serializable {
 	}
 
 	/**
+	 * Construtor que instancia uma lista de compra com os mesmos produtos de outra lista.
+	 * 
+	 * @param lista
+	 *            Lista na qual os produtos serao copiados.
+	 * @param descritor
+	 *            Descritor da nova lista.
+	 * @param data
+	 *            Data da nova lista.
+	 * @param id
+	 *            Identificador numeico da nova lista.
+	 */
+	public ListaDeCompras(ListaDeCompras lista, String descritor, String data, int id) {
+		this.descritor = descritor;
+		this.data = data;
+		this.id = id;
+
+		compras = new ArrayList<>();
+		for (Compra compra : lista.compras)
+			compras.add(new Compra(compra));
+	}
+
+	
+	/**
 	 * Adiciona uma compra a lista.
 	 * 
 	 * @param qtd
 	 *            Quantia do determinado item.
 	 * @param produto
-	 *            Produto que será adicionado.
+	 *            Produto que sera adicionado.
 	 */
 	public void adicionaCompra(int qtd, Produto produto) {
 		compras.add(new Compra(qtd, produto));
@@ -297,9 +297,9 @@ public class ListaDeCompras implements Serializable {
 	 * @return Uma lista com as listas temporarias.
 	 */
 	public List<ListaDeCompras> subListasComLocal() {
+		// Primeiro, vamos pegar todos os locais de compra disponiveis
 		List<String> locais = new ArrayList<String>();
 		
-		// Primeiro, vamos pegar todos os locais de compra disponiveis
 		for (Compra c : compras)
 			for (String s : c.getLocais())
 				if (!locais.contains(s))
@@ -321,16 +321,15 @@ public class ListaDeCompras implements Serializable {
 				}
 				temp.adicionaCompra(c);
 			}
-			temp.sortComprasTipoNome();
+			temp.sortComprasTipoENome();
 			temp.finalizarListaDeCompras(locais.get(i), valueToAdd);
 			listas.add(temp);
 		}
 		
 		return listas;
-		
 	}
 
-	private void sortComprasTipoNome() {
+	private void sortComprasTipoENome() {
 		compras.sort(new OrdemAlfabeticaCompra());
 		compras.sort(new OrdemCompra());
 	}

@@ -5,7 +5,6 @@ import java.util.Comparator;
 import sistema.compras.Compra;
 
 public class OrdemCompra implements Comparator<Compra> {
-
 	@Override
 	public int compare(Compra o1, Compra o2) {
 		if(o1.getCategoria().equals(o2.getCategoria()))

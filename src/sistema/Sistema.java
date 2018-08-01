@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -25,16 +24,16 @@ public class Sistema {
 		currentId = 0;
 		currentIdLista = 0;
 	}
-	
-	public void inicializar() throws FileNotFoundException {
-		produtos = SistemaIO.readProdutos();
-		listasDeCompras = SistemaIO.readListasDeCompras();
-		currentId = SistemaIO.readCurrentID();
-		currentIdLista = SistemaIO.readCurrentIdLista();
+
+	public Sistema(Map<Integer, Produto> produtos, Map<String, ListaDeCompras> listasDeCompras, int currentId, int currentIdLista) {
+		this.produtos = produtos;
+		this.listasDeCompras = listasDeCompras;
+		this.currentId = currentId;
+		this.currentIdLista = currentIdLista;
 	}
-	
+		
 	public void finalizar() {
-		SistemaIO.write(produtos, listasDeCompras, currentId, currentIdLista);
+		SistemaIO.writeSistema(produtos, listasDeCompras, currentId, currentIdLista);
 	}
 
 	/**
@@ -336,7 +335,7 @@ public class Sistema {
 	/**Pesquisa um produto comprado em uma lista.
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param itemId O codigo de identificacao unico do produto.
-	 * @return A representação em String do produto.
+	 * @return A Representacao em String do produto.
 	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		if (descritorLista.trim().isEmpty())
@@ -352,7 +351,7 @@ public class Sistema {
 	/**Pesquisa um produto comprado em uma lista pela sua posiçao nela.
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param posicaoItem A posicao do item na lista.
-	 * @return A representação em String do produto.
+	 * @return A Representacao em String do produto.
 	 */
 	public String getItemLista(String descritorLista, int posicaoItem) {
 		if (!listasDeCompras.containsKey(descritorLista))
@@ -444,7 +443,7 @@ public class Sistema {
 
 	/**Retorna as listas de compras feitas na data especificada.
 	 * @param data A data das listas.
-	 * @return Representação em String das listas de compras feitas na data especificada.
+	 * @return Representacao em String das listas de compras feitas na data especificada.
 	 */
 	public String pesquisaListasDeComprasPorData(String data) {
 		if (data.trim().isEmpty())
@@ -467,9 +466,9 @@ public class Sistema {
 		return retorno;
 	}
 
-	/**Retorna as listas de compras que contém o produto especificado.
+	/**Retorna as listas de compras que contem o produto especificado.
 	 * @param id O codigo de identificacao unico do produto.
-	 * @return Representação em String das listas de compras feitas na data especificada.
+	 * @return Representacao em String das listas de compras feitas na data especificada.
 	 */
 	public String pesquisaListasDeComprasPorItem(int id) {
 		String retorno = "";
@@ -483,20 +482,28 @@ public class Sistema {
 		
 		throw new RuntimeException("Erro na pesquisa de compra: compra nao encontrada na lista.");
 	}
-	
+
+	/**Gera uma nova lista de compras copiando a ultima lista criada.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String geraAutomaticaUltimaLista() {
 		String novoDescritor = "Lista automatica 1 " + dataAtual();
 		String temp = null;
 		
 		for(ListaDeCompras l : listasDeCompras.values())
-			if(l.getID() == currentIdLista) temp = l.getDescritor();
+			if(l.getID() == currentIdLista)
+				temp = l.getDescritor();
 		
 		currentIdLista++;
 		listasDeCompras.put(novoDescritor, new ListaDeCompras(listasDeCompras.get(temp), novoDescritor, dataAtual(), currentIdLista));
 		
 		return novoDescritor;
 	}
-		
+
+	/**Gera uma nova lista de compras copiando a ultima lista criada que contem um item especificado.
+	 * @param nome O nome do item desejado.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String geraAutomaticaItem(String nome) {
 		ArrayList<ListaDeCompras> listasOrdem = new ArrayList<ListaDeCompras>();
 		listasOrdem.addAll(listasDeCompras.values());
@@ -514,19 +521,21 @@ public class Sistema {
 		
 		throw new IllegalArgumentException("Erro na geracao de lista automatica por item: nao ha compras cadastradas com o item desejado.");
 	}
-	
+
+	/**Gera uma nova lista de compras com as compras presentes em maior quantidade nas listas existentes.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String geraAutomaticaItensMaisPresentes() {
+		// Nesse hashmap que sera criado, a chave eh a ID do produto, o valor eh uma tupla com dois inteiros: o X eh a quantidade
+		// de listas na qual aquele item aparece; o Y eh a quantidade total do item somando-o em todas as listas.
 		HashMap<Integer, Tupla> quantidadeParaCadaProduto = new HashMap<Integer, Tupla>();
 		
 		for (int i : produtos.keySet())
 			quantidadeParaCadaProduto.put(i, new Tupla(0, 0));
-		
-		// Nesse hashmap, a chave é a ID do produto, o valor é uma tupla com dois inteiros: o X é a quantidade
-		// de listas na qual aquele item aparece; o Y é a quantidade total do item somando-o em todas as listas.
-				
+						
 		for (ListaDeCompras lista : listasDeCompras.values()) {
 			for (Tupla t : lista.getTuplas()) {
-				// Nas tuplas retornadas pela ListaDeCompras, o X é a id do produto e o Y é a quantidade daquele produto na lista.
+				// Nas tuplas retornadas pela ListaDeCompras, o X eh a id do produto e o Y eh a quantidade daquele produto na lista.
 				
 				quantidadeParaCadaProduto.get(t.getX()).addX(1);
 				quantidadeParaCadaProduto.get(t.getX()).addY(t.getY());
@@ -551,6 +560,12 @@ public class Sistema {
 		return novoDescritor;
 	}
 
+	/**Sugere o melhor estabelecimento para realizacao de uma lista de compras.
+	 * @param descritorLista O descritor (nome) da lista para a qual se deseja obter o estabelecimento
+	 * @param posicaoEstabelecimento O indice do estabelecimento na ordem obtida (por preco).
+	 * @param posicaoLista A posicao do item na lista do estabelecimento.
+	 * @return Representacao em String do estabelecimento ou produto pesquisado.
+	 */
 	public String sugereMelhorEstabelecimento(String descritorLista, int posicaoEstabelecimento, int posicaoLista) {
 		try {
 			List<ListaDeCompras> locaisDeCompra = listasDeCompras.get(descritorLista).subListasComLocal();
@@ -565,7 +580,7 @@ public class Sistema {
 						
 			return r == "" ? "" :  "- " + r;
 		}catch (Exception e){
-			throw new RuntimeException("Faltam dados para informar sobre preços em locais de compras.");
+			throw new RuntimeException("Faltam dados para informar sobre precos em locais de compras.");
 		}
 	}
 }

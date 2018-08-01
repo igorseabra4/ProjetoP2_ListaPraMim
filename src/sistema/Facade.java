@@ -1,10 +1,16 @@
 package sistema;
 
 import java.io.FileNotFoundException;
-
 import easyaccept.EasyAccept;
 
+/**Facade para o projeto ListaPraMim.
+ * 
+ * @author Henry Filho
+ * @author Igor Seabra
+ */
 public class Facade {
+	private Sistema sistema = new Sistema();
+	
 	public static void main(String[] args) {
 		args = new String[] {"sistema.Facade",
 				"acception_tests/use_case1.txt",
@@ -21,16 +27,20 @@ public class Facade {
 				"acception_tests/use_case7.txt"};
 		
 		EasyAccept.main(args);
-		
 	}
-	
-	private Sistema sistema = new Sistema();
 
+	/** Le os dados do sistema de um arquivo de dados.
+	 * Caso o arquivo nao exista, eh lancada FileNotFoundException.
+	 * Caso ocorra IOException, o sistema eh inicializado em branco.
+	 * @throws FileNotFoundException
+	 */
 	public void iniciaSistema() throws FileNotFoundException {
-		sistema.inicializar();
+		sistema = SistemaIO.readSistema();
 	}
 	
-	public void fechaSistema() throws FileNotFoundException {
+	/**Salva os dados do sistema em arquivo.
+	 */
+	public void fechaSistema() {
 		sistema.finalizar();
 	}
 	
@@ -47,7 +57,7 @@ public class Facade {
 		return sistema.adicionaItemPorQtd(nome, categoria, qnt, unidadeDeMedida, localDeCompra, preco);
 	}
 	
-	/**Adiciona um novo produto não industrializado por quilo ao sistema.
+	/**Adiciona um novo produto nao industrializado por quilo ao sistema.
 	 * @param nome O nome do produto.
 	 * @param categoria A categoria do produto.
 	 * @param kg A massa do produto em kg.
@@ -181,10 +191,10 @@ public class Facade {
 		return sistema.pesquisaCompraEmLista(descritorLista, itemId);
 	}
 
-	/**Pesquisa um produto comprado em uma lista pela sua posiçao nela.
+	/**Pesquisa um produto comprado em uma lista pela sua posicao nela.
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param posicaoItem A posicao do item na lista.
-	 * @return A representação em String do produto.
+	 * @return A representaco em String do produto.
 	 */
 	public String getItemLista(String descritorLista, int posicaoItem) {
 		return sistema.getItemLista(descritorLista, posicaoItem);
@@ -234,32 +244,48 @@ public class Facade {
 
 	/**Retorna as listas de compras feitas na data especificada.
 	 * @param data A data das listas.
-	 * @return Representação em String das listas de compras feitas na data especificada.
+	 * @return Representacao em String das listas de compras feitas na data especificada.
 	 */
 	public String pesquisaListasDeComprasPorData(String data) {
 		return sistema.pesquisaListasDeComprasPorData(data);
 	}
 
-	/**Retorna as listas de compras que contém o produto especificado.
+	/**Retorna as listas de compras que contem o produto especificado.
 	 * @param id O codigo de identificacao unico do produto.
-	 * @return Representação em String das listas de compras feitas na data especificada.
+	 * @return Representacao em String das listas de compras feitas na data especificada.
 	 */
 	public String pesquisaListasDeComprasPorItem(int id) {
 		return sistema.pesquisaListasDeComprasPorItem(id);
 	}
 
+	/**Gera uma nova lista de compras copiando a ultima lista criada.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String geraAutomaticaUltimaLista() {
 		return sistema.geraAutomaticaUltimaLista();		
 	}
 	
+	/**Gera uma nova lista de compras copiando a ultima lista criada que contem um item especificado.
+	 * @param nome O nome do item desejado.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String geraAutomaticaItem(String nome) {
 		return sistema.geraAutomaticaItem(nome);		
 	}
 	
+	/**Gera uma nova lista de compras com as compras presentes em maior quantidade nas listas existentes.
+	 * @return O descritor (nome) da lista.
+	 */
 	public String geraAutomaticaItensMaisPresentes() {
 		return sistema.geraAutomaticaItensMaisPresentes();		
 	}
 	
+	/**Sugere o melhor estabelecimento para realizacao de uma lista de compras.
+	 * @param descritorLista O descritor (nome) da lista para a qual se deseja obter o estabelecimento
+	 * @param posicaoEstabelecimento O indice do estabelecimento na ordem obtida (por preco).
+	 * @param posicaoLista A posicao do item na lista do estabelecimento.
+	 * @return Representacao em String do estabelecimento ou produto pesquisado.
+	 */
 	public String sugereMelhorEstabelecimento(String descritorLista, int posicaoEstabelecimento, int posicaoLista) {
 		return sistema.sugereMelhorEstabelecimento(descritorLista, posicaoEstabelecimento, posicaoLista);		
 	}
