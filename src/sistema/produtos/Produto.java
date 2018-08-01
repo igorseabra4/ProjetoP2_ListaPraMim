@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- * Classe abstrata que abrange todos os produtos possíveis que serão armazenados
+ * Classe abstrata que abrange todos os produtos possiveis que serao armazenados
  * no sistema.
  * 
  * @author Henry Filho
@@ -14,9 +14,6 @@ import java.util.Map;
  */
 public abstract class Produto implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1015580778119012302L;
 	private int id;
 	private String nome;

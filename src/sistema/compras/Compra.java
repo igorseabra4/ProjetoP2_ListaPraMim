@@ -6,7 +6,7 @@ import java.util.HashSet;
 import sistema.produtos.*;
 
 /**
- * Compras que são armazenadas em listas de compras. As compras armazenam
+ * Compras que sao armazenadas em listas de compras. As compras armazenam
  * produtos e suas determinadas quantidades.
  * 
  * @author Henry Filho
@@ -25,7 +25,7 @@ public class Compra implements Serializable {
 	 * Construtor que copia uma determinada compra.
 	 * 
 	 * @param c
-	 *            Compra que será copiada.
+	 *            Compra que sera copiada.
 	 */
 	public Compra(Compra c) {
 		this.quantia = c.quantia;
@@ -33,7 +33,7 @@ public class Compra implements Serializable {
 	}
 
 	/**
-	 * Construtor padrão da compra.
+	 * Construtor padrao da compra.
 	 * 
 	 * @param quantia
 	 *            Quantidade de itens a serem comprados.
@@ -55,9 +55,9 @@ public class Compra implements Serializable {
 	}
 
 	/**
-	 * Retorna a representação numérica do produto da compra.
+	 * Retorna a representacao numerica do produto da compra.
 	 * 
-	 * @return representação numérica do produto.
+	 * @return representacao numerica do produto.
 	 */
 	public int getId() {
 		return produto.getId();
