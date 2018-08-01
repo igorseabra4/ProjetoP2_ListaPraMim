@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="sistema.Facade" project="ProjetoP2_ListaPraMim" 
     file="/ProjetoP2_ListaPraMim/src/sistema/Facade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="378" y="457"/>    
+    <position height="641" width="347" x="1276" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="sistema.Sistema" project="ProjetoP2_ListaPraMim" 
     file="/ProjetoP2_ListaPraMim/src/sistema/Sistema.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="944" y="647"/>    
+    <position height="-1" width="-1" x="1473" y="1233"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,216 +21,302 @@
   </class>  
   <class id="3" language="java" name="sistema.Tupla" project="ProjetoP2_ListaPraMim" 
     file="/ProjetoP2_ListaPraMim/src/sistema/Tupla.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="172" y="914"/>    
+    <position height="-1" width="-1" x="558" y="1233"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="sistema.produtos.Produto" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/produtos/Produto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1467" y="667"/>    
+  <class id="4" language="java" name="sistema.SistemaIO" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/SistemaIO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="172" x="1083" y="718"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="sistema.produtos.ProdutoQuantidade" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/produtos/ProdutoQuantidade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2126" y="941"/>    
+  <class id="5" language="java" name="sistema.comparadores.OrdemAlfabeticaLista" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemAlfabeticaLista.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="195" y="1664"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="sistema.produtos.ProdutoQuilo" project="ProjetoP2_ListaPraMim" 
+  <class id="6" language="java" name="sistema.comparadores.OrdemDataLista" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemDataLista.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1152" y="1664"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="sistema.comparadores.OrdemCadastroLista" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemCadastroLista.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="514" y="1664"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="sistema.comparadores.OrdemMaiorValorTotalLista" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemMaiorValorTotalLista.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="833" y="1664"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="sistema.comparadores.OrdemCompra" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemCompra.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1184" y="2625"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="sistema.comparadores.OrdemAlfabeticaProduto" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemAlfabeticaProduto.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-304" y="1664"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="sistema.comparadores.OrdemAlfabeticaCompra" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemAlfabeticaCompra.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="916" y="2694"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="sistema.comparadores.OrdemPrecoProduto" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemPrecoProduto.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-77" y="1664"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="sistema.compras.Compra" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/compras/Compra.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1569" y="2869"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="sistema.compras.ListaDeCompras" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/compras/ListaDeCompras.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="551" width="299" x="1276" y="1843"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="sistema.produtos.ProdutoQuilo" project="ProjetoP2_ListaPraMim" 
     file="/ProjetoP2_ListaPraMim/src/sistema/produtos/ProdutoQuilo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2085" y="689"/>    
+    <position height="191" width="300" x="42" y="3361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="sistema.produtos.ProdutoUnidade" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/produtos/ProdutoUnidade.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1901" y="463"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="8" language="java" name="sistema.produtos.Categorias" project="ProjetoP2_ListaPraMim" 
+  <enumeration id="16" language="java" name="sistema.produtos.Categorias" project="ProjetoP2_ListaPraMim" 
     file="/ProjetoP2_ListaPraMim/src/sistema/produtos/Categorias.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1491" y="231"/>    
+    <position height="191" width="212" x="715" y="3361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="9" language="java" name="sistema.comparadores.OrdemAlfabeticaLista" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemAlfabeticaLista.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="475" y="892"/>    
+  <class id="17" language="java" name="sistema.produtos.Produto" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/produtos/Produto.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="407" width="245" x="413" y="2914"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="sistema.compras.ListaDeCompras" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/compras/ListaDeCompras.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1174" y="1260"/>    
+  <class id="18" language="java" name="sistema.produtos.ProdutoQuantidade" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/produtos/ProdutoQuantidade.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="227" width="345" x="967" y="3361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="sistema.comparadores.OrdemAlfabeticaProduto" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemAlfabeticaProduto.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="462" y="1007"/>    
+  <class id="19" language="java" name="sistema.produtos.ProdutoUnidade" project="ProjetoP2_ListaPraMim" 
+    file="/ProjetoP2_ListaPraMim/src/sistema/produtos/ProdutoUnidade.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="293" x="382" y="3361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="sistema.compras.Compra" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/compras/Compra.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1456" y="1034"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="sistema.comparadores.OrdemCadastroLista" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemCadastroLista.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="252" y="1124"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="sistema.comparadores.OrdemCompra" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemCompra.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="279" y="1252"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="sistema.comparadores.OrdemDataLista" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemDataLista.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="562" y="1117"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="sistema.comparadores.OrdemPrecoProduto" project="ProjetoP2_ListaPraMim" 
-    file="/ProjetoP2_ListaPraMim/src/sistema/comparadores/OrdemPrecoProduto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="572" y="1249"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="17">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="18" name="produtos">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="19" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="21" name="compras">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="23">    
+  <dependency id="20">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="22">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="sistema">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+      <attribute id="23" name="sistema"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="26">    
+  <dependency id="25">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="26">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="27">    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="27">    
     <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <association id="29">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="30" name="categoria">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="33" name="produto">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="34" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <association id="28">    
+    <bendpoint x="1268" y="1822"/>    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="36" name="listasDeCompras">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="37" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+      <attribute id="29" name="produtos"/>      
+      <multiplicity id="30" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="35">    
+    <bendpoint x="498" y="1406"/>    
+    <bendpoint x="28" y="1516"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="37">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="38" name="listasDeCompras"/>      
+      <multiplicity id="39" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="44">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="45" name="produto"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="48">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="49" name="compras"/>      
+      <multiplicity id="50" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="51">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="54">    
+    <bendpoint x="566" y="1446"/>    
+    <bendpoint x="218" y="1536"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="55">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="56" name="categoria"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="58">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
