@@ -80,6 +80,8 @@ public class ListaDeCompras implements Serializable {
 	 *            Produto que sera adicionado.
 	 */
 	public void adicionaCompra(int qtd, Produto produto) {
+		if(fechada)
+			throw new IllegalArgumentException("Lista de compras fechada");
 		compras.add(new Compra(qtd, produto));
 	}
 
@@ -89,6 +91,8 @@ public class ListaDeCompras implements Serializable {
 	 * @param c A compra a ser adicionada.
 	 */
 	private void adicionaCompra(Compra c) {
+		if(fechada)
+			throw new IllegalArgumentException("Lista de compras fechada");
 		compras.add(c);
 	}
 
@@ -136,6 +140,8 @@ public class ListaDeCompras implements Serializable {
 	 *            Identificador numérico do produto.
 	 */
 	public void deletaCompra(int id) {
+		if(fechada)
+			throw new IllegalArgumentException("Lista de compras fechada");
 		for (Compra compra : compras) {
 			if (compra.getId() == id) {
 				compras.remove(compra);
@@ -168,6 +174,8 @@ public class ListaDeCompras implements Serializable {
 	 *            valor total gasto nas compras.
 	 */
 	public void finalizarListaDeCompras(String localDaCompra, double valorFinalDaCompra) {
+		if(fechada)
+			throw new IllegalArgumentException("Lista de compras fechada");
 		this.localDaCompra = localDaCompra;
 		this.valorFinalDaCompra = valorFinalDaCompra;
 		this.fechada = true;
@@ -196,6 +204,8 @@ public class ListaDeCompras implements Serializable {
 	 *            Identificador numérico do item.
 	 */
 	public void deletaCompraDeLista(int itemId) {
+		if(fechada)
+			throw new IllegalArgumentException("Lista de compras fechada");
 		if (!contemProduto(itemId))
 			throw new IllegalArgumentException("Erro na exclusao de compra: compra nao encontrada na lista.");
 
@@ -218,6 +228,8 @@ public class ListaDeCompras implements Serializable {
 	 *            A quantidade que deve ser adicionada ou diminuida.
 	 */
 	public void atualizaCompraDeLista(int itemId, String operacao, int quantidade) {
+		if(fechada)
+			throw new IllegalArgumentException("Lista de compras fechada");
 		if (operacao.equals("diminui"))
 			quantidade *= -1;
 		else if (!operacao.equals("adiciona"))
