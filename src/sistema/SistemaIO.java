@@ -22,9 +22,7 @@ import sistema.produtos.Produto;
 public class SistemaIO {
 	private static final String FILE_NAME = "./data/system.bin";
 	
-	/**
-	 * Metodo responsavel pela leitura do arquivo que armazena o sistema.
-	 * 
+	/**Metodo responsavel pela leitura do arquivo que armazena o sistema.
 	 * @return O sistema lido.
 	 * @throws FileNotFoundException
 	 */
@@ -37,12 +35,7 @@ public class SistemaIO {
 			ObjectInputStream objectReader = new ObjectInputStream(fileReader);
 			
 			try {
-				Map<Integer, Produto> produtos = (Map<Integer, Produto>) objectReader.readObject();
-				Map<String, ListaDeCompras> listasDeCompras = (Map<String, ListaDeCompras>) objectReader.readObject();
-				int currentID = (int) objectReader.readObject();
-				int currentIDlista = (int) objectReader.readObject();
-				
-				sistema = new Sistema(produtos, listasDeCompras, currentID, currentIDlista);
+				sistema = (Sistema) objectReader.readObject();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -59,20 +52,14 @@ public class SistemaIO {
 	}
 	
 	/**Metodo responsavel por escrever e salvar o arquivo que contem os dados do sistema.
-	 * @param produtos O mapa de produtos do sistema a ser salvo.
-	 * @param listasDeCompras O mapa de listas de compras do sistema a ser salvo.
-	 * @param currentId O valor usado para controle de identificadores de produtos.
-	 * @param currentIdLista O valor usado para controle de identificadores de listas de compras.
+	 * @param sistema O sistema que sera salvo.
 	 */
-	public static void writeSistema(Map<Integer, Produto> produtos, Map<String, ListaDeCompras> listasDeCompras, int currentId, int currentIdLista) {
+	public static void writeSistema(Sistema sistema) {
 		try {
 			FileOutputStream fileWriter = new FileOutputStream(new File(FILE_NAME));
 			ObjectOutputStream objectWriter = new ObjectOutputStream(fileWriter);
 
-			objectWriter.writeObject(produtos);
-			objectWriter.writeObject(listasDeCompras);
-			objectWriter.writeObject(currentId);
-			objectWriter.writeObject(currentIdLista);
+			objectWriter.writeObject(sistema);
 
 			objectWriter.close();			
 			fileWriter.close();

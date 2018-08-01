@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +13,9 @@ import sistema.produtos.*;
 import sistema.comparadores.*;
 import sistema.compras.ListaDeCompras;
 
-public class Sistema {
+public class Sistema implements Serializable {
+	
+	private static final long serialVersionUID = 1984916669599846312L;
 	private Map<Integer, Produto> produtos;
 	private Map<String, ListaDeCompras> listasDeCompras;
 	private int currentId;
@@ -30,10 +33,6 @@ public class Sistema {
 		this.listasDeCompras = listasDeCompras;
 		this.currentId = currentId;
 		this.currentIdLista = currentIdLista;
-	}
-		
-	public void finalizar() {
-		SistemaIO.writeSistema(produtos, listasDeCompras, currentId, currentIdLista);
 	}
 
 	/**

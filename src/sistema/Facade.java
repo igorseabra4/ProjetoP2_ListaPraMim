@@ -38,10 +38,11 @@ public class Facade {
 		sistema = SistemaIO.readSistema();
 	}
 	
-	/**Salva os dados do sistema em arquivo.
+	/**Salva os dados do sistema em arquivo e fecha o sistema.
 	 */
 	public void fechaSistema() {
-		sistema.finalizar();
+		SistemaIO.writeSistema(sistema);
+		sistema = null;
 	}
 	
 	/**Adiciona um novo produto com quantidade fixa ao sistema.
