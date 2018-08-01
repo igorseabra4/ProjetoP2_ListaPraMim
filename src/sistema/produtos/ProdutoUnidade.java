@@ -10,6 +10,7 @@ package sistema.produtos;
  */
 public class ProdutoUnidade extends Produto {
 
+	private static final long serialVersionUID = -3022482674422854817L;
 	private int unidade;
 
 	/**

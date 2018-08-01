@@ -7,7 +7,4 @@ Alunos:
 * Igor Santa Ritta Seabra - 117210304
 * Wesley Roseno Saraiva - 117210715
 
-
-// Problema: algumas funções do teste de aceitação esperam que a lista de um erro quando o produto não existe no sistema (pesquisa e atualizacao). Outra espera que o sistema de o erro (deleta). Não deveria ser consistente?
-// Problema: de onde vem os itens 15 e 16 no use_case3_exception.txt? Dá erro e não sei de onde surgiram esses números. Não era pra os testes de aceitação pegarem as ids nos retornos das funções?
-// obj: baixar os testes de novo pq eu editei /igu
+// Obs. pelo menos no meu pc ele dá um erro no teste 6 exception, ele tenta ler a linha 1 (comentário) como se fosse um comando. /Igor

@@ -7,10 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
-
-import sistema.compras.ListaDeCompras;
-import sistema.produtos.Produto;
 
 /**
  * Classe responsavel pela criacao e leitura de arquivos, possibilitando que o
@@ -26,7 +22,6 @@ public class SistemaIO {
 	 * @return O sistema lido.
 	 * @throws FileNotFoundException
 	 */
-	@SuppressWarnings("unchecked")
 	public static Sistema readSistema() throws FileNotFoundException {
 		Sistema sistema = null;
 		

@@ -9,6 +9,7 @@ package sistema.produtos;
  */
 public class ProdutoQuilo extends Produto {
 
+	private static final long serialVersionUID = -6880529480839336531L;
 	private double kg;
 
 	/**

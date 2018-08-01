@@ -14,6 +14,7 @@ package sistema.produtos;
 
 public class ProdutoQuantidade extends Produto {
 
+	private static final long serialVersionUID = 1017991366666361871L;
 	private int qnt;
 	private String unidadeDeMedida;
 

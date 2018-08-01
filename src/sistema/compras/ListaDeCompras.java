@@ -20,9 +20,6 @@ import sistema.produtos.*;
  */
 public class ListaDeCompras implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5012379888319238485L;
 	private String descritor;
 	private List<Compra> compras;
