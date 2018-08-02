@@ -50,10 +50,9 @@ public class ProdutoQuiloTest {
 	 */
 	@Test
 	public void testProdutoQuilo() {
-		ProdutoQuilo p1 = new ProdutoQuilo(1, "uva", "alimento industrializado", 500.00, "bem legal", 10.0);
+		ProdutoQuilo p2 = new ProdutoQuilo(1, "uva", "alimento industrializado", 500.00, "bem legal", 10.0);
 		
-		assertEquals("1. uva, alimento industrializado, Preco por quilo: <bem legal, R$ 10,00;>", p1.toString());		
-		assertEquals("uva, alimento industrializado", p1.toString(0));
+		assertEquals("1. uva, alimento industrializado, Preco por quilo: <bem legal, R$ 10,00;>", p2.toString());
 	}
 
 	/**

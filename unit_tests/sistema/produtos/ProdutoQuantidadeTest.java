@@ -62,10 +62,9 @@ public class ProdutoQuantidadeTest {
 	 */
 	@Test
 	public void testProdutoQuantidade() {
-		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10.0);
+		ProdutoQuantidade p2 = new ProdutoQuantidade(1, "uva", "alimento nao industrializado", 500, "g", "bem legal", 10.0);
 		
-		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p1.toString());		
-		assertEquals("uva, alimento nao industrializado, 500 g", p1.toString(0));
+		assertEquals("1. uva, alimento nao industrializado, 500 g, Preco: <bem legal, R$ 10,00;>", p2.toString());
 	}
 
 	/**

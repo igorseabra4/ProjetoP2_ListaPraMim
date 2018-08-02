@@ -51,10 +51,9 @@ public class ProdutoUnidadeTest {
 	 */
 	@Test
 	public void testProdutoUnidade() {
-		ProdutoUnidade p1 = new ProdutoUnidade(1, "uva", "alimento industrializado", 500, "bem legal", 10.0);
+		ProdutoUnidade p2 = new ProdutoUnidade(1, "uva", "alimento industrializado", 500, "bem legal", 10.0);
 		
-		assertEquals("1. uva, alimento industrializado, Preco: <bem legal, R$ 10,00;>", p1.toString());		
-		assertEquals("uva, alimento industrializado", p1.toString(0));
+		assertEquals("1. uva, alimento industrializado, Preco: <bem legal, R$ 10,00;>", p2.toString());
 	}
 
 	/**
