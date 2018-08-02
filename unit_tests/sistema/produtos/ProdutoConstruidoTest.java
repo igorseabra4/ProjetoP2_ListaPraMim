@@ -24,14 +24,6 @@ public class ProdutoConstruidoTest {
 	}
 
 	/**
-	 * Test method for {@link sistema.produtos.ProdutoConstruido#ProdutoCronstruido(int, java.lang.String, java.lang.String, java.lang.String, double)}.
-	 */
-	@Test
-	public void testProdutoCronstruido() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link sistema.produtos.Produto#hashCode()}.
 	 */
 	@Test
