@@ -44,27 +44,39 @@ public class ListaDeComprasTest {
 	public void testPesquisaCompraEmLista() {
 		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
-		
+			
 	}
 
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testDeletaCompra() {
-		fail("Not yet implemented");
+		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
+		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
+
+		lista.deletaCompra(1);
+		
+		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");		
 	}
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
+		assertEquals(lista.toString(),"1 uva, alimento industrializado, 500 g" + System.lineSeparator());
 	}
 
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testFinalizarListaDeCompras() {
-		fail("Not yet implemented");
+		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
+		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
+		
+		lista.finalizarListaDeCompras("bem legal", 10);
+		
+		lista.finalizarListaDeCompras("bem legal", 10);
 	}
 
 	@Test
 	public void testGetItemLista() {
-		fail("Not yet implemented");
+		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
+		assertEquals(lista.getItemLista(0),"1 uva, alimento industrializado, 500 g");
 	}
 
 	@Test
