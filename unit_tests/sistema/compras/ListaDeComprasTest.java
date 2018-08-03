@@ -2,9 +2,13 @@ package sistema.compras;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import sistema.Tupla;
 import sistema.produtos.ProdutoQuantidade;
 
 public class ListaDeComprasTest {
@@ -119,12 +123,24 @@ public class ListaDeComprasTest {
 
 	@Test
 	public void testGetTuplas() {
-		fail("Not yet implemented");
+		List<Tupla> temp = new ArrayList<>();
+		temp.add(new Tupla(1,1));
+		System.out.println(lista.getTuplas().hashCode());
+		assertEquals(lista.getTuplas(), temp);
+		
+		for(Tupla compra : lista.getTuplas()) {
+			for(Tupla a : lista.getTuplas()) {
+				System.out.println(a);}
+		}
 	}
 
 	@Test
 	public void testSubListasComLocal() {
-		fail("Not yet implemented");
+		List<String> locais = new ArrayList<String>();
+		locais.add("bem legal");
+		
+		assertEquals(lista.subListasComLocal(), locais);
+		System.out.println(lista.subListasComLocal());
 	}
 
 }
