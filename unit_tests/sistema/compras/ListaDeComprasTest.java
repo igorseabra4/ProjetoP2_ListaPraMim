@@ -79,9 +79,14 @@ public class ListaDeComprasTest {
 		assertEquals(lista.getItemLista(0),"1 uva, alimento industrializado, 500 g");
 	}
 
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testDeletaCompraDeLista() {
-		fail("Not yet implemented");
+		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
+		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
+
+		lista.deletaCompraDeLista(1);
+		
+		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");	
 	}
 
 	@Test
