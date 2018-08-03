@@ -15,18 +15,19 @@ public class ListaDeComprasTest {
 	@Before
 	public void setUp() throws Exception {
 		lista = new ListaDeCompras("feira", "01/01/2000", 1);
+		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 	}
 	
 	@Test
 	public void testListaDeComprasListaDeComprasStringStringInt() {
 		ListaDeCompras lista2 = new ListaDeCompras("feira", "01/01/2000", 1);
+		lista2.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		
 		assertEquals(lista2.toString(), lista.toString());
 	}
 
 	@Test
 	public void testAdicionaCompra() {
-		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		assertEquals(lista.contemProduto(1),true);
 	}
 
@@ -42,14 +43,12 @@ public class ListaDeComprasTest {
 
 	@Test
 	public void testPesquisaCompraEmLista() {
-		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
 			
 	}
 
 	@Test (expected = IllegalArgumentException.class)
 	public void testDeletaCompra() {
-		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
 
 		lista.deletaCompra(1);
@@ -59,15 +58,12 @@ public class ListaDeComprasTest {
 
 	@Test
 	public void testToString() {
-		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		assertEquals(lista.toString(),"1 uva, alimento industrializado, 500 g" + System.lineSeparator());
 	}
 
 	@Test (expected = IllegalArgumentException.class)
 	public void testFinalizarListaDeCompras() {
-		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
-		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
-		
+		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");		
 		lista.finalizarListaDeCompras("bem legal", 10);
 		
 		lista.finalizarListaDeCompras("bem legal", 10);
@@ -75,13 +71,11 @@ public class ListaDeComprasTest {
 
 	@Test
 	public void testGetItemLista() {
-		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		assertEquals(lista.getItemLista(0),"1 uva, alimento industrializado, 500 g");
 	}
 
 	@Test (expected = IllegalArgumentException.class)
 	public void testDeletaCompraDeLista() {
-		lista.adicionaCompra(1, new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0));
 		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
 
 		lista.deletaCompraDeLista(1);
@@ -91,27 +85,36 @@ public class ListaDeComprasTest {
 
 	@Test
 	public void testAtualizaCompraDeLista() {
-		fail("Not yet implemented");
+		assertEquals(lista.getItemLista(0),"1 uva, alimento industrializado, 500 g");
+		
+		lista.atualizaCompraDeLista(1, "adiciona", 1);		
+		assertEquals(lista.getItemLista(0),"2 uva, alimento industrializado, 500 g");
+		
+		lista.atualizaCompraDeLista(1, "diminui", 1);		
+		assertEquals(lista.getItemLista(0),"1 uva, alimento industrializado, 500 g");
 	}
 
 	@Test
 	public void testContemProdutoInt() {
-		fail("Not yet implemented");
+		assertTrue(lista.contemProduto(1));
 	}
 
 	@Test
 	public void testContemProdutoString() {
-		fail("Not yet implemented");
+		assertTrue(lista.contemProduto("uva"));
 	}
 
 	@Test
 	public void testGetID() {
-		fail("Not yet implemented");
+		assertEquals(lista.getID(),1);
 	}
 
 	@Test
 	public void testGetValorTotal() {
-		fail("Not yet implemented");
+		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");		
+		lista.finalizarListaDeCompras("bem legal", 10);
+		
+		assertEquals(lista.getValorTotal(), 10.0, 0.005);
 	}
 
 	@Test
