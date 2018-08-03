@@ -5,6 +5,8 @@ package sistema.compras;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -102,5 +104,17 @@ public class CompraTest {
 	public void testToString() {
 		assertEquals("5 uva, alimento industrializado, 500 g", c1.toString());
 	}
+	
+	@Test
+	public void testGetPreco() {
+		assertEquals(10.0, c1.getPreco("bem legal"), 0.005);
+	}
 
+	@Test
+	public void testGetLocais() {
+		HashSet<String> local = new HashSet<String>();
+		local.add("bem legal");
+		assertEquals(local, p1.getLocais());
+	}
 }
+
