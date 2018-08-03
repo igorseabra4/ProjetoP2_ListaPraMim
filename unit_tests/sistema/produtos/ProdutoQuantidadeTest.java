@@ -27,18 +27,6 @@ public class ProdutoQuantidadeTest {
 	
 		p1.atualizaItem("unidade de medida", "kg");
 		assertEquals("uva, alimento industrializado, 250 kg", p1.toString(0));
-		
-		p1.atualizaItem("nome", "feijao");
-		assertEquals("feijao, alimento industrializado, 250 kg", p1.toString(0));
-		
-		p1.atualizaItem("categoria", "alimento nao industrializado");
-		assertEquals("feijao, alimento nao industrializado, 250 kg", p1.toString(0));
-		
-		p1.atualizaItem("categoria", "limpeza");
-		assertEquals("feijao, limpeza, 250 kg", p1.toString(0));
-		
-		p1.atualizaItem("categoria", "higiene pessoal");
-		assertEquals("feijao, higiene pessoal, 250 kg", p1.toString(0));
 	}
 
 	@Test
