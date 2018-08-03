@@ -17,7 +17,7 @@ import sistema.produtos.ProdutoQuantidade;
  *
  */
 public class CompraTest {
-	private ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
+	private ProdutoQuantidade p1;
 	private Compra c1;
 
 	/**
@@ -25,6 +25,7 @@ public class CompraTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		ProdutoQuantidade p1 = new ProdutoQuantidade(1, "uva", "alimento industrializado", 500, "g", "bem legal", 10.0);
 		c1 = new Compra(5, p1);
 	}
 
@@ -114,7 +115,8 @@ public class CompraTest {
 	public void testGetLocais() {
 		HashSet<String> local = new HashSet<String>();
 		local.add("bem legal");
-		assertEquals(local, p1.getLocais());
+		assertEquals(local, c1.getLocais());
 	}
+
 }
 

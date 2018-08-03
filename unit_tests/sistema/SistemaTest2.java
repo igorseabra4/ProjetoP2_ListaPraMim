@@ -5,7 +5,7 @@ import org.junit.Test;
 import sistema.Sistema;
 import sistema.produtos.*;
 
-public class SistemaTest {
+public class SistemaTest2 {
 	@Test
 	public void testSistema() {
 		fail("Not yet implemented");
