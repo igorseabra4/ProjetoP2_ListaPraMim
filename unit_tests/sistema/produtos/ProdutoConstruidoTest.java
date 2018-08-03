@@ -5,6 +5,8 @@ package sistema.produtos;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +30,9 @@ public class ProdutoConstruidoTest {
 	 */
 	@Test
 	public void testHashCode() {
-		fail("Not yet implemented");
+		ProdutoConstruido p2 = new ProdutoConstruido(1, "uva", "alimento industrializado", "bem legal", 10.0);
+		
+		assertEquals(p2.hashCode(), p1.hashCode());
 	}
 
 	/**
@@ -99,7 +103,6 @@ public class ProdutoConstruidoTest {
 	@Test
 	public void testGetMenorPreco() {
 		p1.adicionaPrecoItem("pouco legal", 8.99);
-
 		
 		assertEquals(8.99, p1.getMenorPreco(), 0.005);
 	}
@@ -117,7 +120,9 @@ public class ProdutoConstruidoTest {
 	 */
 	@Test
 	public void testGetLocais() {
-		fail("Not yet implemented");
+		HashSet<String> local = new HashSet<String>();
+		local.add("bem legal");
+		assertEquals(local, p1.getLocais());
 	}
 
 	/**
