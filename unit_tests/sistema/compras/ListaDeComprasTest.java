@@ -78,15 +78,6 @@ public class ListaDeComprasTest {
 		assertEquals(lista.getItemLista(0),"1 uva, alimento industrializado, 500 g");
 	}
 
-	@Test (expected = IllegalArgumentException.class)
-	public void testDeletaCompraDeLista() {
-		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");
-
-		lista.deletaCompraDeLista(1);
-		
-		assertEquals(lista.pesquisaCompraEmLista(1),"1 uva, alimento industrializado, 500 g");	
-	}
-
 	@Test
 	public void testAtualizaCompraDeLista() {
 		assertEquals(lista.getItemLista(0),"1 uva, alimento industrializado, 500 g");
