@@ -3,6 +3,10 @@
  */
 package sistema.compras;
 
+/**
+ * @author wesley
+ *
+ */
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
@@ -17,6 +21,7 @@ import sistema.produtos.ProdutoQuantidade;
  *
  */
 public class CompraTest {
+	@SuppressWarnings("unused")
 	private ProdutoQuantidade p1;
 	private Compra c1;
 

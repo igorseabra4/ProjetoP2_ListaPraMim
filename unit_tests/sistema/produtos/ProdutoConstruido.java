@@ -1,5 +1,9 @@
 package sistema.produtos;
 
+/**
+ * @author wesley
+ *
+ */
 public class ProdutoConstruido extends Produto {
 
 	public ProdutoConstruido(int id, String nome, String categoria, String localDeCompra, double preco) {

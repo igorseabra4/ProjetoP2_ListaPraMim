@@ -1,5 +1,9 @@
 package sistema.compras;
 
+/**
+ * @author wesley
+ *
+ */
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -110,28 +114,6 @@ public class ListaDeComprasTest {
 		lista.finalizarListaDeCompras("bem legal", 10);
 		
 		assertEquals(lista.getValorTotal(), 10.0, 0.005);
-	}
-
-	@Test
-	public void testGetTuplas() {
-		List<Tupla> temp = new ArrayList<>();
-		temp.add(new Tupla(1,1));
-		System.out.println(lista.getTuplas().hashCode());
-		assertEquals(lista.getTuplas(), temp);
-		
-		for(Tupla compra : lista.getTuplas()) {
-			for(Tupla a : lista.getTuplas()) {
-				System.out.println(a);}
-		}
-	}
-
-	@Test
-	public void testSubListasComLocal() {
-		List<String> locais = new ArrayList<String>();
-		locais.add("bem legal");
-		
-		assertEquals(lista.subListasComLocal(), locais);
-		System.out.println(lista.subListasComLocal());
 	}
 
 }
