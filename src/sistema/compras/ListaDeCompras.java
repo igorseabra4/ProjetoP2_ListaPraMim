@@ -118,12 +118,15 @@ public class ListaDeCompras implements Serializable {
 	public void deletaCompra(int id) {
 		if(fechada)
 			throw new IllegalArgumentException("Lista de compras fechada");
+		
 		for (Compra compra : compras) {
 			if (compra.getId() == id) {
 				compras.remove(compra);
 				return;
 			}
 		}
+		
+		throw new IllegalArgumentException("Erro na exclusao de compra: compra nao encontrada na lista.");
 	}
 
 	/**Representacao textual da lista, exibindo os produtos presentes dentro dela.
@@ -165,24 +168,6 @@ public class ListaDeCompras implements Serializable {
 		if (posicaoItem >= compras.size())
 			return "";
 		return compras.get(posicaoItem).toString();
-	}
-
-	/**Deleta uma compra da lista atraves do identificador numerico de seu item.
-	 * 
-	 * @param itemId Identificador numerico do item.
-	 */
-	public void deletaCompraDeLista(int itemId) {
-		if(fechada)
-			throw new IllegalArgumentException("Lista de compras fechada");
-		if (!contemProduto(itemId))
-			throw new IllegalArgumentException("Erro na exclusao de compra: compra nao encontrada na lista.");
-
-		Compra c = new Compra(0, null);
-		for (Compra compra : compras) {
-			if (compra.getId() == itemId)
-				c = compra;
-		}
-		compras.remove(c);
 	}
 
 	/**Atualiza uma compra da lista, incrementando ou decrementando a sua quantia.

@@ -337,7 +337,7 @@ public class Sistema implements Serializable {
 		if (!produtos.containsKey(itemId))
 			throw new IndexOutOfBoundsException("Erro na exclusao de compra: item nao existe no sistema.");
 		
-		listasDeCompras.get(descritorLista).deletaCompraDeLista(itemId);
+		listasDeCompras.get(descritorLista).deletaCompra(itemId);
 	}
 
 	/**Atualiza a quantidade de um item de uma lista.
