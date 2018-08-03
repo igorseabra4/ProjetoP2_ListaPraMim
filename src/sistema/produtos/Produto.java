@@ -23,23 +23,18 @@ public abstract class Produto implements Serializable {
 	/**
 	 * Construtor de um produto.
 	 * 
-	 * @param id
-	 *            Identificador numérico do produto.
-	 * @param nome
-	 *            Nome do produto.
-	 * @param categoria
-	 *            Categoria do produto. (em texto)
-	 * @param localDeCompra
-	 *            Um local no qual o produto pode ser comprado.
-	 * @param preco
-	 *            O preço do produto no local determinado.
+	 * @param id Identificador numerico do produto.
+	 * @param nome Nome do produto.
+	 * @param categoria Categoria do produto. (em texto)
+	 * @param localDeCompra Um local no qual o produto pode ser comprado.
+	 * @param preco O preco do produto no local determinado.
 	 */
 	public Produto(int id, String nome, String categoria, String localDeCompra, double preco) {
-		if (nome.trim().equals("") || nome.equals(null))
+		if (nome.trim().equals(""))
 			throw new NullPointerException("Erro no cadastro de item: nome nao pode ser vazio ou nulo.");
-		if (categoria.trim().equals("") || categoria.equals(null))
+		if (categoria.trim().equals(""))
 			throw new NullPointerException("Erro no cadastro de item: categoria nao pode ser vazia ou nula.");
-		if (localDeCompra.trim().equals("") || localDeCompra.equals(null))
+		if (localDeCompra.trim().equals(""))
 			throw new NullPointerException("Erro no cadastro de item: local de compra nao pode ser vazio ou nulo.");
 		if (preco < 0)
 			throw new IllegalArgumentException("Erro no cadastro de item: preco de item invalido.");
@@ -104,12 +99,12 @@ public abstract class Produto implements Serializable {
 	}
 
 	/**
-	 * Adiciona o preço do produto em um determinado local de compra.
+	 * Adiciona o preco do produto em um determinado local de compra.
 	 * 
 	 * @param localDeCompra
-	 *            Local atribuido ao preço.
+	 *            Local atribuido ao preco.
 	 * @param preco
-	 *            Preço do produto neste local.
+	 *            Preco do produto neste local.
 	 */
 	public void adicionaPrecoItem(String localDeCompra, double preco) {
 		if (localDeCompra.trim().equals("") || localDeCompra.equals(null))
@@ -124,9 +119,9 @@ public abstract class Produto implements Serializable {
 	}
 
 	/**
-	 * Retorna o identificador numérico no produto.
+	 * Retorna o identificador numerico no produto.
 	 * 
-	 * @return identificador numérico.
+	 * @return identificador numerico.
 	 */
 	public int getId() {
 		return id;
@@ -151,9 +146,9 @@ public abstract class Produto implements Serializable {
 	}
 
 	/**
-	 * Retorna o menor preço definido do produto.
+	 * Retorna o menor preco definido do produto.
 	 * 
-	 * @return menor preço conhecido.
+	 * @return menor preco conhecido.
 	 */
 	public double getMenorPreco() {
 		double menor = Double.MAX_VALUE;
@@ -188,8 +183,7 @@ public abstract class Produto implements Serializable {
 	 * Retorna um valor booleano correspondendo a existência de uma dada String
 	 * no nome do produto.
 	 * 
-	 * @param string
-	 *            String pesquisada.
+	 * @param string String pesquisada.
 	 * @return true caso possua, false caso contrário.
 	 */
 	public boolean contemStringPesquisada(String string) {
@@ -197,7 +191,7 @@ public abstract class Produto implements Serializable {
 	}
 
 	/**
-	 * Representação textual do produto.
+	 * Representacao textual do produto.
 	 */
 	@Override
 	public String toString() {
@@ -210,19 +204,16 @@ public abstract class Produto implements Serializable {
 		return resultado;
 	}
 
-	/**
-	 * Representação textual alternativa do produto.
+	/**Representacao textual simples do produto.
 	 * 
-	 * @param i
-	 *            Não utilizado.
-	 * @return toString alternativo.
+	 * @return Representacao textual simples do produto.
 	 */
-	public String toString(int i) {
+	public String toStringSemPrecos() {
 		return nome + ", " + categoria.getNome();
 	}
 
 	/**
-	 * Valores utilizados na representação textual do produto, que são uma
+	 * Valores utilizados na representacão textual do produto, que são uma
 	 * peculiaridade de cada tipo de produto.
 	 * 
 	 * @return uma String com valores específicos de cada tipo.

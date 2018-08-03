@@ -11,12 +11,11 @@ import sistema.comparadores.OrdemCompra;
 import sistema.produtos.*;
 
 /**
- * Lista de compras criada pelo usuário para agrupar produtos que ele deseja
- * adquirir, ela armazena cópias dos produtos conhecidos pelo sistema com uma
- * determinada quantia armazenada.
+ * Lista de compras criada pelo usuario para agrupar produtos que ele deseja
+ * adquirir, ela armazena os produtos conhecidos pelo sistema juntamente a uma
+ * determinada quantia.
  * 
  * @author Henry Filho
- *
  */
 public class ListaDeCompras implements Serializable {
 
@@ -30,16 +29,11 @@ public class ListaDeCompras implements Serializable {
 	private double valorFinalDaCompra = 0.0;
 	private boolean fechada = false;
 
-	/**
-	 * Constrói a lista de compras com base em um descritor dado pelo sistema, e
-	 * gerando uma data automaticamente que será adicionada a lista.
+	/**Constroi a lista de compras com base em um descritor, data e identificador dados pelo sistema.
 	 * 
-	 * @param descritor
-	 *            Descritor textual da lista.
-	 * @param data
-	 *            Data na qual a lista é criada.
-	 * @param id
-	 *            Identificador numérico da lista.
+	 * @param descritor Descritor textual da lista.
+	 * @param data Data na qual a lista eh criada.
+	 * @param id Identificador numerico da lista.
 	 */
 	public ListaDeCompras(String descritor, String data, int id) {
 		this.descritor = descritor;
@@ -48,17 +42,12 @@ public class ListaDeCompras implements Serializable {
 		this.id = id;
 	}
 
-	/**
-	 * Construtor que instancia uma lista de compra com os mesmos produtos de outra lista.
+	/**Construtor que instancia uma lista de compra com os mesmos produtos de outra lista.
 	 * 
-	 * @param lista
-	 *            Lista na qual os produtos serao copiados.
-	 * @param descritor
-	 *            Descritor da nova lista.
-	 * @param data
-	 *            Data da nova lista.
-	 * @param id
-	 *            Identificador numeico da nova lista.
+	 * @param lista Lista da qual os produtos serao copiados.
+	 * @param descritor Descritor da nova lista.
+	 * @param data Data da nova lista.
+	 * @param id Identificador numerico da nova lista.
 	 */
 	public ListaDeCompras(ListaDeCompras lista, String descritor, String data, int id) {
 		this.descritor = descritor;
@@ -71,33 +60,26 @@ public class ListaDeCompras implements Serializable {
 	}
 
 	
-	/**
-	 * Adiciona uma compra a lista.
+	/**Adiciona uma compra a lista.
 	 * 
-	 * @param qtd
-	 *            Quantia do determinado item.
-	 * @param produto
-	 *            Produto que sera adicionado.
+	 * @param qtd Quantia do determinado item.
+	 * @param produto Produto que sera adicionado.
 	 */
 	public void adicionaCompra(int qtd, Produto produto) {
 		if(fechada)
 			throw new IllegalArgumentException("Lista de compras fechada");
-		compras.add(new Compra(qtd, produto));
+		adicionaCompra(new Compra(qtd, produto));
 	}
 
-	/**
-	 * Adiciona uma compra a lista.
+	/**Adiciona uma compra a lista.
 	 * 
-	 * @param c A compra a ser adicionada.
+	 * @param compra A compra a ser adicionada.
 	 */
-	private void adicionaCompra(Compra c) {
-		if(fechada)
-			throw new IllegalArgumentException("Lista de compras fechada");
-		compras.add(c);
+	private void adicionaCompra(Compra compra) {
+		compras.add(compra);
 	}
 
-	/**
-	 * Retorna o descritor textual da lista de compra.
+	/**Retorna o descritor textual da lista de compra.
 	 * 
 	 * @return descritor.
 	 */
@@ -105,22 +87,18 @@ public class ListaDeCompras implements Serializable {
 		return descritor;
 	}
 
-	/**
-	 * Retorna a data da criação da lista de compra, gerada automaticamente na
-	 * construção do objeto.
+	/**Retorna a data da criacao da lista de compra.
 	 * 
-	 * @return data da lista.
+	 * @return A data da lista.
 	 */
 	public String getData() {
 		return data;
 	}
 
-	/**
-	 * Pesquisa um item na lista com base em sua id.
+	/**Pesquisa um item na lista com base em sua id.
 	 * 
-	 * @param id
-	 *            Identificador numérico do produto.
-	 * @return representação textual do produto pesquisado.
+	 * @param id Identificador numerico do produto.
+	 * @return representacao textual do produto pesquisado.
 	 */
 	public String pesquisaCompraEmLista(int id) {
 		if (!contemProduto(id))
@@ -133,11 +111,9 @@ public class ListaDeCompras implements Serializable {
 		return null;
 	}
 
-	/**
-	 * Deleta um item presente na lista com base em sua id.
+	/**Deleta um item presente na lista com base em sua id.
 	 * 
-	 * @param id
-	 *            Identificador numérico do produto.
+	 * @param id Identificador numerico do produto.
 	 */
 	public void deletaCompra(int id) {
 		if(fechada)
@@ -150,8 +126,7 @@ public class ListaDeCompras implements Serializable {
 		}
 	}
 
-	/**
-	 * Representação textual da lista, exibindo os produtos presentes dentro dela.
+	/**Representacao textual da lista, exibindo os produtos presentes dentro dela.
 	 */
 	@Override
 	public String toString() {
@@ -165,13 +140,10 @@ public class ListaDeCompras implements Serializable {
 		return temp;
 	}
 
-	/**
-	 * Finaliza a lista de compra.
+	/**Finaliza a lista de compra.
 	 * 
-	 * @param localDaCompra
-	 *            Local no qual as compras foram feitas.
-	 * @param valorFinalDaCompra
-	 *            valor total gasto nas compras.
+	 * @param localDaCompra Local no qual as compras foram feitas.
+	 * @param valorFinalDaCompra Valor total gasto nas compras.
 	 */
 	public void finalizarListaDeCompras(String localDaCompra, double valorFinalDaCompra) {
 		if(fechada)
@@ -181,13 +153,11 @@ public class ListaDeCompras implements Serializable {
 		this.fechada = true;
 	}
 
-	/**
-	 * Retorna a representação textual de um item da lista em uma determinada
-	 * posição na lista.
+	/**Retorna a representacao textual de um item da lista em uma determinada
+	 * posicao na lista.
 	 * 
-	 * @param posicaoItem
-	 *            Posição do item desejado.
-	 * @return representação textual do item.
+	 * @param posicaoItem Posicao do item desejado.
+	 * @return representacao textual do item.
 	 */
 	public String getItemLista(int posicaoItem) {
 		Collections.sort(compras, new OrdemCompra());
@@ -197,11 +167,9 @@ public class ListaDeCompras implements Serializable {
 		return compras.get(posicaoItem).toString();
 	}
 
-	/**
-	 * Deleta uma compra da lista através do identificador numérico de seu item.
+	/**Deleta uma compra da lista atraves do identificador numerico de seu item.
 	 * 
-	 * @param itemId
-	 *            Identificador numérico do item.
+	 * @param itemId Identificador numerico do item.
 	 */
 	public void deletaCompraDeLista(int itemId) {
 		if(fechada)
@@ -217,15 +185,11 @@ public class ListaDeCompras implements Serializable {
 		compras.remove(c);
 	}
 
-	/**
-	 * Atualiza uma compra da lista, incrementando ou decrementando a sua quantia.
+	/**Atualiza uma compra da lista, incrementando ou decrementando a sua quantia.
 	 * 
-	 * @param itemId
-	 *            Identificador numérico do item.
-	 * @param operacao
-	 *            Operação desejada, seja ela "diminui" ou "adiciona".
-	 * @param quantidade
-	 *            A quantidade que deve ser adicionada ou diminuida.
+	 * @param itemId Identificador numerico do item.
+	 * @param operacao Operacao desejada, seja ela "diminui" ou "adiciona".
+	 * @param quantidade A quantidade que deve ser adicionada ou diminuida.
 	 */
 	public void atualizaCompraDeLista(int itemId, String operacao, int quantidade) {
 		if(fechada)
@@ -250,13 +214,11 @@ public class ListaDeCompras implements Serializable {
 			compras.remove(c);
 	}
 
-	/**
-	 * Retorna um valor booleano correspondente a se a lista possuim um determinado
-	 * produto ou não.
+	/**Retorna um valor booleano correspondente a se a lista possuim um determinado
+	 * produto ou nao.
 	 * 
-	 * @param id
-	 *            Identificador numérico do produto.
-	 * @return true caso contenha, false caso contrário.
+	 * @param id Identificador numerico do produto.
+	 * @return True caso contenha, false caso contrario.
 	 */
 	public boolean contemProduto(int id) {
 		for (Compra compra : compras) {
@@ -266,13 +228,11 @@ public class ListaDeCompras implements Serializable {
 		return false;
 	}
 	
-	/**
-	 * Retorna um valor booleano correspondente a se a lista possuim um determinado
-	 * produto ou não.
+	/**Retorna um valor booleano correspondente a se a lista possuim um determinado
+	 * produto ou nao.
 	 * 
-	 * @param nome
-	 *            Nome do produto desejado.
-	 * @return true caso contenha, false caso contrário.
+	 * @param nome Nome do produto desejado.
+	 * @return True caso contenha, false caso contrario.
 	 */
 	public boolean contemProduto(String nome) {
 		for (Compra compra : compras) {
@@ -282,14 +242,23 @@ public class ListaDeCompras implements Serializable {
 		return false;
 	}
 
+	/**Retorna o numero de identificacao da lista.
+	 * @return O numero de identificacao da lista.
+	 */
 	public int getID() {
 		return id;
 	}
 
+	/**Retorna o valor final da compra, definido no fechamento.
+	 * @return O valor final da compra.
+	 */
 	public double getValorTotal() {
 		return valorFinalDaCompra;
 	}
 
+	/**Retorna uma lista de Tuplas, cujo primeiro elemento eh o id de cada compra e o segundo eh a sua quantidade.
+	 * @return A lista especificada.
+	 */
 	public List<Tupla> getTuplas() {
 		
 		List<Tupla> temp = new ArrayList<>();
@@ -308,7 +277,6 @@ public class ListaDeCompras implements Serializable {
 	public List<ListaDeCompras> subListasComLocal() {
 		// Primeiro, vamos pegar todos os locais de compra disponiveis
 		List<String> locais = new ArrayList<String>();
-		
 		for (Compra c : compras)
 			for (String s : c.getLocais())
 				if (!locais.contains(s))
@@ -317,8 +285,8 @@ public class ListaDeCompras implements Serializable {
 		// Agora vamos criar uma nova lista de compras temporaria para cada local de compra
 		List<ListaDeCompras> listas = new ArrayList<ListaDeCompras>();
 		
-		// Agora, para cada lista, vamos tentar adicionar todas as compras disponiveis e o valor delas no respectivo local
-		// a lista. Obviamente nao ira encontrar todas as compras em todos os locais; nesse caso pula para a proxima.
+		// Agora, para cada lista, vamos tentar adicionar todas as compras disponiveis e o valor delas no respectivo local a lista.
+		// Obviamente nao ira encontrar todas as compras em todos os locais; nesse caso ele captura a excecao e pula para a proxima.
 		for(int i = 0; i < locais.size(); i++) {
 			ListaDeCompras temp = new ListaDeCompras(locais.get(i), null, -1);
 			double valueToAdd = 0;
@@ -338,6 +306,8 @@ public class ListaDeCompras implements Serializable {
 		return listas;
 	}
 
+	/**Ordena as compras da lista por categoria, e dentro de cada categoria por ordem alfabetica.
+	 */
 	private void sortComprasTipoENome() {
 		compras.sort(new OrdemAlfabeticaCompra());
 		compras.sort(new OrdemCompra());

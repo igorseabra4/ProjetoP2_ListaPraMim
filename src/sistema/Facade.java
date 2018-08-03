@@ -186,7 +186,7 @@ public class Facade {
 	/**Pesquisa um produto comprado em uma lista.
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param itemId O codigo de identificacao unico do produto.
-	 * @return A representação em String do produto.
+	 * @return A representacao em String do produto.
 	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		return sistema.pesquisaCompraEmLista(descritorLista, itemId);
@@ -195,7 +195,7 @@ public class Facade {
 	/**Pesquisa um produto comprado em uma lista pela sua posicao nela.
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param posicaoItem A posicao do item na lista.
-	 * @return A representaco em String do produto.
+	 * @return A representacao em String do produto.
 	 */
 	public String getItemLista(String descritorLista, int posicaoItem) {
 		return sistema.getItemLista(descritorLista, posicaoItem);

@@ -13,6 +13,11 @@ import sistema.produtos.*;
 import sistema.comparadores.*;
 import sistema.compras.ListaDeCompras;
 
+/**Sistema principal para o gerenciamento do ListaPraMim.
+ * 
+ * @author Henry Filho
+ * @author Igor Seabra
+ */
 public class Sistema implements Serializable {
 	
 	private static final long serialVersionUID = 1984916669599846312L;
@@ -21,6 +26,8 @@ public class Sistema implements Serializable {
 	private int currentId;
 	private int currentIdLista;
 
+	/**Construtor padrao, inicia um sistema vazio.
+	 */
 	public Sistema() {
 		produtos = new HashMap<Integer, Produto>();
 		listasDeCompras = new HashMap<String, ListaDeCompras>();
@@ -28,28 +35,14 @@ public class Sistema implements Serializable {
 		currentIdLista = 0;
 	}
 
-	public Sistema(Map<Integer, Produto> produtos, Map<String, ListaDeCompras> listasDeCompras, int currentId, int currentIdLista) {
-		this.produtos = produtos;
-		this.listasDeCompras = listasDeCompras;
-		this.currentId = currentId;
-		this.currentIdLista = currentIdLista;
-	}
-
-	/**
-	 * Adiciona um novo produto com quantidade fixa ao sistema.
+	/**Adiciona um novo produto com quantidade fixa ao sistema.
 	 * 
-	 * @param nome
-	 *            O nome do produto.
-	 * @param categoria
-	 *            A categoria do produto.
-	 * @param qnt
-	 *            A quantidade do produto
-	 * @param unidadeDeMedida
-	 *            A unidade de medida da quantidade do produto.
-	 * @param localDeCompra
-	 *            O nome do local onde o produto possui o preco.
-	 * @param preco
-	 *            O preco do produto no local especificado.
+	 * @param nome O nome do produto.
+	 * @param categoria A categoria do produto.
+	 * @param qnt A quantidade do produto
+	 * @param unidadeDeMedida A unidade de medida da quantidade do produto.
+	 * @param localDeCompra O nome do local onde o produto possui o preco.
+	 * @param preco O preco do produto no local especificado.
 	 * @return O codigo de identificacao unico do produto.
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra,	double preco) {
@@ -58,19 +51,13 @@ public class Sistema implements Serializable {
 		return currentId;
 	}
 
-	/**
-	 * Adiciona um novo produto não industrializado por quilo ao sistema.
+	/**Adiciona um novo produto não industrializado por quilo ao sistema.
 	 * 
-	 * @param nome
-	 *            O nome do produto.
-	 * @param categoria
-	 *            A categoria do produto.
-	 * @param kg
-	 *            A massa do produto em kg.
-	 * @param localDeCompra
-	 *            O nome do local onde o produto possui o preco.
-	 * @param preco
-	 *            O preco do produto no local especificado.
+	 * @param nome O nome do produto.
+	 * @param categoria A categoria do produto.
+	 * @param kg A massa do produto em kg.
+	 * @param localDeCompra O nome do local onde o produto possui o preco.
+	 * @param preco O preco do produto no local especificado.
 	 * @return O codigo de identificacao unico do produto.
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
@@ -79,19 +66,13 @@ public class Sistema implements Serializable {
 		return currentId;
 	}
 
-	/**
-	 * Adiciona um novo produto por unidade ao sistema.
+	/**Adiciona um novo produto por unidade ao sistema.
 	 * 
-	 * @param nome
-	 *            O nome do produto.
-	 * @param categoria
-	 *            A categoria do produto.
-	 * @param unidade
-	 *            O numero de unidades do produto.
-	 * @param localDeCompra
-	 *            O nome do local onde o produto possui o preco.
-	 * @param preco
-	 *            O preco do produto no local especificado.
+	 * @param nome O nome do produto.
+	 * @param categoria A categoria do produto.
+	 * @param unidade O numero de unidades do produto.
+	 * @param localDeCompra O nome do local onde o produto possui o preco.
+	 * @param preco O preco do produto no local especificado.
 	 * @return O codigo de identificacao unico do produto.
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
@@ -100,8 +81,9 @@ public class Sistema implements Serializable {
 		return currentId;
 	}
 	
-	/** Adiciona o produto ao 
-	 * @param produto
+	/** Adiciona o produto ao sistema.
+	 * 
+	 * @param produto Objeto Produto a ser adicionado.
 	 */
 	private void adicionaItem(Produto produto) {
 		if (produtos.containsValue(produto)) {
@@ -110,11 +92,9 @@ public class Sistema implements Serializable {
 		produtos.put(currentId + 1, produto);
 	}
 
-	/**
-	 * Exibe um produto.
+	/**Exibe um produto.
 	 * 
-	 * @param id
-	 *            O codigo de identificacao unico do produto.
+	 * @param id O codigo de identificacao unico do produto.
 	 * @return A representacao em String do produto.
 	 */
 	public String exibeItem(int id) {
@@ -126,16 +106,11 @@ public class Sistema implements Serializable {
 		return produtos.get(id).toString();
 	}
 
-	/**
-	 * Redefine um atributo de um produto.
+	/**Redefine um atributo de um produto.
 	 * 
-	 * @param id
-	 *            O codigo de identificacao unico do produto.
-	 * @param atributo
-	 *            O atributo a ser redefinido (nome, categoria, quantidade, unidade
-	 *            de medida, massa, quantidade de unidades)
-	 * @param novoValor
-	 *            O novo valor a ser atribuido ao atributo.
+	 * @param id O codigo de identificacao unico do produto.
+	 * @param atributo O atributo a ser redefinido (nome, categoria, quantidade, unidade de medida, massa, quantidade de unidades)
+	 * @param novoValor O novo valor a ser atribuido ao atributo.
 	 */
 	public void atualizaItem(int id, String atributo, String novoValor) {
 		if (!produtos.containsKey(id))
@@ -146,15 +121,11 @@ public class Sistema implements Serializable {
 		produtos.get(id).atualizaItem(atributo, novoValor);
 	}
 
-	/**
-	 * Adiciona um novo local de compra e seu respectivo preco a um item
+	/**Adiciona um novo local de compra e seu respectivo preco a um item
 	 * 
-	 * @param id
-	 *            O codigo de identificacao unico do produto.
-	 * @param localDeCompra
-	 *            O nome do local onde o produto possui o preco.
-	 * @param preco
-	 *            O preco do produto no local especificado.
+	 * @param id O codigo de identificacao unico do produto.
+	 * @param localDeCompra O nome do local onde o produto possui o preco.
+	 * @param preco O preco do produto no local especificado.
 	 */
 	public void adicionaPrecoItem(int id, String localDeCompra, double preco) {
 		if (id < 1)
@@ -165,24 +136,20 @@ public class Sistema implements Serializable {
 		produtos.get(id).adicionaPrecoItem(localDeCompra, preco);
 	}
 
-	/**
-	 * Remove um item do sistema.
+	/**Remove um item do sistema.
 	 * 
-	 * @param id
-	 *            O codigo de identificacao unico do produto.
+	 * @param id O codigo de identificacao unico do produto.
 	 */
 	public void deletaItem(int id) {
 		if (!produtos.containsKey(id))
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Erro na remocao de item: item nao existe.");
 
 		produtos.remove(id);
 	}
 
-	/**
-	 * Exibe um produto pela posicao em ordem alfabetica.
+	/**Exibe um produto pela posicao em ordem alfabetica.
 	 * 
-	 * @param posicao
-	 *            A posicao do produto na lista.
+	 * @param posicao A posicao do produto na lista.
 	 * @return A representacao em String do produto.
 	 */
 	public String getItem(int posicao) {
@@ -196,14 +163,10 @@ public class Sistema implements Serializable {
 		return novaOrdenacao.get(posicao).toString();
 	}
 
-	/**
-	 * Exibe um produto pela posicao em ordem alfabetica dentro da categoria
-	 * especificada.
+	/**Exibe um produto pela posicao em ordem alfabetica dentro da categoria especificada.
 	 * 
-	 * @param categoria
-	 *            A categoria a ser consultada.
-	 * @param posicao
-	 *            A posicao do produto na lista da categoria.
+	 * @param categoria A categoria a ser consultada.
+	 * @param posicao A posicao do produto na lista da categoria.
 	 * @return A representacao em String do produto.
 	 */
 	public String getItemPorCategoria(String categoria, int posicao) {
@@ -224,11 +187,9 @@ public class Sistema implements Serializable {
 		return novaOrdenacao.get(posicao).toString();
 	}
 
-	/**
-	 * Exibe um produto pela posicao na lista ordenada pelo menor preco.
+	/**Exibe um produto pela posicao na lista ordenada pelo menor preco.
 	 * 
-	 * @param posicao
-	 *            A posicao do produto na lista da categoria.
+	 * @param posicao A posicao do produto na lista da categoria.
 	 * @return A representacao em String do produto.
 	 */
 	public String getItemPorMenorPreco(int posicao) {
@@ -242,14 +203,10 @@ public class Sistema implements Serializable {
 		return novaOrdenacao.get(posicao).toString();
 	}
 
-	/**
-	 * Exibe um produto pela posicao em ordem alfabetica dentro dos produtos cujo
-	 * nome contem uma string de pesquisa.
+	/**Exibe um produto pela posicao em ordem alfabetica dentro dos produtos cujo nome contem uma string de pesquisa.
 	 * 
-	 * @param strPesquisada
-	 *            A string de pesquisa.
-	 * @param posicao
-	 *            A posicao do produto na lista da categoria.
+	 * @param strPesquisada A string de pesquisa.
+	 * @param posicao A posicao do produto na lista da categoria.
 	 * @return A representacao em String do produto.
 	 */
 	public String getItemPorPesquisa(String strPesquisada, int posicao) {
@@ -267,6 +224,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Adiciona uma nova lista de compras vazia ao sistema com o descritor especificado.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @return O descritor (nome) da lista.
 	 */
@@ -283,6 +241,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Pesquisa a lista de compras pelo seu descritor.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista existente.
 	 * @return O descritor (nome) da lista caso ela exista no sistema.
 	 */
@@ -296,6 +255,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Adiciona um novo produto a lista de compras.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param quantidade A quantidade do produto.
 	 * @param itemId O codigo de identificacao unico do produto.
@@ -314,6 +274,7 @@ public class Sistema implements Serializable {
 	}
 	
 	/**Finaliza uma lista de compras.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param localDaCompra O local onde foi feita a compra.
 	 * @param valorFinalDaCompra O valor final da compra.
@@ -332,6 +293,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Pesquisa um produto comprado em uma lista.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param itemId O codigo de identificacao unico do produto.
 	 * @return A Representacao em String do produto.
@@ -347,7 +309,8 @@ public class Sistema implements Serializable {
 		return listasDeCompras.get(descritorLista).pesquisaCompraEmLista(itemId);
 	}
 
-	/**Pesquisa um produto comprado em uma lista pela sua posiçao nela.
+	/**Pesquisa um produto comprado em uma lista pela sua posicao nela.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param posicaoItem A posicao do item na lista.
 	 * @return A Representacao em String do produto.
@@ -360,6 +323,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Remove uma compra de uma lista.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param itemId O codigo de identificacao unico do produto.
 	 */
@@ -377,6 +341,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Atualiza a quantidade de um item de uma lista.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista.
 	 * @param itemId O codigo de identificacao unico do produto.
 	 * @param quantidade A nova quantidade do produto.
@@ -389,6 +354,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Retorna uma lista de compras pela data e indice na lista de listas de compras daquela data.
+	 * 
 	 * @param data A data da lista de compras.
 	 * @param posicaoLista A posicao da lista de compras na lista daquela data.
 	 * @return O descritor (nome) da lista.
@@ -410,6 +376,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Retorna uma lista de compras pela presenca de um item naquela lista e indice na lista de listas.
+	 * 
 	 * @param id O codigo de identificacao unico do produto.
 	 * @param posicaoLista A posicao da lista de compras na lista das que contem aquele produto.
 	 * @return O descritor (nome) da lista.
@@ -433,7 +400,8 @@ public class Sistema implements Serializable {
 		return  listas.get(posicaoLista).getData() + " - " + listas.get(posicaoLista).getDescritor();
 	}
 
-	/**A data atual
+	/**Retorna a data atual em String.
+	 * 
 	 * @return A data atual.
 	 */
 	public String dataAtual() {
@@ -441,6 +409,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Retorna as listas de compras feitas na data especificada.
+	 * 
 	 * @param data A data das listas.
 	 * @return Representacao em String das listas de compras feitas na data especificada.
 	 */
@@ -455,8 +424,7 @@ public class Sistema implements Serializable {
 			throw new IllegalArgumentException("Erro na pesquisa de compra: data em formato invalido, tente dd/MM/yyyy");			
 		}
 		
-		String retorno = "";
-		
+		String retorno = "";		
 		for (ListaDeCompras l : listasDeCompras.values()) {
 			if (l.getData().equals(data))
 				retorno += l.toString() + "\n";
@@ -466,6 +434,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Retorna as listas de compras que contem o produto especificado.
+	 * 
 	 * @param id O codigo de identificacao unico do produto.
 	 * @return Representacao em String das listas de compras feitas na data especificada.
 	 */
@@ -483,6 +452,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Gera uma nova lista de compras copiando a ultima lista criada.
+	 * 
 	 * @return O descritor (nome) da lista.
 	 */
 	public String geraAutomaticaUltimaLista() {
@@ -500,6 +470,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Gera uma nova lista de compras copiando a ultima lista criada que contem um item especificado.
+	 * 
 	 * @param nome O nome do item desejado.
 	 * @return O descritor (nome) da lista.
 	 */
@@ -522,6 +493,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Gera uma nova lista de compras com as compras presentes em maior quantidade nas listas existentes.
+	 * 
 	 * @return O descritor (nome) da lista.
 	 */
 	public String geraAutomaticaItensMaisPresentes() {
@@ -560,6 +532,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**Sugere o melhor estabelecimento para realizacao de uma lista de compras.
+	 * 
 	 * @param descritorLista O descritor (nome) da lista para a qual se deseja obter o estabelecimento
 	 * @param posicaoEstabelecimento O indice do estabelecimento na ordem obtida (por preco).
 	 * @param posicaoLista A posicao do item na lista do estabelecimento.

@@ -1,5 +1,9 @@
 package sistema;
 
+/**Uma tupla que contem dois inteiros. Usada em alguns pontos do programa para simplificacao de metodos.
+ * 
+ * @author Igor Seabra
+ */
 public class Tupla {
 	private int x;
 	private int y;

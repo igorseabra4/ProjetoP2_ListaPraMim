@@ -5,8 +5,7 @@ import java.util.HashSet;
 
 import sistema.produtos.*;
 
-/**
- * Compras que sao armazenadas em listas de compras. As compras armazenam
+/** Compras que sao armazenadas em listas de compras. As compras armazenam
  * produtos e suas determinadas quantidades.
  * 
  * @author Henry Filho
@@ -14,48 +13,38 @@ import sistema.produtos.*;
  */
 public class Compra implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7573139187233147231L;
 	private int quantia;
 	private Produto produto;
 
-	/**
-	 * Construtor que copia uma determinada compra.
+	/**Construtor que copia uma compra existente.
 	 * 
-	 * @param c
-	 *            Compra que sera copiada.
+	 * @param compra Compra que sera copiada.
 	 */
-	public Compra(Compra c) {
-		this.quantia = c.quantia;
-		this.produto = c.produto;
+	public Compra(Compra compra) {
+		this.quantia = compra.quantia;
+		this.produto = compra.produto;
 	}
 
-	/**
-	 * Construtor padrao da compra.
+	/**Construtor padrao da compra.
 	 * 
-	 * @param quantia
-	 *            Quantidade de itens a serem comprados.
-	 * @param produto
-	 *            Produto determinado da compra.
+	 * @param quantia Quantidade de itens a serem comprados.
+	 * @param produto Produto determinado da compra.
 	 */
 	public Compra(int quantia, Produto produto) {
 		this.quantia = quantia;
 		this.produto = produto;
 	}
 
-	/**
-	 * Retorna a categoria do produto da compra.
+	/**Retorna a categoria do produto da compra.
 	 * 
-	 * @return categoria do produto.
+	 * @return A categoria do produto.
 	 */
 	public String getCategoria() {
 		return produto.getCategoria();
 	}
 
-	/**
-	 * Retorna a representacao numerica do produto da compra.
+	/**Retorna a representacao numerica do produto da compra.
 	 * 
 	 * @return representacao numerica do produto.
 	 */
@@ -63,8 +52,7 @@ public class Compra implements Serializable {
 		return produto.getId();
 	}
 
-	/**
-	 * Retorna o nome do produto da compra.
+	/**Retorna o nome do produto da compra.
 	 * 
 	 * @return nome do produto.
 	 */
@@ -72,8 +60,7 @@ public class Compra implements Serializable {
 		return produto.getNome();
 	}
 
-	/**
-	 * Retorna a quantia de produtos comprados.
+	/**Retorna a quantia de produtos comprados.
 	 * 
 	 * @return quantia.
 	 */
@@ -81,17 +68,16 @@ public class Compra implements Serializable {
 		return quantia;
 	}
 
-	/**
-	 * Incrementa uma quantia a compra.
+	/**Incrementa uma quantia a compra.
 	 * 
-	 * @param quantia
-	 *            Valor a ser incrementado.
+	 * @param quantia Valor a ser incrementado.
 	 */
 	public void addQuantia(int quantia) {
 		this.quantia += quantia;
 	}
 
 	/**Retorna o preco do produto no local de compra especificado.
+	 * 
 	 * @param local O local de compra.
 	 * @return O preco do produto no local.
 	 */
@@ -107,13 +93,11 @@ public class Compra implements Serializable {
 		return produto.getLocais();
 	}
 
-	/**
-	 * Representação textual da compra, que corresponde a quantia seguido da
-	 * representação textual alternativa do produto.
+	/**Representacao textual da compra, que corresponde a quantia seguido da representacao textual alternativa do produto.
 	 */
 	@Override
 	public String toString() {
-		return String.format("%d %s", quantia, produto.toString(0));
+		return String.format("%d %s", quantia, produto.toStringSemPrecos());
 	}
 
 }
