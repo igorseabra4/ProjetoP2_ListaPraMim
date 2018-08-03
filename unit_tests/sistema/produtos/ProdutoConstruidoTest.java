@@ -1,6 +1,3 @@
-/**
- * 
- */
 package sistema.produtos;
 
 import static org.junit.Assert.*;
@@ -51,16 +48,16 @@ public class ProdutoConstruidoTest {
 	@Test
 	public void testAtualizaItem() {
 		p1.atualizaItem("nome", "feijao");
-		assertEquals("feijao, alimento industrializado", p1.toString(0));
+		assertEquals("feijao, alimento industrializado", p1.toStringSemPrecos());
 		
 		p1.atualizaItem("categoria", "alimento nao industrializado");
-		assertEquals("feijao, alimento nao industrializado", p1.toString(0));
+		assertEquals("feijao, alimento nao industrializado", p1.toStringSemPrecos());
 		
 		p1.atualizaItem("categoria", "limpeza");
-		assertEquals("feijao, limpeza", p1.toString(0));
+		assertEquals("feijao, limpeza", p1.toStringSemPrecos());
 		
 		p1.atualizaItem("categoria", "higiene pessoal");
-		assertEquals("feijao, higiene pessoal", p1.toString(0));
+		assertEquals("feijao, higiene pessoal", p1.toStringSemPrecos());
 	}
 
 	/**
@@ -135,11 +132,11 @@ public class ProdutoConstruidoTest {
 	}
 
 	/**
-	 * Test method for {@link sistema.produtos.Produto#toString(int)}.
+	 * Test method for {@link sistema.produtos.Produto#toStringSemPrecos()}.
 	 */
 	@Test
 	public void testToStringInt() {
-		assertEquals("uva, alimento industrializado", p1.toString(0));
+		assertEquals("uva, alimento industrializado", p1.toStringSemPrecos());
 	}
 	
 	/**

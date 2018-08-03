@@ -52,20 +52,16 @@ public abstract class Produto implements Serializable {
 		precos.put(localDeCompra, preco);
 	}
 
-	/**
-	 * Atualiza um determinado atributo do produto.
+	/**Atualiza um determinado atributo do produto.
 	 * 
-	 * @param atributo
-	 *            Atributo que será modificado.
-	 * @param novoValor
-	 *            Valor desejado que será atribuido ao atributo.
+	 * @param atributo Atributo que sera modificado.
+	 * @param novoValor Valor desejado que sera atribuido ao atributo.
 	 */
 	public void atualizaItem(String atributo, String novoValor) {
-		if (atributo.trim().equals("") || atributo.equals(null))
+		if (atributo.trim().equals(""))
 			throw new NullPointerException("Erro na atualizacao de item: atributo nao pode ser vazio ou nulo.");
-		if (novoValor.trim().equals("") || novoValor.equals(null))
-			throw new NullPointerException(
-					"Erro na atualizacao de item: novo valor de atributo nao pode ser vazio ou nulo.");
+		if (novoValor.trim().equals(""))
+			throw new NullPointerException("Erro na atualizacao de item: novo valor de atributo nao pode ser vazio ou nulo.");
 
 		if (atributo.equals("nome"))
 			nome = novoValor;
@@ -79,11 +75,9 @@ public abstract class Produto implements Serializable {
 			throw new IllegalArgumentException("Erro na atualizacao de item: atributo nao existe.");
 	}
 
-	/**
-	 * Atualiza a categoria do produto para uma nova.
+	/**Atualiza a categoria do produto para uma nova.
 	 * 
-	 * @param novoValor
-	 *            nova categoria do produto.
+	 * @param novoValor Nova categoria do produto.
 	 */
 	private void atualizaCategoria(String novoValor) {
 		if (novoValor.equals("alimento industrializado"))
@@ -98,16 +92,13 @@ public abstract class Produto implements Serializable {
 			throw new IllegalArgumentException("categoria nao existe.");
 	}
 
-	/**
-	 * Adiciona o preco do produto em um determinado local de compra.
+	/**Adiciona o preco do produto em um determinado local de compra.
 	 * 
-	 * @param localDeCompra
-	 *            Local atribuido ao preco.
-	 * @param preco
-	 *            Preco do produto neste local.
+	 * @param localDeCompra Local atribuido ao preco.
+	 * @param preco Preco do produto neste local.
 	 */
 	public void adicionaPrecoItem(String localDeCompra, double preco) {
-		if (localDeCompra.trim().equals("") || localDeCompra.equals(null))
+		if (localDeCompra.trim().equals(""))
 			throw new NullPointerException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
 		if (preco < 0)
 			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
@@ -118,8 +109,7 @@ public abstract class Produto implements Serializable {
 			precos.put(localDeCompra, preco);
 	}
 
-	/**
-	 * Retorna o identificador numerico no produto.
+	/**Retorna o identificador numerico no produto.
 	 * 
 	 * @return identificador numerico.
 	 */
@@ -127,28 +117,25 @@ public abstract class Produto implements Serializable {
 		return id;
 	}
 
-	/**
-	 * Retorna o nome do produto.
+	/**Retorna o nome do produto.
 	 * 
-	 * @return nome do produto.
+	 * @return O nome do produto.
 	 */
 	public String getNome() {
 		return nome;
 	}
 
-	/**
-	 * Retorna a categoria do produto em String.
+	/**Retorna a categoria do produto em String.
 	 * 
-	 * @return categoria do produto.
+	 * @return A categoria do produto.
 	 */
 	public String getCategoria() {
 		return categoria.getNome();
 	}
 
-	/**
-	 * Retorna o menor preco definido do produto.
+	/**Retorna o menor preco definido do produto.
 	 * 
-	 * @return menor preco conhecido.
+	 * @return O menor preco conhecido.
 	 */
 	public double getMenorPreco() {
 		double menor = Double.MAX_VALUE;
@@ -179,12 +166,11 @@ public abstract class Produto implements Serializable {
 		return locais;
 	}
 
-	/**
-	 * Retorna um valor booleano correspondendo a existência de uma dada String
+	/**Retorna um valor booleano correspondendo a existencia de uma dada String
 	 * no nome do produto.
 	 * 
 	 * @param string String pesquisada.
-	 * @return true caso possua, false caso contrário.
+	 * @return True caso possua, false caso contrario.
 	 */
 	public boolean contemStringPesquisada(String string) {
 		return nome.toLowerCase().contains(string.toLowerCase());
@@ -212,11 +198,10 @@ public abstract class Produto implements Serializable {
 		return nome + ", " + categoria.getNome();
 	}
 
-	/**
-	 * Valores utilizados na representacão textual do produto, que são uma
+	/**Valores utilizados na representacao textual do produto, que sao uma
 	 * peculiaridade de cada tipo de produto.
 	 * 
-	 * @return uma String com valores específicos de cada tipo.
+	 * @return uma String com valores especificos de cada tipo.
 	 */
 	protected abstract String toStringValues();
 

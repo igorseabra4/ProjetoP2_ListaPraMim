@@ -23,15 +23,15 @@ public class ProdutoQuantidadeTest {
 	@Test
 	public void testAtualizaItem() {
 		p1.atualizaItem("quantidade", "250");		
-		assertEquals("uva, alimento industrializado, 250 g", p1.toString(0));
+		assertEquals("uva, alimento industrializado, 250 g", p1.toStringSemPrecos());
 	
 		p1.atualizaItem("unidade de medida", "kg");
-		assertEquals("uva, alimento industrializado, 250 kg", p1.toString(0));
+		assertEquals("uva, alimento industrializado, 250 kg", p1.toStringSemPrecos());
 	}
 
 	@Test
 	public void testToStringInt() {
-		assertEquals("uva, alimento industrializado, 500 g", p1.toString(0));
+		assertEquals("uva, alimento industrializado, 500 g", p1.toStringSemPrecos());
 	}
 
 	@Test

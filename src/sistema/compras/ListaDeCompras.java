@@ -25,7 +25,7 @@ public class ListaDeCompras implements Serializable {
 	private String data;
 	private int id;
 
-	private String localDaCompra = ""; // Atributo solicitado pela especificação do projeto
+	private String localDaCompra = ""; // Atributo solicitado pela especificacao do projeto
 	private double valorFinalDaCompra = 0.0;
 	private boolean fechada = false;
 

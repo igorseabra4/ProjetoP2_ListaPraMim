@@ -2,14 +2,13 @@ package sistema.produtos;
 
 /**
  * Produtos com quantidade fixa (por exemplo, frasco de detergente Brilhol com
- * 500ml, ou saco de algodão Clemer com 300g, ou caixa com 18 ovos). Esses itens
+ * 500ml, ou saco de algodao Clemer com 300g, ou caixa com 18 ovos). Esses itens
  * devem manter a quantidade e a medida do produto. No exemplo do detergente a
- * quantidade é 500 e a medida é mililitro, já para o algodão a quantidade é 300
- * e a medida grama. Já no caso do ovo a quantidade é 18 e a medida é "unidade
+ * quantidade e 500 e a medida e mililitro, ja para o algodao a quantidade e 300
+ * e a medida grama. Ja no caso do ovo a quantidade e 18 e a medida eh "unidade
  * do produto".
  * 
  * @author Henry Filho
- *
  */
 
 public class ProdutoQuantidade extends Produto {
@@ -18,31 +17,22 @@ public class ProdutoQuantidade extends Produto {
 	private int qnt;
 	private String unidadeDeMedida;
 
-	/**
-	 * Construtor do produto de quantidade fixa.
+	/**Construtor do produto de quantidade fixa.
 	 * 
-	 * @param id
-	 *            Identificador numérico do produto.
-	 * @param nome
-	 *            Nome do produto.
-	 * @param categoria
-	 *            Categoria do produto. (em texto)
-	 * @param qnt
-	 *            Quantidade fixa do produto.
-	 * @param unidadeDeMedida
-	 *            Unidade de medida correspondente a quantidade fixa.
-	 * @param localDeCompra
-	 *            Um local no qual o produto pode ser comprado.
-	 * @param preco
-	 *            O preço do produto no local determinado.
+	 * @param id Identificador numerico do produto.
+	 * @param nome Nome do produto.
+	 * @param categoria Categoria do produto. (em texto)
+	 * @param qnt Quantidade fixa do produto.
+	 * @param unidadeDeMedida Unidade de medida correspondente a quantidade fixa.
+	 * @param localDeCompra Um local no qual o produto pode ser comprado.
+	 * @param preco O preco do produto no local determinado.
 	 */
-	public ProdutoQuantidade(int id, String nome, String categoria, int qnt, String unidadeDeMedida,
-			String localDeCompra, double preco) {
+	public ProdutoQuantidade(int id, String nome, String categoria, int qnt, String unidadeDeMedida, String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);
 		if (qnt < 0)
 			throw new IllegalArgumentException(
 					"Erro no cadastro de item: valor de quantidade nao pode ser menor que zero.");
-		if (unidadeDeMedida.trim().equals("") || unidadeDeMedida.equals(null))
+		if (unidadeDeMedida.trim().equals(""))
 			throw new NullPointerException("Erro no cadastro de item: unidade de medida nao pode ser vazia ou nula.");
 
 		this.qnt = qnt;
@@ -63,8 +53,8 @@ public class ProdutoQuantidade extends Produto {
 	}
 
 	@Override
-	public String toString(int i) {
-		return String.format("%s, %d %s", super.toString(0), qnt, unidadeDeMedida);
+	public String toStringSemPrecos() {
+		return String.format("%s, %d %s", super.toStringSemPrecos(), qnt, unidadeDeMedida);
 	}
 
 	@Override
